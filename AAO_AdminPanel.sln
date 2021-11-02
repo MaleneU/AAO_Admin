@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAO_AdminPanel", "AAO_AdminPanel.csproj", "{14CA1A16-EF92-4FFD-961A-D66DC91E3EED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14CA1A16-EF92-4FFD-961A-D66DC91E3EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CA1A16-EF92-4FFD-961A-D66DC91E3EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CA1A16-EF92-4FFD-961A-D66DC91E3EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CA1A16-EF92-4FFD-961A-D66DC91E3EED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E9E2F08-8DE6-4509-8EBE-84E5A197737E}
+	EndGlobalSection
+EndGlobal
