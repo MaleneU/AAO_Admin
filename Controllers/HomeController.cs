@@ -36,6 +36,11 @@ namespace AAO_AdminPanel.Controllers
             return View();
         }
 
+        public IActionResult Trips()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

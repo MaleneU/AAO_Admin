@@ -6,41 +6,45 @@
     <title>@ViewData["Title"] - AAO_AdminPanel</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AAO_AdminPanel</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateTrip">Opret en tur</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
+        <div id="user-name">Alex Andersen</div>
+        <div id="user-menu">
+            <a href="#">Log ud</a>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <nav class="side-nav">
+        <a id="logo" href="/">
+            <img src="~/img/AAlogo.svg" />
+            <p>Alex Andersen Ølund</p>
+        </a>
+        <ul>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="CreateTrip">Opret tur</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Afløser oversigt</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Trips">Oprettede ture</a>
+            </li>
+            <li>
+                <a href="/">Tildelte Ture</a>
+            </li>
+        </ul>
+        <div class="side-menu-collapse"><a href="#">Minimer Menu</a></div>
+    </nav>
+    
+    <div class="move-left">
+        <main>
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - AAO_AdminPanel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
