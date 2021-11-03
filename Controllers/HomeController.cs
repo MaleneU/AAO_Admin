@@ -24,8 +24,8 @@ namespace AAO_AdminPanel.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        { // comment
+        public IActionResult CreateTrip()
+        {
             return View();
         }
 
