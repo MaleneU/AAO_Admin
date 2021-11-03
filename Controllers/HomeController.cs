@@ -26,6 +26,13 @@ namespace AAO_AdminPanel.Controllers
 
         public IActionResult CreateTrip()
         {
+
+                        return View();
+        }
+
+
+        public IActionResult CreatedTrips()
+        {
             return View();
         }
 
