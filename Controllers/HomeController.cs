@@ -25,7 +25,7 @@ namespace AAO_AdminPanel.Controllers
         }
 
         public IActionResult Privacy()
-        {
+        { // comment
             return View();
         }
 
