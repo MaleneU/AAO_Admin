@@ -31,10 +31,7 @@ namespace AAO_AdminPanel.Controllers
         }
 
 
-        public IActionResult CreatedTrips()
-        {
-            return View();
-        }
+       
 
         public IActionResult Trips()
         {

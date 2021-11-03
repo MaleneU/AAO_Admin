@@ -3,3 +3,109 @@
 *@
 @{
 }
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script defer type="text/javascript">
+
+ 
+</script>
+
+<style>
+    .moreshown {
+        display: none; 
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th> </th>
+            <th>Start dato</th>
+            <th>Slut dato</th>
+            <th>Start tid</th>
+            <th>Varighed</th>
+            <th>Trafik</th>
+            <th>Afdeling</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="showmore" id="show">
+            <td><input type="checkbox" id="tablecheck"></td>
+            <td>25/06/2021</td>
+            <td>26/06/2021</td>
+            <td>07.00</td>
+            <td>5 timer</td>
+            <td>DK - DK</td>
+            <td>Odense Blomster</td>
+            <td>Ikke tildelt</td>
+            <td> Show more</td>
+            <td onclick="myFunction()" ><a class="showmore" href="#"> <i class="fas fa-sort-down"></i> </a></td>
+
+        </tr>
+        <tr colspan="6">
+            <table>
+                <thead class="moreshown">
+                    <tr>
+                        <th>Navn </th>
+                        <th>Tlf. Nr. </th>
+                        <th>Mail </th>
+                        <th>Kørekort </th>
+                        <th>Vælg chauffør </th>
+                        <th> Godkend chauffør </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="moreshown">
+                        <td>Hans</td>
+                        <td> 37 48 38 48</td>
+                        <td> Hans@gmail.com </td>
+                        <td>Alle</td>
+                        <td><input type="checkbox" id="PickDriver"></td>
+                        <td><input type="checkbox" id="ValidateDriver"></td>
+                    </tr>
+                    <tr class="moreshown">
+                        <td>Hans</td>
+                        <td> 37 48 38 48</td>
+                        <td> Hans@gmail.com </td>
+                        <td>Alle</td>
+                        <td><input type="checkbox" id="PickDriver"></td>
+                        <td><input type="checkbox" id="ValidateDriver"></td>
+                    </tr>
+                    <tr class="moreshown">
+                        <td>Hans</td>
+                        <td> 37 48 38 48</td>
+                        <td> Hans@gmail.com </td>
+                        <td>Alle</td>
+                        <td><input type="checkbox" id="PickDriver"></td>
+                        <td><input type="checkbox" id="ValidateDriver"></td>
+                    </tr>
+                    <tr class="moreshown">
+                        <td>Hans</td>
+                        <td> 37 48 38 48</td>
+                        <td> Hans@gmail.com </td>
+                        <td>Alle</td>
+                        <td><input type="checkbox" id="PickDriver"></td>
+                        <td><input type="checkbox" id="ValidateDriver"></td>
+                    </tr>
+                    <tr class="moreshown">
+                        <td>Hans</td>
+                        <td> 37 48 38 48</td>
+                        <td> Hans@gmail.com </td>
+                        <td>Alle</td>
+                        <td><input type="checkbox" id="PickDriver"></td>
+                        <td><input type="checkbox" id="ValidateDriver"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </tr>
+    </tbody>
+</table>
+
+
+
