@@ -3,53 +3,60 @@
 
 @{
     ViewData["Title"] = "Log ind";
+    
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                @*<h4>Use a local account to log in.</h4>*@
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Username"></label>
-                    <input asp-for="Input.Username" class="form-control" />
-                    <span asp-validation-for="Input.Username" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log ind</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
+@*<h1>@ViewData["Title"]</h1>*@
+<div class="login-container">
+    <div class="login">
+        <div class="login-head">
+            <img src="https://www.alex-andersen.dk/cdn/assets/aalogo-square.db4301db.png" />
+            <h2>Alex Andersen</h2>
+            <h1>Afløser app</h1>
+        </div>
+
+    <form id="account" method="post">
+        @*<h4>Use a local account to log in.</h4>*@
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+        <div class="login-form">
+            <label asp-for="Input.Username"></label><br />
+            <input asp-for="Input.Username" class="form-control" /><br />
+            <span asp-validation-for="Input.Username" class="text-danger"></span>
+        </div>
+        <div class="login-form">
+            <label asp-for="Input.Password"></label><br />
+            <input asp-for="Input.Password" class="form-control" /><br />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <div class="checkbox">
+                <label asp-for="Input.RememberMe">
+                    <input asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
+        </div>*@
+    <div class="btn-container">
+        <button type="submit" class="btn-left">Log ind</button>
+        <button class="btn-right">Hjælp</button>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        @*<section>
+
+        @*<div class="form-group">
+            <p>
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+            </p>
+            <p>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+            </p>
+            <p>
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </p>
+        </div>*@
+    </form>
+        </div>
+    
+    @*<div class="col-md-6 col-md-offset-2">
+        <section>
             <h4>Use another service to log in.</h4>
             <hr />
             @{
@@ -76,8 +83,8 @@
                     </form>
                 }
             }
-        </section>*@
-    </div>
+        </section>
+    </div>*@
 </div>
 
 @section Scripts {
