@@ -9,13 +9,7 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
-    <header>
-        <div id="user-name">Alex Andersen</div>
-        <div id="user-menu">
-            <a href="#">Log ud</a>
-        </div>
-    </header>
-
+    <div class="grid-container">
     <nav class="side-nav">
         <a id="logo" href="/">
             <img src="~/img/AAlogo.svg" />
@@ -37,13 +31,13 @@
         </ul>
         <div class="side-menu-collapse"><a href="#">Minimer Menu</a></div>
     </nav>
-    
-    <div class="move-left">
+    <header>
+        <partial name="_LoginPartial" />
+    </header>
         <main>
             @RenderBody()
         </main>
     </div>
-
   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
