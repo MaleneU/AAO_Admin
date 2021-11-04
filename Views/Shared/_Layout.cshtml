@@ -11,39 +11,51 @@
 </head>
 <body>
     <div class="grid-container">
-    <nav class="side-nav">
-        <a id="logo" href="/">
-            <img src="~/img/AAlogo.svg" />
-            <p>Alex Andersen Ølund</p>
-        </a>
-        <ul>
+        <nav class="side-nav">
+            <a id="logo" href="/">
+                <img src="~/img/AAlogo.svg" />
+                <p>Alex Andersen Ølund</p>
+            </a>
+            <ul>
+                <li>
+                    <i class="fas fa-edit"></i>
+                    <a asp-area="" asp-controller="Home" asp-action="CreateTrip">Opret tur</a>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <i class="fas fa-database"></i>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Afløser oversigt</a>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <i class="fas fa-truck"></i>
+                    <a asp-area="" asp-controller="Home" asp-action="Trips">Oprettede ture</a>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <i class="far fa-list-alt"></i>
+                    <a href="/">Tildelte Ture</a>
+                    <i class="fas fa-chevron-right"></i>
+                </li>
+                <li>
+                    <i class="fas fa-arrow-circle-left"></i>
+                    <a href="/">Minimer menu</a>
+                    <i class="fas fa-chevron-left"></i>
+                </li>
+            </ul>
+            <ul>
             <li>
-                <i class="fas fa-edit"></i>
-                <a asp-area="" asp-controller="Home" asp-action="CreateTrip">Opret tur</a>
-                <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a href="/">Minimer menu</a>
+                <i class="fas fa-chevron-left"></i>
             </li>
-            <li>
-                <i class="fas fa-database"></i>
-                <a asp-area="" asp-controller="Home" asp-action="Index">Afløser oversigt</a>
-                <i class="fas fa-chevron-right"></i>
-            </li>
-            <li>
-                <i class="fas fa-truck"></i>
-                <a asp-area="" asp-controller="Home" asp-action="Trips">Oprettede ture</a>
-                <i class="fas fa-chevron-right"></i>
-            </li>
-            <li>
-                <i class="far fa-list-alt"></i>
-                <a href="/">Tildelte Ture</a>
-                <i class="fas fa-chevron-right"></i>
-            </li>
-        </ul>
-        <div class="side-menu-collapse"><a href="#">Minimer Menu</a></div>
-        @*Log out function from LoginPartial*@
-        @*<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>*@
-    </nav>
+            </ul>
+
+            @*Log out function from LoginPartial*@
+            @*<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>*@
+        </nav>
     <header>
      
             <partial name="_LoginPartial" />
@@ -54,7 +66,6 @@
     <main>
         @RenderBody()
     </main>
-    </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
