@@ -4,9 +4,9 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 300px auto;
     grid-template-rows:2em auto;
-    height:50vw;
+    height:100vh;
 }
 
 .side-nav {
@@ -69,18 +69,23 @@ main {margin-top: 4em;
     z-index: 1000;
     text-align: center;
 }
-.side-nav ul{padding:0;}
-    .side-nav li {
-        text-align: left;
-        display: grid;
-        align-items: center;
-        grid-template-columns: 1fr 5fr 1fr;
-    }
+.side-nav ul{padding:0 1em;}
+.side-nav li {
+    padding:8px 0;
+    text-align: left;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-gap:8px;
+}
 
 .side-nav a{
     text-decoration:none;
     color:#000;
 }
+
+.side-nav li:hover, .side-nav li:hover a{color:#00904a;}
+
 
 #logo{
     
