@@ -69,10 +69,13 @@ main {margin-top: 4em;
     z-index: 1000;
     text-align: center;
 }
-
-.side-nav li{
-    text-align:left;
-}
+.side-nav ul{padding:0;}
+    .side-nav li {
+        text-align: left;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 5fr 1fr;
+    }
 
 .side-nav a{
     text-decoration:none;
