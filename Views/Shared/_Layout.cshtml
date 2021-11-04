@@ -10,13 +10,7 @@
     <script src="https://kit.fontawesome.com/f47fcebf42.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div id="user-name">Hello, @User.Identity.Name</div>
-        <div id="user-menu">
-            <a href="#">Log ud</a>
-        </div>
-    </header>
-
+    <div class="grid-container">
     <nav class="side-nav">
         <a id="logo" href="/">
             <img src="~/img/AAlogo.svg" />
@@ -39,17 +33,21 @@
         <div class="side-menu-collapse"><a href="#">Minimer Menu</a></div>
         @*Log out function from LoginPartial*@
         @*<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>*@
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>*@
     </nav>
     <header>
-        <partial name="_LoginPartial" />
+     
+            <partial name="_LoginPartial" />
+       
     </header>
-        <main>
-            @RenderBody()
-        </main>
+
+
+    <main>
+        @RenderBody()
+    </main>
     </div>
-  
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
