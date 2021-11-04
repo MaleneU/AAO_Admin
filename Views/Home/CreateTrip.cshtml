@@ -1,6 +1,81 @@
 ﻿@{
-    ViewData["Title"] = "Opret en tur";
+    ViewData["Title"] = "Opret tur";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+
+<div class="CreateTripFlex">
+    <div class="LeftCol">
+        <div class="StartDateTrip">
+            <label>Start Dato</label>
+            <input type="date" />
+        </div>
+        <div class="EndDateTrip">
+            <label>Slut Dato</label>
+            <input type="date" />
+        </div>
+        <div class="StartTimeTrip">
+            <label>Start Tid</label>
+            <input type="time" />
+        </div>
+
+        <div class="StartDesTrip">
+            <label>Start Destination</label>
+            <select name="StartDestination" id="StartDestination">
+                <option value="Odense">Odense, Danmark</option>
+                <option value="Oslo">Oslo, Norge</option>
+                <option value="Amsterdam">Amsterdam, Holland</option>
+                <option value="Luxemburg">Luxemburg, Luxemburg</option>
+                <option value="Stockholm">Stockholm, Sverige</option>
+            </select>
+        </div>
+        <div class="EndDesTrip">
+            <label>Slut Destination</label>
+            <select name="EndDestination" id="EndDestination">
+                <option value="Odense">Odense, Danmark</option>
+                <option value="Oslo">Oslo, Norge</option>
+                <option value="Amsterdam">Amsterdam, Holland</option>
+                <option value="Luxemburg">Luxemburg, Luxemburg</option>
+                <option value="Stockholm">Stockholm, Sverige</option>
+
+
+
+            </select>
+        </div>
+    </div>
+
+    <div class="MidCol">
+        <div class="ContactTrip">
+            <label>Kontakt</label>
+            <select name="ContactPerson" id="ContactPerson">
+                <option value="John">John Doe</option>
+                <option value="Jane">Jane Doe</option>
+            </select>
+        </div>
+        <div class="DepartmentTrip">
+            <label>Afdeling</label>
+            <select name="Department" id="Department">
+                <option value="Odense">Odense</option>
+                <option value="Oslo">Oslo</option>
+            </select>
+        </div>
+        <div class="DurationTrip">
+            <label>Est. Varighed</label>
+            <input type="number" min="1" max="365"/> Dage
+            <input type="number" min="1" max="24"/> Timer
+
+            <div class="QuickTrip">
+                <label>Hastetur</label>
+                <input type="checkbox"/>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="RightCol">
+        <label>Beskrivelse</label>
+        <input placeholder="Skriv her..."  class="DescriptionTrip"/>
+        <button class="CreateTripBtn">Opret en tur</button>
+    </div>
+</div>
+
