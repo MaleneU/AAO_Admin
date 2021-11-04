@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AAO_AdminPanel.Models.TripModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDateAndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StopDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescriptionOfTrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrafficID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateAndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrafficID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

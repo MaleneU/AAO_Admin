@@ -1,4 +1,4 @@
-using AAO_AdminPanel.Data;
+﻿using AAO_AdminPanel.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -68,6 +68,9 @@ namespace AAO_AdminPanel
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+
+            services.AddDbContext<AAO_AdminPanelContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("AAO_AdminPanelContext")));
         }
     
 
