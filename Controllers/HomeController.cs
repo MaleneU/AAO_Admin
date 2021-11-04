@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
-{   // [Authorize] 
+{   // [Authorize] // Uncomment for log in demo
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,8 +26,12 @@ namespace AAO_AdminPanel.Controllers
 
         public IActionResult CreateTrip()
         {
-            return View();
+
+                        return View();
         }
+
+
+       
 
         public IActionResult Trips()
         {

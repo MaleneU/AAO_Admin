@@ -1,0 +1,103 @@
+﻿body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0 auto;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 99vh;
+  /*  border: 3px solid grey;*/
+}
+
+.login-head {
+    text-align: center;
+   /* border: 3px solid grey;*/
+   margin-bottom: 20px;
+}
+
+
+.login-head img {
+    margin-bottom: 10px;
+    max-width: 180px;
+}
+
+.login-head h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.login-head h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.login-form {
+    padding-bottom: 20px;
+   /* border: 3px solid grey;*/
+}
+
+.login-form label {
+    text-align: left;
+    font-size: 20px;
+}
+
+.login-form input {
+    margin-top: 10px;
+    height: 30px;
+    width: 280px;
+    border: 1px solid #005140;
+    border-radius: 5px;
+}
+
+.login-form input[type="text"] {
+    font-size: 17px;
+}
+
+
+.login-form input[type="password"] {
+    font-size: 17px;
+}
+
+/*.login ul {
+    margin-block-start: 0px;
+    padding-inline-start: 0px;
+}*/
+
+/*.login li {
+    list-style: none;
+}*/
+
+/*#input_Password-error {
+    font-size: 15px;
+    margin-top: 10px;
+}*/
+
+.btn-container {
+    /*border: 3px solid grey;*/
+}
+
+    .btn-container button {
+        border: none;
+        border-radius: 5px;
+        padding: 8px 20px 8px 20px;
+        font-size: 17px;
+        color: white;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+.btn-container button:hover {
+    opacity: 0.7;
+}
+
+.btn-left {
+    float: left;
+    background-color: #00904A;
+}
+
+
+.btn-right {
+    float: right;
+    background-color: #B4B2B2;
+}
