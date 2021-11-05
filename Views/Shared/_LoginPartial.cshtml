@@ -6,10 +6,10 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <a class="user-name white-text" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+    <a class="user-name white-text" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-user"></i> @User.Identity.Name</a>
     <div class="user-menu">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button type="submit" class="nav-link btn btn-link white-text">Logout</button>
+            <button type="submit" class="nav-link btn btn-link white-text"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </form>
     </div>
 }
@@ -18,8 +18,8 @@ else
 <div class="user-name">Log venligst ind</div>
 <div class="user-menu">
     
-            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i> Register</a>
+            <a asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> Login</a>
      
 </div>
 }
