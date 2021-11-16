@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestMySqlConnection.Data;
 
 namespace AAO_AdminPanel
 {
@@ -31,6 +32,7 @@ namespace AAO_AdminPanel
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDbContext<MySQLDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("MySQL_server")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
