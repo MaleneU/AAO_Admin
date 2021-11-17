@@ -30,7 +30,7 @@ namespace AAO_AdminPanel
         {
             // MySQL Connection
             services.AddDbContext<MySQLDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("MySQL_server")));
-            // Test services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            // Test             services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
 
             //Default Lokal Connection

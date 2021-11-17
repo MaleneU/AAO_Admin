@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class StartLocationModel
+    public class UserModel
     {
         [Key]
-        public int StartLocationID { get; set; }
-        public string Location { get; set; }
+        public int UserID { get; set; }
     }
 }
