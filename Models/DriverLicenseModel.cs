@@ -10,8 +10,8 @@ namespace AAO_AdminPanel.Models
     {
         public int LicenseID { get; set; }
         public int DriverID { get; set; }
-        public DateTime ExpirationDate { get; set; } // Forkert datatype?
-        public string Image { get; set; } // Forkert datatype?
-        public sbyte Active { get; set; } // Usikker på datatype
+        public DateTime ExpirationDate { get; set; }
+        public string Image { get; set; }
+        public bool Active { get; set; }
     }
 }
