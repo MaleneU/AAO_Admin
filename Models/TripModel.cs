@@ -36,6 +36,5 @@ namespace AAO_AdminPanel.Models
             public DbSet<TripModel> Trips { get; set; }
         }
 
-
     }
 }
