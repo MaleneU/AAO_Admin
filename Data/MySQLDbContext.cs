@@ -28,6 +28,8 @@ namespace TestMySqlConnection.Data
         public DbSet<TrafficModel> Traffic { get; set; }
         public DbSet<TripHasDriverModel> TripHasDriver { get; set; }
         public DbSet<TypeModel> Type { get; set; }
+        public DbSet<CityModel> City { get; set; }
+
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
