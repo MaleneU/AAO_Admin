@@ -9,7 +9,7 @@ namespace AAO_AdminPanel.Models
     {
         public int DriverID { get; set; }
         public int UserID { get; set; }
-        public sbyte Active { get; set; }
+        public bool Active { get; set; }
         public int StartLocationID { get; set; }
         public int TypeID { get; set; }
     }
