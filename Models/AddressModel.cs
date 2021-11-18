@@ -17,6 +17,6 @@ namespace AAO_AdminPanel.Models
 
         public int CityID { get; set; }
 
-        //public List<AddressModel> Addresses { get; set; }
+        //public List<UserModel> Users { get; set; }
     }
 }
