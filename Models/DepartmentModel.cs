@@ -11,5 +11,6 @@ namespace AAO_AdminPanel.Models
         [Key]
         public int DepartmentID { get; set; }
         public string Name { get; set; }
+        public List<UserModel> UserID { get; set; } = new List<UserModel>();
     }
 }
