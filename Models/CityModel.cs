@@ -21,7 +21,7 @@ namespace AAO_AdminPanel.Models
 
         public int CountryID { get; set; }
 
-        //public List<CountryModel> CountryModel  { get; set; }
+        //public List<CountryModel> Countries  { get; set; }
     }
 }
 
