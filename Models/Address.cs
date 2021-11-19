@@ -15,8 +15,8 @@ namespace AAO_AdminPanel.Models
         [Column(TypeName = "varchar(255)")]
         public string AddressLine { get; set; }
 
-        public int CityID { get; set; }
+        public City City { get; set; }
 
-        //public List<UserModel> Users { get; set; }
+        public User User { get; set; }
     }
 }

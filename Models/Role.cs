@@ -12,6 +12,7 @@ namespace AAO_AdminPanel.Models
 
         [Column(TypeName = "varchar(100)")]
         public string Name { get; set; }
+        public List<User> Users  { get; set; }
 
     }
 }

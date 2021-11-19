@@ -28,17 +28,14 @@ namespace AAO_AdminPanel.Models
         public string Email { get; set; }
 
         public int Phone { get; set; }
+        public Department Department { get; set; }
 
-        public int AddressID { get; set; }
+        public Role Role { get; set; }
+      
+        public List<Address> Addresses  { get; set; }
+        public List<Trip> Trips { get; set; }
+        public Driver Driver { get; set; }
 
-        public int DepartmentID { get; set; }
 
-        public int RoleID { get; set; }
-
-
-
-        //public List<RoleModel> Roles  { get; set; }
-        //public List<AddressModel> Addresses  { get; set; }
-        //public List<DepartmentModel> departments  { get; set; }
     }
 }

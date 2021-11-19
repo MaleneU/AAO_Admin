@@ -10,8 +10,8 @@ namespace AAO_AdminPanel.Models
     {
         [Key]
         public int TrafficID { get; set; }
-        public int StartCountryID { get; set; }
-        public int StopCountryID { get; set; }
-        public int TypeID { get; set; }
+        public Country StartCountry { get; set; }
+        public Country StopCountry { get; set; }
+        public TrafficType TrafficType { get; set; }
     }
 }

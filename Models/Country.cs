@@ -14,8 +14,10 @@ namespace AAO_AdminPanel.Models
 
         [Column(TypeName = "varchar(255)")]
         public string CountryName { get; set; }
+        [Column(TypeName = "varchar(2)")]
+        public string Code { get; set; }
 
-        public int CityID { get; set; }
+        public List<City> Cities { get; set; }
 
     }
 }

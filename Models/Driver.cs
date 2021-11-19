@@ -11,8 +11,9 @@ namespace AAO_AdminPanel.Models
         [Key]
         public int DriverID { get; set; }
         public int UserID { get; set; }
+        public User User { get; set; }
         public bool Active { get; set; }
-        public int StartLocationID { get; set; }
-        public int TypeID { get; set; }
+        public StartLocation StartLocation { get; set; }
+        public TrafficType TrafficType { get; set; }
     }
 }

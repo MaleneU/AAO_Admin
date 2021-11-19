@@ -26,8 +26,7 @@ namespace AAO_AdminPanel.Data
         public DbSet<StartLocation> StartLocation { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Traffic> Traffic { get; set; }
-        public DbSet<TripHasDriver> TripHasDriver { get; set; }
-        public DbSet<Models.TrafficType> Type { get; set; }
+        public DbSet<TrafficType> Type { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<Address> Address { get; set; }
 

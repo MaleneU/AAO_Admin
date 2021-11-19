@@ -3,14 +3,16 @@ using System;
 using AAO_AdminPanel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AAO_AdminPanel.Migrations.MySQLDb
 {
     [DbContext(typeof(MySQLDbContext))]
-    partial class MySQLDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211119113047_Relations2")]
+    partial class Relations2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,9 +95,6 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<int>("CountryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("varchar(2)");
 
                     b.Property<string>("CountryName")
                         .HasColumnType("varchar(255)");

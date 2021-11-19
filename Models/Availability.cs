@@ -13,6 +13,6 @@ namespace AAO_AdminPanel.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool Status { get; set; }
-        public int DriverID { get; set; }
+        public Driver Driver { get; set; }
     }
 }

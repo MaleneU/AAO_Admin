@@ -9,7 +9,9 @@ namespace AAO_AdminPanel.Models
     public class Request
     {
         [Key]
-        public int DriverID { get; set; }
-        public int TripID { get; set; }
+        public int RequestID { get; set; }
+        public Driver Driver { get; set; }
+        public Trip Trip { get; set; }
+        public Status Status { get; set; }
     }
 }
