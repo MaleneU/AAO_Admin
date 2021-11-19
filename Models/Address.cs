@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class CountryModel
+    public class Address
     {
         [Key]
-        public int CountryID { get; set; }
+        public int AddressID { get; set; }
 
         [Column(TypeName = "varchar(255)")]
-        public string Country { get; set; }
+        public string AddressLine { get; set; }
 
         public int CityID { get; set; }
 
+        //public List<UserModel> Users { get; set; }
     }
 }

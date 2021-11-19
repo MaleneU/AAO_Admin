@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class StatusModel
+    public class Traffic
     {
         [Key]
-        public int StatusID { get; set; }
-        public string Name { get; set; }
+        public int TrafficID { get; set; }
+        public int StartCountryID { get; set; }
+        public int StopCountryID { get; set; }
+        public int TypeID { get; set; }
     }
 }

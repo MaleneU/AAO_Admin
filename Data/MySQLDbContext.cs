@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TestMySqlConnection.Data
+namespace AAO_AdminPanel.Data
 {
     public class MySQLDbContext : DbContext
     {
@@ -15,20 +15,21 @@ namespace TestMySqlConnection.Data
 
         }
 
-        public DbSet<TripModel> Trip { get; set; }
-        public DbSet<UserModel> User { get; set; }
-        public DbSet<AvailabilityModel> Availability { get; set; }
-        public DbSet<DepartmentModel> Department { get; set; }
-        public DbSet<DriverLicenseModel> DriverLicense { get; set; }
-        public DbSet<DriverModel> Driver { get; set; }
-        public DbSet<LicenseModel> License { get; set; }
-        public DbSet<RequestModel> Request { get; set; }
-        public DbSet<StartLocationModel> StartLocation { get; set; }
-        public DbSet<StatusModel> Status { get; set; }
-        public DbSet<TrafficModel> Traffic { get; set; }
-        public DbSet<TripHasDriverModel> TripHasDriver { get; set; }
-        public DbSet<TypeModel> Type { get; set; }
-        public DbSet<CityModel> City { get; set; }
+        public DbSet<Trip> Trip { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Availability> Availability { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<DriverLicense> DriverLicense { get; set; }
+        public DbSet<Driver> Driver { get; set; }
+        public DbSet<License> License { get; set; }
+        public DbSet<Request> Request { get; set; }
+        public DbSet<StartLocation> StartLocation { get; set; }
+        public DbSet<Status> Status { get; set; }
+        public DbSet<Traffic> Traffic { get; set; }
+        public DbSet<TripHasDriver> TripHasDriver { get; set; }
+        public DbSet<Models.TrafficType> Type { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Address> Address { get; set; }
 
 
 

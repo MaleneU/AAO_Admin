@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class RoleModel
+    public class Role
     {
         public int RoleID { get; set; }
 

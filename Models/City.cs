@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class CityModel
+    public class City
     {
         [Key]
         public int CityID { get; set; }
 
         [Column(TypeName = "varchar(255)")]
-        public  string City { get; set; }
+        public string CityName { get; set; }
 
         [Column(TypeName = "varchar(45)")]
         public string ZipCode { get; set; }

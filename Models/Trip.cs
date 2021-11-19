@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class TripModel
+    public class Trip
     {
 
         [Key]
@@ -33,7 +33,7 @@ namespace AAO_AdminPanel.Models
 
         public class AAO_AdminPanelContext : DbContext
         {
-            public DbSet<TripModel> Trips { get; set; }
+            public DbSet<Trip> Trips { get; set; }
         }
 
     }

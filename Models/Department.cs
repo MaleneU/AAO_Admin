@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class RequestModel
+    public class Department
     {
         [Key]
-        public int DriverID { get; set; }
-        public int TripID { get; set; }
+        public int DepartmentID { get; set; }
+        public string Name { get; set; }
+        public List<User> UserID { get; set; } = new List<User>();
     }
 }

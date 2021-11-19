@@ -14,6 +14,6 @@ namespace AAO_AdminPanel.Data
         {
         }
 
-        public DbSet<AAO_AdminPanel.Models.TripModel> TripModel { get; set; }
+        public DbSet<AAO_AdminPanel.Models.Trip> TripModel { get; set; }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class LicenseModel
+    public class TripHasDriver
     {
         [Key]
-        public int LicenseID { get; set; }
-        public string License { get; set; }
+        public int DriverID { get; set; }
+        public int TripID { get; set; }
     }
 }

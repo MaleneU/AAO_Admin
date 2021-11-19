@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class StartLocationModel
+    public class Driver
     {
         [Key]
+        public int DriverID { get; set; }
+        public int UserID { get; set; }
+        public bool Active { get; set; }
         public int StartLocationID { get; set; }
-        public string Location { get; set; }
+        public int TypeID { get; set; }
     }
 }

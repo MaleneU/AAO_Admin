@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Models
 {
-    public class UserModel
+    public class User
     {
         [Key]
         public int UserID { get; set; }

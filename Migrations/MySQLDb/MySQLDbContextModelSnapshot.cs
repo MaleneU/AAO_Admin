@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TestMySqlConnection.Data;
+using AAO_AdminPanel.Data;
 
 namespace AAO_AdminPanel.Migrations.MySQLDb
 {
