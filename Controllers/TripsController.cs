@@ -19,14 +19,26 @@ namespace AAO_AdminPanel.Controllers
             _context = context;
         }
 
+
+        //// GET: Trips
+        //public IActionResult Index()
+        //{
+
+        //    ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+        //    return View();
+            
+        //}
+
+
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            
-            return View(await _context.Trip.ToListAsync());
+
+            var tripDb = _context.Trip.Include(e => e.Department ).Include(e => e.User);
+            return View(await tripDb.ToListAsync());
         }
 
-        // GET: Trips/Details/5
+        //GET: Trips/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,8 +59,8 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
-            PopulateDepartmentsDropDownList(); 
-            //ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+            //PopulateDepartmentsDropDownList(); 
+            ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
             return View();
         }
 
@@ -57,7 +69,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,StartDateAndTime,StopDate,Duration,DepartmentID,Description,Urgent")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripID,StartDateAndTime,StopDate,Duration,Department,Description,Urgent")] Trip trip)
         {
             if (ModelState.IsValid)
             {
