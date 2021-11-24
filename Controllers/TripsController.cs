@@ -59,8 +59,7 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
-            //PopulateDepartmentsDropDownList(); 
-            ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+            //ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
             return View();
         }
 
