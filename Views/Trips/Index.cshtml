@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index Den Her</h1>
+<h1>Oversigt over ture</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -55,19 +55,21 @@
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.UserID)
+                @Html.DisplayFor(modelItem => item.User.Firstname) @Html.DisplayFor(modelItem => item.User.Lastname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Traffic.TrafficID)
+                @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
+                 - 
+                @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.DepartmentID)
+                @Html.DisplayFor(modelItem => item.Department.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Startlocation.StartLocationID)
+                @Html.DisplayFor(modelItem => item.Startlocation.Location)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Urgent)

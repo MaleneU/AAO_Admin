@@ -22,9 +22,10 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
+           // ViewData["DepartmentID"] = _context.Department;
+  
 
-            
-            var mySQLDbContext = _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User);
+            var mySQLDbContext = _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User).Include(t => t.Traffic.StartCountry).Include(t => t.Traffic.StopCountry);
             return View(await mySQLDbContext.ToListAsync());
         }
 
@@ -53,10 +54,13 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
+
+            var trafficCode = _context.Traffic.Include(t => t.StartCountry);
+
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
-            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID");
-            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID");
-            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID");
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
+            ViewData["TrafficID"] = new SelectList(trafficCode, "StartCountry", "Code");
+            ViewData["UserID"] = new SelectList(_context.User.Where(r => r.RoleID == 2), "UserID", "Fullname");
             return View();
         }
 
@@ -73,6 +77,7 @@ namespace AAO_AdminPanel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name", trip.DepartmentID);
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
             ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "StartCountryCountryID", trip.TrafficID);

@@ -27,6 +27,7 @@ namespace AAO_AdminPanel.Data
         public DbSet<Status> Status { get; set; }
         public DbSet<Traffic> Traffic { get; set; }
         public DbSet<TrafficType> Type { get; set; }
+        public DbSet<Country> Country { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<Address> Address { get; set; }
 
