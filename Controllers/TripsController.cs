@@ -20,13 +20,37 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Trips
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string startOrder, string stopOrder)
         {
             // ViewData["DepartmentID"] = _context.Department;
-
-
-            var mySQLDbContext = _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User).Include(t => t.Traffic.StartCountry).Include(t => t.Traffic.StopCountry);
-            return View(await mySQLDbContext.ToListAsync());
+            ViewData["StartDateSort"] = startOrder == "startdate" ? "start_desc" : "startdate";
+            ViewData["StopDateSort"] = stopOrder == "stopdate" ? "stop_desc" : "stopdate";
+            var trips = from t in _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User).Include(t => t.Traffic.StartCountry).Include(t => t.Traffic.StopCountry) select t;
+           switch (startOrder)
+            {
+                case "startdate":
+                    trips = trips.OrderBy(t => t.StartDateAndTime);
+                    break;
+                case "start_desc":
+                    trips = trips.OrderByDescending(t => t.StartDateAndTime);
+                    break;
+                default:
+                    trips = trips.OrderBy(t => t.StartDateAndTime);
+                    break;
+            }
+            switch (stopOrder)
+            {
+                case "stopdate":
+                    trips = trips.OrderBy(t => t.StopDate);
+                    break;
+                case "stop_desc":
+                    trips = trips.OrderByDescending(t => t.StopDate);
+                    break;
+                default:
+                    trips = trips.OrderBy(t => t.StopDate);
+                    break;
+            }
+            return View(await trips.AsNoTracking().ToListAsync());
         }
 
         // GET: Trips/Details/5

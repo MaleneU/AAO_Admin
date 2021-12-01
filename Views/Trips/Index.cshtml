@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StartDateAndTime)
+                <a asp-action="Index" asp-route-startOrder="@ViewData["StartDateSort"]">@Html.DisplayNameFor(model => model.StartDateAndTime)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StopDate)
+                <a asp-action="Index" asp-route-stopOrder="@ViewData["StopDateSort"]">@Html.DisplayNameFor(model => model.StopDate)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Duration)
