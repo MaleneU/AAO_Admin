@@ -19,26 +19,16 @@ namespace AAO_AdminPanel.Controllers
             _context = context;
         }
 
-
-        //// GET: Trips
-        //public IActionResult Index()
-        //{
-
-        //    ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
-        //    return View();
-            
-        //}
-
-
         // GET: Trips
         public async Task<IActionResult> Index()
         {
 
-            var tripDb = _context.Trip.Include(e => e.Department ).Include(e => e.User);
-            return View(await tripDb.ToListAsync());
+            
+            var mySQLDbContext = _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User);
+            return View(await mySQLDbContext.ToListAsync());
         }
 
-        //GET: Trips/Details/5
+        // GET: Trips/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,6 +37,10 @@ namespace AAO_AdminPanel.Controllers
             }
 
             var trip = await _context.Trip
+                .Include(t => t.Department)
+                .Include(t => t.Startlocation)
+                .Include(t => t.Traffic)
+                .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
             if (trip == null)
             {
@@ -59,7 +53,10 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
-            //ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID");
+            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID");
+            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID");
             return View();
         }
 
@@ -68,7 +65,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,StartDateAndTime,StopDate,Duration,Department,Description,Urgent")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripID,StartDateAndTime,StopDate,Duration,UserID,Description,TrafficID,DepartmentID,StartLocationID,Urgent")] Trip trip)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +73,10 @@ namespace AAO_AdminPanel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name", trip.DepartmentID);
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
+            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "StartCountryCountryID", trip.TrafficID);
+            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
             return View(trip);
         }
 
@@ -92,6 +93,10 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
+            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
+            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
             return View(trip);
         }
 
@@ -100,7 +105,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripID,StartDateAndTime,StopDate,Duration,Description,Urgent")] Trip trip)
+        public async Task<IActionResult> Edit(int id, [Bind("TripID,StartDateAndTime,StopDate,Duration,UserID,Description,TrafficID,DepartmentID,StartLocationID,Urgent")] Trip trip)
         {
             if (id != trip.TripID)
             {
@@ -127,6 +132,10 @@ namespace AAO_AdminPanel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
+            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
+            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
             return View(trip);
         }
 
@@ -139,6 +148,10 @@ namespace AAO_AdminPanel.Controllers
             }
 
             var trip = await _context.Trip
+                .Include(t => t.Department)
+                .Include(t => t.Startlocation)
+                .Include(t => t.Traffic)
+                .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
             if (trip == null)
             {

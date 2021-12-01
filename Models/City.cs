@@ -18,7 +18,7 @@ namespace AAO_AdminPanel.Models
 
         [Column(TypeName = "varchar(45)")]
         public string ZipCode { get; set; }
-
+        public int CountryID { get; set; }
         public Country Country { get; set; }
 
         public List<Address> Addresses  { get; set; }

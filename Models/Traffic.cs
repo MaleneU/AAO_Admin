@@ -12,6 +12,7 @@ namespace AAO_AdminPanel.Models
         public int TrafficID { get; set; }
         public Country StartCountry { get; set; }
         public Country StopCountry { get; set; }
+        public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }
     }
 }

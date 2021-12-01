@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AAO_AdminPanel.Migrations.MySQLDb
 {
     [DbContext(typeof(MySQLDbContext))]
-    [Migration("20211119114758_Country Code")]
-    partial class CountryCode
+    [Migration("20211130125453_DepName instead of DepID on Trips")]
+    partial class DepNameinsteadofDepIDonTrips
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.11");
+                .HasAnnotation("ProductVersion", "5.0.12");
 
             modelBuilder.Entity("AAO_AdminPanel.Models.Address", b =>
                 {
@@ -28,10 +28,10 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<string>("AddressLine")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("CityID")
+                    b.Property<int>("CityID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("AddressID");
@@ -49,7 +49,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("DriverID")
+                    b.Property<int>("DriverID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -77,7 +77,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<string>("CityName")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("CountryID")
+                    b.Property<int>("CountryID")
                         .HasColumnType("int");
 
                     b.Property<string>("ZipCode")
@@ -130,10 +130,10 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("StartLocationID")
+                    b.Property<int>("StartLocationID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrafficTypeTypeID")
+                    b.Property<int>("TrafficTypeID")
                         .HasColumnType("int");
 
                     b.Property<int>("UserID")
@@ -143,7 +143,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
 
                     b.HasIndex("StartLocationID");
 
-                    b.HasIndex("TrafficTypeTypeID");
+                    b.HasIndex("TrafficTypeID");
 
                     b.HasIndex("UserID")
                         .IsUnique();
@@ -160,6 +160,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int>("DriveID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DriverID")
                         .HasColumnType("int");
 
@@ -169,7 +172,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<string>("Image")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("LicenseID")
+                    b.Property<int>("LicenseID")
                         .HasColumnType("int");
 
                     b.HasKey("DriverLicenseID");
@@ -201,13 +204,13 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("DriverID")
+                    b.Property<int>("DriverID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StatusID")
+                    b.Property<int>("StatusID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TripID")
+                    b.Property<int>("TripID")
                         .HasColumnType("int");
 
                     b.HasKey("RequestID");
@@ -275,7 +278,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<int?>("StopCountryCountryID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrafficTypeTypeID")
+                    b.Property<int>("TrafficTypeID")
                         .HasColumnType("int");
 
                     b.HasKey("TrafficID");
@@ -284,7 +287,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
 
                     b.HasIndex("StopCountryCountryID");
 
-                    b.HasIndex("TrafficTypeTypeID");
+                    b.HasIndex("TrafficTypeID");
 
                     b.ToTable("Traffic");
                 });
@@ -312,6 +315,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<int?>("DepartmentID")
                         .HasColumnType("int");
 
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnType("varchar(255)");
 
@@ -321,19 +327,19 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<DateTime>("StartDateAndTime")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("StartLocationID")
+                    b.Property<int>("StartLocationID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StopDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("TrafficID")
+                    b.Property<int>("TrafficID")
                         .HasColumnType("int");
 
                     b.Property<bool>("Urgent")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("TripID");
@@ -355,7 +361,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentID")
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -373,7 +379,7 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RoleID")
+                    b.Property<int>("RoleID")
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
@@ -392,11 +398,15 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.City", "City")
                         .WithMany("Addresses")
-                        .HasForeignKey("CityID");
+                        .HasForeignKey("CityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.User", "User")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
 
@@ -407,7 +417,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.Driver", "Driver")
                         .WithMany()
-                        .HasForeignKey("DriverID");
+                        .HasForeignKey("DriverID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Driver");
                 });
@@ -416,7 +428,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.Country", "Country")
                         .WithMany("Cities")
-                        .HasForeignKey("CountryID");
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Country");
                 });
@@ -425,11 +439,15 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.StartLocation", "StartLocation")
                         .WithMany("Drivers")
-                        .HasForeignKey("StartLocationID");
+                        .HasForeignKey("StartLocationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.TrafficType", "TrafficType")
                         .WithMany()
-                        .HasForeignKey("TrafficTypeTypeID");
+                        .HasForeignKey("TrafficTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.User", "User")
                         .WithOne("Driver")
@@ -452,7 +470,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
 
                     b.HasOne("AAO_AdminPanel.Models.License", "License")
                         .WithMany("DriverLicenses")
-                        .HasForeignKey("LicenseID");
+                        .HasForeignKey("LicenseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Driver");
 
@@ -463,15 +483,21 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.Driver", "Driver")
                         .WithMany()
-                        .HasForeignKey("DriverID");
+                        .HasForeignKey("DriverID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.Status", "Status")
                         .WithMany("Requests")
-                        .HasForeignKey("StatusID");
+                        .HasForeignKey("StatusID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.Trip", "Trip")
                         .WithMany("Requests")
-                        .HasForeignKey("TripID");
+                        .HasForeignKey("TripID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Driver");
 
@@ -492,7 +518,9 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
 
                     b.HasOne("AAO_AdminPanel.Models.TrafficType", "TrafficType")
                         .WithMany("Traffics")
-                        .HasForeignKey("TrafficTypeTypeID");
+                        .HasForeignKey("TrafficTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("StartCountry");
 
@@ -509,15 +537,21 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
 
                     b.HasOne("AAO_AdminPanel.Models.StartLocation", "Startlocation")
                         .WithMany("Trips")
-                        .HasForeignKey("StartLocationID");
+                        .HasForeignKey("StartLocationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.Traffic", "Traffic")
                         .WithMany()
-                        .HasForeignKey("TrafficID");
+                        .HasForeignKey("TrafficID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.User", "User")
                         .WithMany("Trips")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
 
@@ -532,11 +566,15 @@ namespace AAO_AdminPanel.Migrations.MySQLDb
                 {
                     b.HasOne("AAO_AdminPanel.Models.Department", "Department")
                         .WithMany("UserID")
-                        .HasForeignKey("DepartmentID");
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AAO_AdminPanel.Models.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleID");
+                        .HasForeignKey("RoleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
 

@@ -13,7 +13,9 @@ namespace AAO_AdminPanel.Models
         public int UserID { get; set; }
         public User User { get; set; }
         public bool Active { get; set; }
+        public int StartLocationID { get; set; }
         public StartLocation StartLocation { get; set; }
+        public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }
     }
 }

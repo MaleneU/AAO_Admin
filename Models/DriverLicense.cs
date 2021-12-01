@@ -12,7 +12,9 @@ namespace AAO_AdminPanel.Models
     {
         [Key]
         public int DriverLicenseID { get; set; }
+        public int LicenseID { get; set; }
         public License License { get; set; }
+        public int DriveID { get; set; }
         public Driver Driver { get; set; }
         public DateTime ExpirationDate { get; set; }
         

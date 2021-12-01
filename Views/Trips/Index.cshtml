@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<AAO_AdminPanel.Models.Trip>
- 
 
 @{
     ViewData["Title"] = "Index";
@@ -14,7 +13,6 @@
     <thead>
         <tr>
             <th>
-
                 @Html.DisplayNameFor(model => model.StartDateAndTime)
             </th>
             <th>
@@ -24,21 +22,28 @@
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Urgent)
+                @Html.DisplayNameFor(model => model.Traffic)
             </th>
-
             <th>
                 @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Startlocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urgent)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDateAndTime)
@@ -50,13 +55,22 @@
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.User.UserID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Urgent)
+                @Html.DisplayFor(modelItem => item.Traffic.TrafficID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Department.Name)
+                @Html.DisplayFor(modelItem => item.Department.DepartmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Startlocation.StartLocationID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urgent)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
@@ -64,6 +78,6 @@
                 <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
             </td>
         </tr>
-        }
+}
     </tbody>
 </table>

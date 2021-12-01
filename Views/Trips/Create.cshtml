@@ -28,18 +28,25 @@
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="UserID" class="control-label"></label>
+                <select asp-for="UserID" class ="form-control" asp-items="ViewBag.UserID"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <select asp-items="ViewBag.Department" asp-for="Department" class="form-control">
-               
-                </select>
-
-                <span asp-validation-for="Department" class="text-danger"></span>
+                <label asp-for="TrafficID" class="control-label"></label>
+                <select asp-for="TrafficID" class ="form-control" asp-items="ViewBag.TrafficID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentID" class="control-label"></label>
+                <select asp-for="DepartmentID" class ="form-control" asp-items="ViewBag.DepartmentID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartLocationID" class="control-label"></label>
+                <select asp-for="StartLocationID" class ="form-control" asp-items="ViewBag.StartLocationID"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
