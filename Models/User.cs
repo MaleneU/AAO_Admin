@@ -38,7 +38,7 @@ namespace AAO_AdminPanel.Models
         
         public Driver Driver { get; set; }
 
-
+        [NotMapped]
         public string Fullname => string.Format("{0} {1}", Firstname, Lastname);
 
     }

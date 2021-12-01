@@ -22,8 +22,8 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-           // ViewData["DepartmentID"] = _context.Department;
-  
+            // ViewData["DepartmentID"] = _context.Department;
+
 
             var mySQLDbContext = _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User).Include(t => t.Traffic.StartCountry).Include(t => t.Traffic.StopCountry);
             return View(await mySQLDbContext.ToListAsync());
@@ -55,11 +55,13 @@ namespace AAO_AdminPanel.Controllers
         public IActionResult Create()
         {
 
-            var trafficCode = _context.Traffic.Include(t => t.StartCountry);
+            
+
+            ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
 
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
-            ViewData["TrafficID"] = new SelectList(trafficCode, "StartCountry", "Code");
+            ViewData["StartAndStop"] = new SelectList(_context.Traffic, "TrafficID", "StartAndStop");
             ViewData["UserID"] = new SelectList(_context.User.Where(r => r.RoleID == 2), "UserID", "Fullname");
             return View();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,11 @@ namespace AAO_AdminPanel.Models
         public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }
 
-        
+
+        [NotMapped]
+        public string StartAndStop => string.Format("{0} - {1}", StartCountryCountryID, StopCountryCountryID);
+
+
+
     }
 }
