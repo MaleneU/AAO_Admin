@@ -109,7 +109,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,StartDateAndTime,StopDate,Duration,UserID,Description,TrafficID,DepartmentID,StartLocationID,Urgent")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripID, StartDateAndTime, StopDate,Duration,UserID,Description,TrafficID,DepartmentID,StartLocationID,Urgent")] Trip trip)
         {
             if (ModelState.IsValid)
             {
