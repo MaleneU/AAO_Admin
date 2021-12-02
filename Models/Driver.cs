@@ -17,5 +17,7 @@ namespace AAO_AdminPanel.Models
         public StartLocation StartLocation { get; set; }
         public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }
+
+        public List<DriverLicense> DriverLicenses { get; set; }
     }
 }
