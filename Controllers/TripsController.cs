@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
 using Microsoft.AspNetCore.Authorization;
+using AAO_AdminPanel.Utilities;
 
 namespace AAO_AdminPanel.Controllers
 {
@@ -22,19 +23,21 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Trips
-        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID)
+        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? page,
+            string actionButton, string sortDirection = "asc", string sortField = "Startdato")
         {
+            string[] sortOptions = new[] { "Startdato", "Slutdato", "Trafik", "Varighed", "Afdeling" };
             PopulateDropDownLists();
-            var trips = (from t in _context.Trip
+            var trips = from t in _context.Trip
                         .Include(t => t.Department)
                         .Include(t => t.Startlocation)
                         .Include(t => t.Traffic)
+                        .ThenInclude(t => t.TrafficType)
                         .Include(t => t.User)
                         .Include(t => t.Traffic.StartCountry)
                         .Include(t => t.Traffic.StopCountry)
                         .Include(t => t.Requests).ThenInclude(t => t.Status)
-                         select t)
-                        .AsNoTracking();
+                         select t;
 
             // Filter: StartLocation
             if (StartLocationID.HasValue)
@@ -46,13 +49,85 @@ namespace AAO_AdminPanel.Controllers
             {
                 trips = trips.Where(t => t.DepartmentID == DepartmentID);
             }
-            // Filter: If trip has Requests with Status 1
-            //if (StatusID.Value == 1)
-            //{
-            //    trips = trips.Where(t => t.Requests);
-            //}
 
-            return View(await trips.ToListAsync());
+            // If filtering or sorting 
+            if (!String.IsNullOrEmpty(actionButton))
+            {
+                page = 1; // Reset page
+
+                if (sortOptions.Contains(actionButton)) // Change sorting request
+                {
+                    if (actionButton == sortField) // Reverse order on field
+                    { 
+                        sortDirection = sortDirection == "asc" ? "desc" : "asc";
+                    }
+                }
+                sortField = actionButton; // Sort by button clicked
+            }
+
+            if (sortField == "Startdato")
+            {
+                if (sortDirection == "asc")
+                {
+                    trips = trips.OrderBy(t => t.StartDateAndTime);
+                }
+                else
+                {
+                    trips = trips.OrderByDescending(t => t.StartDateAndTime);
+                }
+            }
+            else if (sortField == "Slutdato")
+            {
+                if (sortDirection == "asc")
+                {
+                    trips = trips.OrderByDescending(t => t.StopDate);
+                }
+                else
+                {
+                    trips = trips.OrderBy(t => t.StopDate);
+                }
+            }
+            else if (sortField == "Trafik")
+            {
+                if (sortDirection == "asc")
+                {
+                    trips = trips.OrderBy(t => t.Traffic);
+                }
+                else
+                {
+                    trips = trips.OrderByDescending(t => t.Traffic);
+                }
+            }
+            else if (sortField == "Varighed")
+            {
+                if (sortDirection == "asc")
+                {
+                    trips = trips.OrderBy(t => t.Duration);
+                }
+                else
+                {
+                    trips = trips.OrderByDescending(t => t.Duration);
+                }
+            }
+            else if (sortField == "Afdeling")
+            {
+                if (sortDirection == "asc")
+                {
+                    trips = trips.OrderBy(t => t.Department);
+                }
+                else
+                {
+                    trips = trips.OrderByDescending(t => t.Department);
+                }
+            }
+
+            ViewData["sortField"] = sortField;
+            ViewData["sortDirection"] = sortDirection;
+
+            int pageSize = 10; // Change as required
+            var pagedData = await PaginatedList<Trip>.CreateAsync(trips.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
         }
         private void PopulateDropDownLists(Trip trip = null)
         {
@@ -92,8 +167,6 @@ namespace AAO_AdminPanel.Controllers
         // GET: Trips/Create
         public IActionResult Create()
         {
-
-            
 
             ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
 

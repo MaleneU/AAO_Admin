@@ -23,15 +23,17 @@
 </p>
 
 <form asp-action="Index" method="get">
+    <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
     <div class="form-horizontal">
         <div class="row">
             <div class="form-group col-md-4">
-                <label class="control-label">Select by StartLocation:</label>
-                @Html.DropDownList("StartLocationID", null, "All Locations", htmlAttributes: new { @class = "form-control" })
+                <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
+                @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control" })
             </div>
             <div class="form-group col-md-4">
-                <label class="control-label">Select Department:</label>
-                @Html.DropDownList("DepartmentID", null, "All Departments", htmlAttributes: new { @class = "form-control" })
+                <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
+                @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control" })
             </div>
             <div>
                 <input type="submit" name="actionButton" value="Filter" class=" btn btn-outline-primary" />
@@ -40,98 +42,108 @@
         </div>
 
     </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input type="submit" name="actionButton" value="@Html.DisplayNameFor(model => model.StartDate)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.StartDate)*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="@Html.DisplayNameFor(model => model.StopDateOnly)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.StopDateOnly)*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.StartTime)*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="@Html.DisplayNameFor(model => model.Duration)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.Duration)*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="@Html.DisplayNameFor(model => model.Traffic)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.Traffic)*@
+                </th>
+                <th>
+                    <input type="submit" name="actionButton" value="@Html.DisplayNameFor(model => model.Department)" class="btn btn-link pl-0 pr-4" />
+                    @*@Html.DisplayNameFor(model => model.Department)*@
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Startlocation)
+                    </th>*@
+            <th>
+                <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.Urgent)" class="btn btn-link pl-0 pr-4" />
+                @*@Html.DisplayNameFor(model => model.Urgent)*@
+            </th>
+            <th>
+                <input type="submit" name="actionButton" disabled="disabled" value="Requests" class="btn btn-link pl-0 pr-4" />
+                @*@Html.DisplayNameFor(model => model.Requests) Count*@
+            </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="showmore">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StopDateOnly)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
+                        -
+                        @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.Name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Startlocation.Location)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Urgent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Requests.Count)
+                        @*@foreach (var r in item.Requests)
+                            {
+                                @Html.DisplayFor(modelItem => r.Status.Name)
+                            }*@
+
+
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+                    </td>
+                </tr>
+                <tr class="rowdetail">
+                    <td colspan="10">
+                        <div class="descriptioncontaniner moreshown">
+                            <h3> Beskrivelse af turen</h3>
+                            <div class="descriptiontext">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_PagingNavBar"/>
 </form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StopDateOnly)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duration)
-            </th>
-         
-            <th>
-                @Html.DisplayNameFor(model => model.Traffic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Startlocation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Urgent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Requests) Count
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr  class="showmore">
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StopDateOnly)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
-                -
-                @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Startlocation.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urgent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Requests.Count)
-                @*@foreach (var r in item.Requests)
-                {
-                    @Html.DisplayFor(modelItem => r.Status.Name)
-                }*@
-
-
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
-            </td>
-        </tr>
-        <tr class="rowdetail">
-            <td colspan="10">
-                <div class="descriptioncontaniner moreshown">
-                    <h3> Beskrivelse af turen</h3>
-                    <div class="descriptiontext">
-                       @Html.DisplayFor(modelItem => item.Description)
-                    </div>
-                    
-                </div>
-        
-            </td>
-        </tr>
-}
-    </tbody>
-</table>

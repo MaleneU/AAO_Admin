@@ -32,7 +32,7 @@ namespace AAO_AdminPanel.Models
         public string Description { get; set; }
         public int TrafficID { get; set; }
 
-        [Display(Name = "Traffik")]
+        [Display(Name = "Trafik")]
         public Traffic Traffic { get; set; }
         public int DepartmentID { get; set; }
 
