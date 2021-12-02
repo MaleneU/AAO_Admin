@@ -27,7 +27,7 @@ namespace AAO_AdminPanel.Controllers
             PopulateDropDownLists();
             var trips = (from t in _context.Trip
                         .Include(t => t.Department)
-                        .Include(t => t.StartLocation)
+                        .Include(t => t.Startlocation)
                         .Include(t => t.Traffic)
                         .Include(t => t.User)
                         .Include(t => t.Traffic.StartCountry)
@@ -76,7 +76,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.StartLocation)
+                .Include(t => t.Startlocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
@@ -194,7 +194,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.StartLocation)
+                .Include(t => t.Startlocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
