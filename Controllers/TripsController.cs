@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AAO_AdminPanel.Controllers
 {
+    [Authorize] // Log in needed
     public class TripsController : Controller
     {
         private readonly MySQLDbContext _context;
@@ -20,37 +22,48 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Trips
-        public async Task<IActionResult> Index(string startOrder, string stopOrder)
+        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID)
         {
-            // ViewData["DepartmentID"] = _context.Department;
-            ViewData["StartDateSort"] = startOrder == "startdate" ? "start_desc" : "startdate";
-            ViewData["StopDateSort"] = stopOrder == "stopdate" ? "stop_desc" : "stopdate";
-            var trips = from t in _context.Trip.Include(t => t.Department).Include(t => t.Startlocation).Include(t => t.Traffic).Include(t => t.User).Include(t => t.Traffic.StartCountry).Include(t => t.Traffic.StopCountry) select t;
-           switch (startOrder)
+            PopulateDropDownLists();
+            var trips = (from t in _context.Trip
+                        .Include(t => t.Department)
+                        .Include(t => t.StartLocation)
+                        .Include(t => t.Traffic)
+                        .Include(t => t.User)
+                        .Include(t => t.Traffic.StartCountry)
+                        .Include(t => t.Traffic.StopCountry)
+                        .Include(t => t.Requests).ThenInclude(t => t.Status)
+                         select t)
+                        .AsNoTracking();
+
+            // Filter: StartLocation
+            if (StartLocationID.HasValue)
             {
-                case "startdate":
-                    trips = trips.OrderBy(t => t.StartDateAndTime);
-                    break;
-                case "start_desc":
-                    trips = trips.OrderByDescending(t => t.StartDateAndTime);
-                    break;
-                default:
-                    trips = trips.OrderBy(t => t.StartDateAndTime);
-                    break;
+                trips = trips.Where(t => t.StartLocationID == StartLocationID);
             }
-            switch (stopOrder)
+            // Filter: Department
+            if (DepartmentID.HasValue)
             {
-                case "stopdate":
-                    trips = trips.OrderBy(t => t.StopDate);
-                    break;
-                case "stop_desc":
-                    trips = trips.OrderByDescending(t => t.StopDate);
-                    break;
-                default:
-                    trips = trips.OrderBy(t => t.StopDate);
-                    break;
+                trips = trips.Where(t => t.DepartmentID == DepartmentID);
             }
-            return View(await trips.AsNoTracking().ToListAsync());
+            // Filter: If trip has Requests with Status 1
+            //if (StatusID.Value == 1)
+            //{
+            //    trips = trips.Where(t => t.Requests);
+            //}
+
+            return View(await trips.ToListAsync());
+        }
+        private void PopulateDropDownLists(Trip trip = null)
+        {
+            var locationQuery = from l in _context.StartLocation
+                                orderby l.Location
+                                select l;
+            ViewData["StartLocationID"] = new SelectList(locationQuery, "StartLocationID", "Location", trip?.StartLocationID);
+            var departmentQuery = from d in _context.Department
+                                orderby d.Name
+                                select d;
+            ViewData["DepartmentID"] = new SelectList(departmentQuery, "DepartmentID", "Name", trip?.DepartmentID);
         }
 
         // GET: Trips/Details/5
@@ -63,7 +76,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.Startlocation)
+                .Include(t => t.StartLocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
@@ -74,6 +87,7 @@ namespace AAO_AdminPanel.Controllers
 
             return View(trip);
         }
+
 
         // GET: Trips/Create
         public IActionResult Create()
@@ -180,7 +194,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.Startlocation)
+                .Include(t => t.StartLocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
