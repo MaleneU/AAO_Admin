@@ -27,11 +27,13 @@ namespace AAO_AdminPanel.Controllers
             PopulateDropDownLists();
             var trips = (from t in _context.Trip
                         .Include(t => t.Department)
-                        .Include(t => t.StartLocation)
+                        .Include(t => t.Startlocation)
                         .Include(t => t.Traffic)
                         .Include(t => t.User)
                         .Include(t => t.Traffic.StartCountry)
-                        .Include(t => t.Traffic.StopCountry) select t)
+                        .Include(t => t.Traffic.StopCountry)
+                        .Include(t => t.Requests).ThenInclude(t => t.Status)
+                         select t)
                         .AsNoTracking();
 
             // Filter: StartLocation
@@ -44,11 +46,11 @@ namespace AAO_AdminPanel.Controllers
             {
                 trips = trips.Where(t => t.DepartmentID == DepartmentID);
             }
-            // Filter: Department
-            if (DepartmentID.HasValue)
-            {
-                trips = trips.Where(t => t.DepartmentID == DepartmentID);
-            }
+            // Filter: If trip has Requests with Status 1
+            //if (StatusID.Value == 1)
+            //{
+            //    trips = trips.Where(t => t.Requests);
+            //}
 
             return View(await trips.ToListAsync());
         }
@@ -74,7 +76,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.StartLocation)
+                .Include(t => t.Startlocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);
@@ -192,7 +194,7 @@ namespace AAO_AdminPanel.Controllers
 
             var trip = await _context.Trip
                 .Include(t => t.Department)
-                .Include(t => t.StartLocation)
+                .Include(t => t.Startlocation)
                 .Include(t => t.Traffic)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.TripID == id);

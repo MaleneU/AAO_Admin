@@ -3,7 +3,19 @@
 @{
     ViewData["Title"] = "Index";
 }
+<script>
+    $('.showmore ').click(function () {
+    $(this).closest('.showmore').next('.rowdetail').toggle();
+    
+})
 
+</script>
+
+<style>
+    .rowdetail{
+        display:none;
+    }
+</style>
 <h1>Oversigt over ture</h1>
 
 <p>
@@ -34,20 +46,18 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StartDateAndTime)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StopDate)
+                @Html.DisplayNameFor(model => model.StopDateOnly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.Traffic)
             </th>
@@ -55,50 +65,70 @@
                 @Html.DisplayNameFor(model => model.Department)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartLocation)
+                @Html.DisplayNameFor(model => model.Startlocation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Urgent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requests) Status
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr  class="showmore">
             <td>
-                @Html.DisplayFor(modelItem => item.StartDateAndTime)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StopDate)
+                @Html.DisplayFor(modelItem => item.StopDateOnly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Firstname) @Html.DisplayFor(modelItem => item.User.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
-                 - 
+                -
                 @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Department.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartLocation.Location)
+                @Html.DisplayFor(modelItem => item.Startlocation.Location)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Urgent)
             </td>
             <td>
+                @foreach (var r in item.Requests)
+                {
+                    @Html.DisplayFor(modelItem => r.Status.Name)
+                }
+
+
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+            </td>
+        </tr>
+        <tr class="rowdetail">
+            <td colspan="10">
+                <div class="descriptioncontaniner moreshown">
+                    <h3> Beskrivelse af turen</h3>
+                    <div class="descriptiontext">
+                       @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                    
+                </div>
+        
             </td>
         </tr>
 }
