@@ -34,20 +34,23 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StartDateAndTime)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StopDate)
+                @Html.DisplayNameFor(model => model.StopDateOnly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Traffic)
             </th>
@@ -60,6 +63,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Urgent)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requests) Status
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -67,23 +73,26 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDateAndTime)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StopDate)
+                @Html.DisplayFor(modelItem => item.StopDateOnly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Firstname) @Html.DisplayFor(modelItem => item.User.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.User.Fullname)
+        </td>*@
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
-                 - 
+                -
                 @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
             </td>
             <td>
@@ -94,6 +103,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Urgent)
+            </td>
+            <td>
+                @foreach (var r in item.Requests)
+                {
+                    @Html.DisplayFor(modelItem => r.Status.Name)
+                }
+
+
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |

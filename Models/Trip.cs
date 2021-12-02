@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace AAO_AdminPanel.Models
         public int TripID { get; set; }
         public DateTime StartDateAndTime { get; set; }
         public DateTime StopDate { get; set; }
+        [DisplayName("Varighed")]
         public int Duration { get; set; }
         public int UserID { get; set; }
         public User User { get; set; }
@@ -28,6 +30,16 @@ namespace AAO_AdminPanel.Models
         public StartLocation StartLocation { get; set; }
         public bool Urgent { get; set; }
         public List<Request> Requests { get; set; }
+
+        [NotMapped]
+        [DisplayName("Startdato")]
+        public string StartDate => StartDateAndTime.ToString("dd-MM-yyyy");
+        [NotMapped]
+        [DisplayName("Slutdato")]
+        public string StopDateOnly => StopDate.ToString("dd-MM-yyyy");
+        [NotMapped]
+        [DisplayName("Starttid")]
+        public string StartTime => StartDateAndTime.ToString("HH':'mm");
 
 
     }

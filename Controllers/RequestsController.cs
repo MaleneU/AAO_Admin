@@ -22,7 +22,14 @@ namespace AAO_AdminPanel.Controllers
         // GET: Requests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Request.ToListAsync());
+            var requests = (from r in _context.Request
+                        .Include(r => r.Driver).ThenInclude(r => r.User)
+                        .Include(r => r.Trip)
+                        .Include(r => r.Status)
+                         select r)
+                        .AsNoTracking();
+
+            return View(await requests.ToListAsync());
         }
 
         // GET: Requests/Details/5
@@ -32,20 +39,26 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
-
-            var request = await _context.Request
+                var requests = await (from r in _context.Request
+                        .Include(r => r.Driver)
+                        .Include(r => r.Trip)
+                        .Include(r => r.Status)
+                                select r)
                 .FirstOrDefaultAsync(m => m.RequestID == id);
-            if (request == null)
+            if (requests == null)
             {
                 return NotFound();
             }
 
-            return View(request);
+            return View(requests);
         }
 
         // GET: Requests/Create
         public IActionResult Create()
         {
+            ViewData["TripID"] = new SelectList(_context.Trip, "TripID", "TripID");
+            ViewData["DriverID"] = new SelectList(_context.Driver, "DriverID", "DriverID");
+            ViewData["StatusID"] = new SelectList(_context.Status, "StatusID", "Name");
             return View();
         }
 
@@ -54,7 +67,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequestID")] Request request)
+        public async Task<IActionResult> Create([Bind("RequestID,TripID,DriverID,StatusID")] Request request)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +75,9 @@ namespace AAO_AdminPanel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TripID"] = new SelectList(_context.Trip, "TripID", "TripID", request.TripID);
+            ViewData["DriverID"] = new SelectList(_context.Driver, "DriverID", "DriverID", request.DriverID);
+            ViewData["StatusID"] = new SelectList(_context.Status, "StatusID", "StatusID", request.StatusID);
             return View(request);
         }
 
@@ -78,6 +94,9 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
+            ViewData["TripID"] = new SelectList(_context.Trip, "TripID", "TripID", request.TripID);
+            ViewData["DriverID"] = new SelectList(_context.Driver, "DriverID", "DriverID", request.DriverID);
+            ViewData["StatusID"] = new SelectList(_context.Status, "StatusID", "StatusID", request.StatusID);
             return View(request);
         }
 
@@ -86,7 +105,7 @@ namespace AAO_AdminPanel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequestID")] Request request)
+        public async Task<IActionResult> Edit(int id, [Bind("RequestID,TripID,DriverID,StatusID")] Request request)
         {
             if (id != request.RequestID)
             {
@@ -113,6 +132,9 @@ namespace AAO_AdminPanel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TripID"] = new SelectList(_context.Trip, "TripID", "TripID", request.TripID);
+            ViewData["DriverID"] = new SelectList(_context.Driver, "DriverID", "DriverID", request.DriverID);
+            ViewData["StatusID"] = new SelectList(_context.Status, "StatusID", "StatusID", request.StatusID);
             return View(request);
         }
 
@@ -123,15 +145,17 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
-
-            var request = await _context.Request
-                .FirstOrDefaultAsync(m => m.RequestID == id);
-            if (request == null)
+            var requests = await _context.Request
+                        .Include(r => r.Driver)
+                        .Include(r => r.Trip)
+                        .Include(r => r.Status)
+                        .FirstOrDefaultAsync(m => m.RequestID == id);
+            if (requests == null)
             {
                 return NotFound();
             }
 
-            return View(request);
+            return View(requests);
         }
 
         // POST: Requests/Delete/5
