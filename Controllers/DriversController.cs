@@ -52,7 +52,7 @@ namespace AAO_AdminPanel.Controllers
         {
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID");
             ViewData["TrafficTypeID"] = new SelectList(_context.Type, "TypeID", "TypeID");
-            ViewData["DriverUsers"] = _context.User.Where(r => r.RoleID == 2);
+            ViewData["DriverUsers"] = _context.User.Where(r => r.RoleID == 3);
             return View();
         }
 
