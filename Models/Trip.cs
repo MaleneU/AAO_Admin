@@ -25,7 +25,7 @@ namespace AAO_AdminPanel.Models
         public int DepartmentID { get; set; }
         public Department Department { get; set; }
         public int StartLocationID { get; set; }
-        public StartLocation Startlocation { get; set; }
+        public StartLocation StartLocation { get; set; }
         public bool Urgent { get; set; }
         public List<Request> Requests { get; set; }
 
