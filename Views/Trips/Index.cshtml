@@ -3,7 +3,19 @@
 @{
     ViewData["Title"] = "Index";
 }
+<script>
+    $('.showmore ').click(function () {
+    $(this).closest('.showmore').next('.rowdetail').toggle();
+    
+})
 
+</script>
+
+<style>
+    .rowdetail{
+        display:none;
+    }
+</style>
 <h1>Oversigt over ture</h1>
 
 <p>
@@ -24,9 +36,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.User)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.Traffic)
             </th>
@@ -44,7 +54,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr  class="showmore">
             <td>
                 @Html.DisplayFor(modelItem => item.StartDateAndTime)
             </td>
@@ -56,9 +66,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.Firstname) @Html.DisplayFor(modelItem => item.User.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
@@ -75,9 +82,22 @@
                 @Html.DisplayFor(modelItem => item.Urgent)
             </td>
             <td>
+                <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se beskrivelse"></i> </a>
                 <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+            </td>
+        </tr>
+        <tr class="rowdetail">
+            <td colspan="10">
+                <div class="descriptioncontaniner moreshown">
+                    <h3> Beskrivelse af turen</h3>
+                    <div class="descriptiontext">
+                       @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                    
+                </div>
+        
             </td>
         </tr>
 }
