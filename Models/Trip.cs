@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,8 +20,7 @@ namespace AAO_AdminPanel.Models
 
         [Display(Name = "Stop dato")]
         public DateTime StopDate { get; set; }
-
-        [Display(Name = "Varighed")]
+        [DisplayName("Varighed")]
         public int Duration { get; set; }
         public int UserID { get; set; }
 
@@ -48,6 +48,16 @@ namespace AAO_AdminPanel.Models
         [Display(Name = "Haste tur")]
         public bool Urgent { get; set; }
         public List<Request> Requests { get; set; }
+
+        [NotMapped]
+        [DisplayName("Startdato")]
+        public string StartDate => StartDateAndTime.ToString("dd-MM-yyyy");
+        [NotMapped]
+        [DisplayName("Slutdato")]
+        public string StopDateOnly => StopDate.ToString("dd-MM-yyyy");
+        [NotMapped]
+        [DisplayName("Starttid")]
+        public string StartTime => StartDateAndTime.ToString("HH':'mm");
 
 
     }
