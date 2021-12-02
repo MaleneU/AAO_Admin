@@ -71,7 +71,7 @@
                 @Html.DisplayNameFor(model => model.Urgent)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Requests) Status
+                @Html.DisplayNameFor(model => model.Requests) Count
             </th>
             <th></th>
         </tr>
@@ -106,10 +106,11 @@
                 @Html.DisplayFor(modelItem => item.Urgent)
             </td>
             <td>
-                @foreach (var r in item.Requests)
+                @Html.DisplayFor(modelItem => item.Requests.Count)
+                @*@foreach (var r in item.Requests)
                 {
                     @Html.DisplayFor(modelItem => r.Status.Name)
-                }
+                }*@
 
 
             </td>

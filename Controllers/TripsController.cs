@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AAO_AdminPanel.Controllers
 {
-    [Authorize] // Log in needed
+    // [Authorize] // Log in needed
     public class TripsController : Controller
     {
         private readonly MySQLDbContext _context;
