@@ -4,59 +4,140 @@
     ViewData["Title"] = "Index";
 }
 
+<script>
+    $('.showmore ').click(function () {
+        $(this).closest('.showmore').next('.rowdetail').toggle();
+
+    })
+
+</script>
+<style>
+    .rowdetail {
+        display: none;
+    }
+</style>
+
 <h1>Drivers</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Fullname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DriverLicenses)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Fullname)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @foreach (var l in item.DriverLicenses)
-                {
-                    @Html.DisplayFor(modelItem => l.License.LicenseName)
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DriverID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DriverID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DriverID">Delete</a>
-            </td>
+<form asp-action="Index" method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DriverLicenses)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+
+                <tr class="showmore">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Fullname)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    </td>
+                    <td>
+                        @foreach (var l in item.DriverLicenses)
+                        {
+                            @Html.DisplayFor(modelItem => l.License.LicenseName)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+
+
+                    <td>
+                        <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se chauffør Info"></i> </a>
+                        <a asp-action="Edit" asp-route-id="@item.DriverID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.DriverID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.DriverID">Delete</a>
+                    </td>
+                </tr>
+
+                <tr class="rowdetail">
+                    <td colspan="2">
+                        <div class="descriptioncontaniner moreshown">
+                            <h4>Chauffør Information</h4>
+                            <div class="descriptioncontaniner">
+
+                                <p><b>Navn:</b> @Html.DisplayFor(modelItem => item.User.Firstname)</p>
+                                <p><b>Efternavn:</b> @Html.DisplayFor(modelItem => item.User.Lastname)</p>
+                                <p><b>Email:</b> @Html.DisplayFor(modelItem => item.User.Email)</p>
+                                <p><b>Tlf. nr.:</b> @Html.DisplayFor(modelItem => item.User.Phone)</p>
+                                <p>
+                                    @foreach (var l in item.DriverLicenses)
+                                    {
+                                        <b>Kørekort:</b> @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                    }
+                                </p>
+
+                                <div>
+                                    Inaktiv/slet chauffør
+                                    <button>inaktiv</button>
+                                    <button>Slet</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </td>
+                    <td colspan="2">
+                        <div class="descriptioncontaniner moreshown">
+                            <h4>Rådighed</h4>
+                            <div class="descriptioncontaniner">
+                                <table>
+                                    <thead>
+                                    <th>Startdato</th>
+                                    <th>Slutdato</th>
+                                    <th>Starttid</th>
+                                    </thead>
+                                    <tbody>
+                                    <td>dd/mm/yyyy</td>
+                                    <td>dd/mm/yyyy</td>
+                                    <td>mm:hh</td>
+                                    </tbody>
+
+
+                                </table>
+                                <button>Tildel tur</button>
+                                <button>Opret periode</button>
+                                <button>Gem ændringer</button>
+
+
+       
+        </div>
+        </div>
+        </td>
         </tr>
-}
-    </tbody>
-</table>
+    }
+            </tbody>
+            </table>
+        </form>
