@@ -24,6 +24,9 @@ namespace AAO_AdminPanel.Models
         [Column(TypeName = "varchar(255)")]
         public string Lastname { get; set; }
 
+        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.
+                            \w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
         [Column(TypeName = "varchar(255)")]
         public string Email { get; set; }
 

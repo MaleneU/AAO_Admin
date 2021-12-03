@@ -14,13 +14,17 @@ namespace AAO_AdminPanel.Models
 
         [Key]
         public int TripID { get; set; }
-        
+
+
+        [Required]
         [Display(Name = "Startdato og tid")]
         public DateTime StartDateAndTime { get; set; }
 
         [Display(Name = "Stop dato")]
         public DateTime StopDate { get; set; }
         [DisplayName("Varighed")]
+
+      
         public int Duration { get; set; }
         public int UserID { get; set; }
 
