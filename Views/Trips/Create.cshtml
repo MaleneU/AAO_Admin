@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input type="date" asp-for="StartDate" class="form-control start-date" />
+                <input type="date"   asp-for="StartDate" class="form-control start-date" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,17 +29,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="StopDate" class="control-label"></label>
-                <input type="date" asp-for="StopDate" class="form-control" />
+                <input onfocus="limitStopDate()" type="date" asp-for="StopDate" class="form-control stop-date" />
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Duration" hidden class="form-control duration-output" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
+                <input asp-for="Duration" hidden class="form-control duration-output" />                
             </div>
             <div class="form-group">
                 <label asp-for="Duration" class="control-label"></label>
                 <div class="toggle-input-container">
-                    <input type="number" class="form-control inline-form duration-input" />
+                    <input type="number" min="0" class="form-control inline-form duration-input" />
                     <select class="form-control inline-form unit-select">
                         <option class="unit-selector" value="1">Timer</option>
                         <option class="unit-selector" value="24">Dage</option>
@@ -91,6 +90,13 @@
 
 <div id="demo"></div>
 <script>
+
+    function limitStopDate() {
+        let startDate = document.querySelector('input.start-date');
+        let stopDate = document.querySelector('input.stop-date');
+
+        stopDate.setAttribute('min', startDate.value);
+    }
 
     function convertStartDateTime() {
         let startDate = document.querySelector('input.start-date').value;

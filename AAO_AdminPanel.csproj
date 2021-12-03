@@ -33,8 +33,4 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="NuGet.CommandLine" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
 </Project>
