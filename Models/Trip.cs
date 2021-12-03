@@ -20,7 +20,7 @@ namespace AAO_AdminPanel.Models
         [Display(Name = "Startdato og tid")]
         public DateTime StartDateAndTime { get; set; }
 
-        [Display(Name = "Stop dato")]
+        [Display(Name = "Slut dato")]
         public DateTime StopDate { get; set; }
         [DisplayName("Varighed")]
 
@@ -48,7 +48,7 @@ namespace AAO_AdminPanel.Models
         [Display(Name = "Afdeling")]
         public Department Department { get; set; }
 
-        [Display(Name = "Start Lokation")]
+        [Display(Name = "Startsted ")]
         public int StartLocationID { get; set; }
 
       
