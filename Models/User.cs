@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,24 +13,28 @@ namespace AAO_AdminPanel.Models
         [Key]
         public int UserID { get; set; }
 
+
+        [DisplayName("Brugernavn")]
         [Column(TypeName = "varchar(45)")]
         public string Username { get; set; }
 
         [Column(TypeName = "varchar(64)")]
+        [DisplayName("Kodeord")]
         public string Password { get; set; }
 
         [Column(TypeName = "varchar(255)")]
+        [DisplayName("Fornavn")]
         public string Firstname { get; set; }
 
         [Column(TypeName = "varchar(255)")]
+        [DisplayName("Efternavn")]
         public string Lastname { get; set; }
-
-        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.
-                            \w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
+        
+        [DisplayName("Email adresse")]
         [Column(TypeName = "varchar(255)")]
         public string Email { get; set; }
 
+        [DisplayName("Tlf. Nr.")]
         public int Phone { get; set; }
         public int DepartmentID { get; set; }
         public Department Department { get; set; }
@@ -42,6 +47,8 @@ namespace AAO_AdminPanel.Models
         public Driver Driver { get; set; }
 
         [NotMapped]
+
+        [DisplayName("Navn")]
         public string Fullname => string.Format("{0} {1}", Firstname, Lastname);
 
     }

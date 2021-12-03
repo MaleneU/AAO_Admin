@@ -1,6 +1,7 @@
 ﻿using Castle.MicroKernel.SubSystems.Conversion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,8 +15,11 @@ namespace AAO_AdminPanel.Models
         public int CityID { get; set; }
 
         [Column(TypeName = "varchar(255)")]
+       
+        [DisplayName("Bynavn")]
         public string CityName { get; set; }
 
+        [DisplayName("Post nr.")]
         [Column(TypeName = "varchar(45)")]
         public string ZipCode { get; set; }
         public int CountryID { get; set; }

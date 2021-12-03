@@ -26,31 +26,38 @@ namespace AAO_AdminPanel.Models
 
       
         public int Duration { get; set; }
+        [Display(Name = "Kontakt person")]
         public int UserID { get; set; }
 
-        [Display(Name = "Chauffør")]
+        [Display(Name = "Kontakt person")]
         public User User { get; set; }
         [Column(TypeName = "varchar(255)")]
 
         [Display(Name = "Beskrivelse")]
         public string Description { get; set; }
+
+        [Display(Name = "Trafik")]
         public int TrafficID { get; set; }
 
         [Display(Name = "Trafik")]
         public Traffic Traffic { get; set; }
+
+        [Display(Name = "Afdeling")]
         public int DepartmentID { get; set; }
 
         [Display(Name = "Afdeling")]
         public Department Department { get; set; }
 
-
+        [Display(Name = "Start Lokation")]
         public int StartLocationID { get; set; }
 
-        [Display(Name = "Start Lokation")]
+      
         public StartLocation Startlocation { get; set; }
 
         [Display(Name = "Haste tur")]
         public bool Urgent { get; set; }
+
+        [Display(Name = "Anmodninger")]
         public List<Request> Requests { get; set; }
 
         [NotMapped]

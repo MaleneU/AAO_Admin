@@ -9,6 +9,7 @@ namespace AAO_AdminPanel.Models
     public class Request
     {
         [Key]
+        [Display(Name = "Anmodninger")]
         public int RequestID { get; set; }
         public int DriverID { get; set; }
         public Driver Driver { get; set; }
