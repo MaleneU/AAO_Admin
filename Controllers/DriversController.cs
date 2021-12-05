@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AAO_AdminPanel.Data;
+using AAO_AdminPanel.Models;
+using AAO_AdminPanel.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AAO_AdminPanel.Data;
-using AAO_AdminPanel.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
 {
@@ -20,10 +19,19 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Drivers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var mySQLDbContext = _context.Driver.Include(d => d.StartLocation).Include(d => d.TrafficType).Include(d => d.User).Include(d => d.DriverLicenses).ThenInclude(d => d.License);
-            return View(await mySQLDbContext.ToListAsync());
+            var drivers = from d in _context.Driver
+                .Include(d => d.StartLocation)
+                .Include(d => d.TrafficType)
+                .Include(d => d.User)
+                .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
+                          select d;
+
+            int pageSize = 10; // Change as required
+            var pagedData = await PaginatedList<Driver>.CreateAsync(drivers.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
         }
 
         // GET: Drivers/Details/5

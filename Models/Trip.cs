@@ -50,7 +50,7 @@ namespace AAO_AdminPanel.Models
         [Display(Name = "Startsted")]
         public int StartLocationID { get; set; }
 
-      
+        [Display(Name = "Startsted")]
         public StartLocation Startlocation { get; set; }
 
         [Display(Name = "Hastetur")]
