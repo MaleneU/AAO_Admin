@@ -294,5 +294,69 @@ namespace AAO_AdminPanel.Controllers
         {
             return _context.Trip.Any(e => e.TripID == id);
         }
+
+        //public async Task<IActionResult> RemoveDriver(int? id)
+        //{
+
+        //    //var test = _context.
+
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var trip = await _context.Trip
+        //        .Include(t => t.Department)
+        //        .Include(t => t.Startlocation)
+        //        .Include(t => t.Traffic)
+        //        .Include(t => t.User)
+        //        .Include(t => t.Requests).ThenInclude(t => t.Status)
+        //        .Include(t => t.Requests).ThenInclude(t => t.Driver).ThenInclude(t => t.User)
+
+        //        .FirstOrDefaultAsync(m => m.TripID == id);
+        //    if (trip == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["Sat"] = _context.User.Where(r => r.RoleID == id);
+        //    return View(trip);
+        //}
+
+        public async Task<IActionResult> RemoveDriver(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var requests = _context.Request
+                        .Include(r => r.Driver).ThenInclude(r => r.User)
+                        .Include(r => r.Driver).ThenInclude(r => r.DriverLicenses).ThenInclude(r => r.License)
+                        .Include(r => r.Trip)
+                        .Include(r => r.Status)
+                        .Where(m => m.TripID == id).Where(m => m.StatusID == 1)
+                        ;
+                        
+            if (requests == null)
+            {
+                return NotFound();
+            }
+
+            return View(await requests.ToListAsync());
+        }
+        [HttpPost]
+        public ActionResult RemoveConfirmed(Microsoft.AspNetCore.Http.IFormCollection formCollection)
+        {
+            string[] ids = formCollection["RequestID"];
+            foreach (var id in ids)
+            {
+
+                var request = this._context.Request.Find(int.Parse(id));
+                _context.Request.Remove(request);
+                _context.SaveChanges();
+                
+            }
+            return RedirectToAction("Index");
+
+        }
     }
 }

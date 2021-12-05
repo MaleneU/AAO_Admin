@@ -137,7 +137,7 @@
                             <h3> Beskrivelse af turen</h3>
                             <div class="descriptiontext">
                                 @Html.DisplayFor(modelItem => item.Description)
-                                <button>Fjern chauffør</button>
+                                <button asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
                                 <button asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
                                 <button asp-action="Edit" asp-route-id="@item.TripID">Rediger tur</button>
                             </div>
