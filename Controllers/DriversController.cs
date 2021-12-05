@@ -19,7 +19,7 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Drivers
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, int? pageSizeID)
         {
             var drivers = from d in _context.Driver
                 .Include(d => d.StartLocation)
@@ -28,7 +28,9 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
                           select d;
 
-            int pageSize = 10; // Change as required
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+
             var pagedData = await PaginatedList<Driver>.CreateAsync(drivers.AsNoTracking(), page ?? 1, pageSize);
 
             return View(pagedData);
