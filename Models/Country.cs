@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,9 +13,13 @@ namespace AAO_AdminPanel.Models
         [Key]
         public int CountryID { get; set; }
 
+        [DisplayName("Land")]
+
         [Column(TypeName = "varchar(255)")]
         public string CountryName { get; set; }
+       
         [Column(TypeName = "varchar(2)")]
+        [DisplayName("Lande kode")]
         public string Code { get; set; }
 
         public List<City> Cities { get; set; }

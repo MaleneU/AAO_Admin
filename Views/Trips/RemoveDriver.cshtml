@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AAO_AdminPanel.Models.Request>
+
+
+<h1>Which driver do you want to remove?</h1>
+<div>@*There are @Model.Trip.Requests.Count() drivers*@</div>
+
+@using (Html.BeginForm("RemoveConfirmed", "Trips", FormMethod.Post))
+{
+    <table id="DataTable" class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayNameFor(model => model.RequestID)</th>
+                <th>@Html.DisplayNameFor(model => model.DriverID)</th>
+                <th>@Html.DisplayNameFor(model => model.Driver.User.Fullname)</th>
+                <th>@Html.DisplayNameFor(model => model.Driver.User.Phone)</th>
+                <th>@Html.DisplayNameFor(model => model.Driver.User.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Driver.DriverLicenses)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+            <tr>
+                <td><input name="RequestID" value="@request.RequestID" type="checkbox" class="chkCheckBoxId" /></td>
+                <td>@request.RequestID</td>
+                <td>@request.DriverID</td>
+                <td>@request.Driver.User.Fullname</td>
+                <td>@request.Driver.User.Phone</td>
+                <td>@request.Driver.User.Email</td>
+                <td>
+                    @foreach (var license in request.Driver.DriverLicenses)
+                    {
+                        @Html.DisplayFor(modelItem => license.License.LicenseName)
+                    }
+                </td>
+
+                <td>@request.Status.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" value="Remove" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i> Fjern</button>
+}
