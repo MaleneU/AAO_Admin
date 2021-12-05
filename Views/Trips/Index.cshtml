@@ -29,15 +29,15 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
-                @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
             </div>
             <div class="form-group col-md-4">
                 <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
-                @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
             </div>
             <div>
-                <input type="submit" name="actionButton" value="Filter" class=" btn btn-outline-primary" />
-                <a asp-action="Index">Clear filters</a>
+                @*<input type="submit" name="actionButton" value="Filter" class=" btn btn-outline-primary" />
+                <a asp-action="Index">Clear filters</a>*@
             </div>
         </div>
 
