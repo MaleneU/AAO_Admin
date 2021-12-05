@@ -21,7 +21,7 @@ namespace AAO_AdminPanel.Models
         public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }
 
-        [DisplayName("Registrede kørtkort")]
         public List<DriverLicense> DriverLicenses { get; set; }
+        public List<Availability> Availabilies { get; set; }
     }
 }
