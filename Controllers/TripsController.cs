@@ -23,7 +23,7 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Trips
-        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? page,
+        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? page, int? pageSizeID,
             string actionButton, string sortDirection = "asc", string sortField = "Startdato")
         {
             string[] sortOptions = new[] { "Startdato", "Slutdato", "Trafik", "Varighed", "Afdeling" };
@@ -125,6 +125,10 @@ namespace AAO_AdminPanel.Controllers
             ViewData["sortDirection"] = sortDirection;
             ViewData["RequestsWithDriver"] = _context.Request.Where(m => m.StatusID == 1);
             int pageSize = 10; // Change as required
+
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+
             var pagedData = await PaginatedList<Trip>.CreateAsync(trips.AsNoTracking(), page ?? 1, pageSize);
 
             return View(pagedData);

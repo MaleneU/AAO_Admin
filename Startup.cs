@@ -107,7 +107,7 @@ namespace AAO_AdminPanel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Trips}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
