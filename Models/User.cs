@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -51,5 +52,6 @@ namespace AAO_AdminPanel.Models
         [DisplayName("Navn")]
         public string Fullname => string.Format("{0} {1}", Firstname, Lastname);
 
+        //public IdentityUser IdentityUser { get; set; }
     }
 }
