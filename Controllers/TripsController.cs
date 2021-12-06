@@ -127,8 +127,7 @@ namespace AAO_AdminPanel.Controllers
 
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
-            ViewData["RequestsWithDriver"] = _context.Request.Where(m => m.StatusID == 1).Include(m => m.Status).Include(m => m.Driver).ThenInclude(m => m.User);
-            //int pageSize = 10; // Change as required
+            ViewData["RequestsWithDriver"] = _context.Request.Where(m => m.StatusID == 1);
 
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
