@@ -388,19 +388,31 @@ namespace AAO_AdminPanel.Controllers
             return View(await requests.ToListAsync());
         }
         [HttpPost]
-        public ActionResult EditDriversConfirmed(IFormCollection formCollection)
+        public IActionResult EditDriversConfirmed(IFormCollection formCollection, List<Request> Requests)
         {
+
+            foreach (var req in Requests)
+            {
+                if(req.StatusBool == false)
+                {
+                    req.StatusID = 2;
+                }
+                _context.Request.Update(req);
+                _context.SaveChanges();
+            }
+
+
             string[] ids = formCollection["RequestID"];
                    
-            foreach (var id in ids)
-            {
-                var request = this._context.Request.Find(int.Parse(id));
-                request.StatusID = 1;
-                _context.Request.Update(request);
-                _context.SaveChanges();
+            //foreach (var id in ids)
+            //{
+            //    var request = this._context.Request.Find(int.Parse(id));
+            //    request.StatusID = 1;
+            //    _context.Request.Update(request);
+            //    _context.SaveChanges();
                 
 
-            }
+            //}
             return RedirectToAction("Index");
 
         }

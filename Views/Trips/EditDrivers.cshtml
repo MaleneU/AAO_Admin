@@ -1,10 +1,92 @@
-﻿@model IEnumerable<AAO_AdminPanel.Models.Request>
+﻿@model List<AAO_AdminPanel.Models.Request>
 
 
 <h1>Rediger chauffører på tur</h1>
 <div>@*There are @Model.Trip.Requests.Count() drivers*@</div>
 
 @using (Html.BeginForm("EditDriversConfirmed", "Trips", FormMethod.Post))
+{
+    <table id="table1" class="table table-striped table-bordered display">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="Check_All" />
+                            <label for="remember">
+                            </label>
+                        </div>
+                    </th>
+                    <th>@Html.DisplayName("RequestID")</th>
+                    <th>@Html.DisplayName("DriverID")</th>
+                    <th>@Html.DisplayName("Driver")</th>
+                    <th>@Html.DisplayName("TripID")</th>
+                    <th>@Html.DisplayName("Email")</th>
+                    <th>@Html.DisplayName("Phone")</th>
+                    <th>@Html.DisplayName("Licenses")</th>
+                    <th>@Html.DisplayName("Status")</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+    @for (int item = 0; item < Model.Count(); item++)
+    {
+
+        
+                <tr>
+                    <td>
+                        <div class="icheck-primary">
+                            @Html.CheckBoxFor(modelItem => Model[item].StatusBool)
+                            <label for="checkboxPrimary1"></label>
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].RequestID)
+                        @Html.HiddenFor(modelItem => Model[item].RequestID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].DriverID)
+                        @Html.HiddenFor(modelItem => Model[item].DriverID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].TripID)
+                        @Html.HiddenFor(modelItem => Model[item].TripID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Fullname)
+                        
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Email)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Phone)
+                        
+                    </td>
+                    <td>
+                        @foreach (var license in Model[item].Driver.DriverLicenses)
+                    {
+                        @Html.DisplayFor(modelItem => license.License.LicenseName)
+                    }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Status.Name)
+                        
+                    </td>
+                </tr>
+            }    
+            </tbody>
+        </table>
+    
+
+    <input type="submit" value="Gem ændringer" class="btn btn-primary" />
+}
+
+
+
+
+@*@using (Html.BeginForm("EditDriversConfirmed", "Trips", FormMethod.Post))
 {
     <table id="DataTable" class="table">
         <thead>
@@ -19,7 +101,7 @@
                 <th>Status</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>            
             @foreach (var request in Model)
             {
                 <tr>
@@ -33,7 +115,7 @@
                         }
                     </td>
                 <td>@request.RequestID</td>
-                <td>@request.DriverID</td>
+                <td><input type="number" disabled value="@request.DriverID"/></td>
                 <td>@request.Driver.User.Fullname</td>
                 <td>@request.Driver.User.Phone</td>
                 <td>@request.Driver.User.Email</td>
@@ -50,4 +132,4 @@
         </tbody>
     </table>
     <button type="submit" value="Update" class="btn btn-primary" onclick="return confirm('Are you sure?')">Gem</button>
-}
+}*@
