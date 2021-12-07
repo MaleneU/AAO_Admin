@@ -43,7 +43,7 @@
 
     .sidebar, .closebtn {
         position: absolute;
-       padding:12px;
+        padding: 12px;
         right: 9px;
         font-size: 20px;
         margin-left: 50px;
@@ -51,11 +51,11 @@
         color: black;
         display: inline-flex;
 
-        p{
+        p {
             font-size: 12px;
         }
 
-        .fas{
+        .fas {
             padding-left: 10px;
         }
     }
@@ -75,6 +75,11 @@
         ul, ul ul {
             margin: -2px 0 0;
             padding: 0;
+        }
+
+
+        .under-list {
+            padding-left: 55px;
         }
 
         ul {

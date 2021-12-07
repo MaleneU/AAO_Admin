@@ -2,11 +2,33 @@
 
 
 
+.rotate {
+    -moz-transition: all 0.01s linear;
+    -webkit-transition: all 0.01s linear;
+    transition: all 0.01s linear;
+}
 
+.rotate-down {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    position: relative;
+    top: 6px;
+ 
+}
+
+.fa-sort-down {
+ 
+    font-size: 18px;
+    text-align: center;
+    justify-self: center;
+}
 
 
 
 .table-container {
+   
+
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 100%;
     padding: 2.5%;
@@ -32,25 +54,6 @@
                     .more-info {
                         padding: 10px 10px;
                     }
-                }
-
-                .rotate {
-                    -moz-transition: all 0.01s linear;
-                    -webkit-transition: all 0.01s linear;
-                    transition: all 0.01s linear;
-                }
-
-                .rotate.down {
-                    -moz-transform: rotate(180deg);
-                    -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg);
-                }
-
-                .fa-sort-down {
-                    padding: 10px 10px;
-                    font-size: 18px;
-                    text-align: center;
-                    justify-self: center;
                 }
             }
         }
@@ -100,7 +103,7 @@
 
                         .btnGreen {
                             /*background-color: $LightGreen;*/
-                            background-color:greenyellow;
+                            background-color: greenyellow;
                             color: white;
                         }
 

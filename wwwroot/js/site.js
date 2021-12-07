@@ -8,7 +8,7 @@ $(' table tr td .showmore ').click(function () {
 })
 
 $(".rotate").click(function () {
-    $(this).toggleClass("down");
+    $(this).toggleClass("rotate-down");
 })
 
 
