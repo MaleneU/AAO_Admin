@@ -26,27 +26,16 @@
 </head>
 <body>
 
-    <header>
-        <div id="main" class="sub-menu">
-            <button class="openbtn btn" onclick="openNav()">☰</button>
-        </div>
-
-        <ul>
-            <li class="pull-right" id="user">
-                <a href="./replacementOverview.html"><span>Alex Andersen</span><i class="fas fa-user"></i></a>
-            </li>
-        </ul>
-    </header>
 
     <aside class="sidebar" id="mySidebar">
 
 
         <div id="leftside-navigation" class="nano">
             <a>
-                <img src="./img/AAlogo.svg" alt="Italian Trulli" class="logo">
+                <img src="~/img/AAlogo.svg" alt="Italian Trulli" class="logo">
             </a>
 
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> <p> Minimer menu</p><i class="fas fa-arrow-left"></i></a>
 
             <ul class="nano-content">
 
@@ -57,17 +46,17 @@
 
 
                 <li class="sub-menu">
-                    
+
                     <a asp-controller="Trips" asp-action="Create"><i class="fas fa-edit"></i><span>Opret tur</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="./replacementOverview.html"><i class="fas fa-database"></i><span>Afløser oversigt</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                    <a asp-controller="Drivers" asp-action="Index"><i class="fas fa-database"></i><span>Afløser oversigt</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                 </li>
 
 
                 <li class="sub-menu">
-                    <button class="dropdown-btn"><i class="far fa-list-alt"></i>Ture<i class="arrow fa fa-angle-down pull-right"></i>                  </button>
+                    <a asp-controller="Trips" asp-action="Index" class="dropdown-btn"><i class="far fa-list-alt"></i>Ture<i class="arrow fa fa-angle-down pull-right"></i>                  </a>
                     <div class="dropdown-container">
                         <a href="#" class="w3-bar-item w3-button">Anmodninger</a>
                         <a href="./assignedTrips.html" class="w3-bar-item w3-button">Tildelte ture</a>
@@ -128,17 +117,25 @@
             <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>*@
     <!--</nav>-->
-    <header>
-
-        <partial name="_LoginPartial" />
-
-    </header>
 
 
-    <main>
+
+<header class="top-nav">
+
+    <div class="sub-menu">
+          <a class="openbtn" onclick="openNav()"> <p>Åben menu</p> <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <partial name="_LoginPartial" />
+
+
+</header>
+  
+
+
+    <main id="mainContent">
         @RenderBody()
     </main>
-  
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="~/js/site.js" asp-append-version="true"></script>

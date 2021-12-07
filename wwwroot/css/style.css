@@ -16,25 +16,17 @@
     grid-row-end: 3;
 }
 
-header, main {
+/*header, main {
     grid-column-start: 2;
     grid-column-end: 7;
-}
+}*/
 
 
 
-header {
-    background-color: #005140;
-    color: #fff;
-    text-align: right;
-    padding: .2em 1em;
-}
 
 
-    header a:hover, header .btn-link:hover {
-        color: #00904a;
-        text-decoration: none;
-    }
+
+    
 
 .user-menu {
     display: none;

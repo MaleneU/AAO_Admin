@@ -40,12 +40,12 @@ $("#leftside-navigation .sub-menu > a").click(function (e) {
 
 function openNav() {
     document.getElementById("mySidebar").style.left = "0px";
-    document.getElementById("mainContent").style.marginLeft = "260px";
+    document.getElementById("mainContent").style.marginLeft = "320px";
 
 }
 
 function closeNav() {
     document.getElementById("mySidebar").style.left = "-240px";
-    document.getElementById("mainContent").style.marginLeft = "60px";
+    document.getElementById("mainContent").style.marginLeft = "80px";
 
 }

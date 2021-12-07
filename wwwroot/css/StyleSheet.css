@@ -39,12 +39,17 @@
       color: #1abc9c !important; }
   .sidebar .sidebar, .sidebar .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
+    padding: 12px;
+    right: 9px;
+    font-size: 20px;
     margin-left: 50px;
     text-decoration: none;
-    color: black; }
+    color: black;
+    display: inline-flex; }
+    .sidebar .sidebar p, .sidebar .closebtn p {
+      font-size: 12px; }
+    .sidebar .sidebar .fas, .sidebar .closebtn .fas {
+      padding-left: 10px; }
   .sidebar #leftside-navigation ul, .sidebar #leftside-navigation ul ul {
     margin: -2px 0 0;
     padding: 0; }
@@ -99,16 +104,36 @@ ul ul {
 /*header*/
 header {
   background-color: #075243;
-  display: flex;
-  height: 40px; }
-  header .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 15px;
-    border: none;
-    background-color: #1abc9c; }
-    header .openbtn:hover {
-      background-color: #1abc9c; }
+  height: 40px;
+  display: grid !important;
+  grid-template-columns: 15% 70% 15%; }
+  header header a:hover, header header .btn-link:hover {
+    color: #00904a;
+    text-decoration: none; }
+  header .user-name {
+    text-align: end;
+    grid-column: 3/4;
+    padding: 7px;
+    color: white; }
+  header p {
+    color: white; }
+  header .sub-menu {
+    grid-column: 1/2;
+    display: inline-flex; }
+    header .sub-menu .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      padding: 12px;
+      border: none;
+      text-align: center;
+      display: inline-flex; }
+      header .sub-menu .openbtn p {
+        font-size: 12px; }
+      header .sub-menu .openbtn .fas {
+        color: white;
+        justify-self: center;
+        text-align: center;
+        padding-left: 10px; }
   header li {
     list-style-type: none;
     margin-top: 10px;
@@ -131,7 +156,7 @@ header {
   left: 240px; }
 
 #mainContent {
-  margin-left: 260px; }
+  margin-left: 320px; }
   #mainContent .HeadlinePage {
     margin-left: 10px;
     font-weight: bold; }
