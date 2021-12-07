@@ -22,6 +22,6 @@ namespace AAO_AdminPanel.Models
         public TrafficType TrafficType { get; set; }
 
         public List<DriverLicense> DriverLicenses { get; set; }
-        public List<Availability> Availabilies { get; set; }
+        public List<Availability> Availabilities { get; set; }
     }
 }

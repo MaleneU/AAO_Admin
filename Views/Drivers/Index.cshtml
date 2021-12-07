@@ -120,9 +120,12 @@
                                     <th>Starttid</th>
                                     </thead>
                                     <tbody>
-                                    <td>dd/mm/yyyy</td>
-                                    <td>dd/mm/yyyy</td>
+                                        @foreach (var a in item.Availabilities)
+                                        {
+                        <td>@Html.DisplayFor(modelItem => a.StartDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => a.EndDate)</td>
                                     <td>mm:hh</td>
+                                        }
             </tbody>
 
 
@@ -137,8 +140,10 @@
         </div>
         </td>
         </tr>
-    }
+            }
             </tbody>
             </table>
             <partial name="_PagingNavBar" />
         </form>
+
+      

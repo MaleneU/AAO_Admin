@@ -26,6 +26,7 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.TrafficType)
                 .Include(d => d.User)
                 .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
+                .Include(d => d.Availabilities)
                           select d;
 
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
