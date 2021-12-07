@@ -1,6 +1,8 @@
 ﻿
 
-
+.rowdetail {
+    display: none;
+}
 
 .rotate {
     -moz-transition: all 0.01s linear;
@@ -24,11 +26,13 @@
     justify-self: center;
 }
 
+.form-group{
+    margin-left: 10px !important;
+    padding-left: 5px !important;
+}
 
 
 .table-container {
-   
-
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 100%;
     padding: 2.5%;
@@ -63,52 +67,49 @@
             background-color: rgba(211, 211, 211, 0.24);
             border-color: white;
 
+            td {
+                .descriptioncontaniner {
+                    text-align: left;
+                    padding: 40px;
+                    display: grid;
+                    grid-template-columns: 5% 70% 15% 5%;
 
-            tr {
-                border-bottom: 1px solid white;
-
-
-                td {
-
-                    .thead-green {
-                        background-color: #00904A;
-                        color: white;
+                    h3 {
+                        grid-column: 2/3;
+                        grid-row: 1/2;
                     }
 
-
-
-                    .button-green-container {
-                        display: inline-grid;
-                        align-items: center;
-                        justify-items: center;
-                    }
-                }
-
-                .info {
-                    display: flex;
-
-                    div {
-                        flex-direction: column;
-                        vertical-align: middle;
-                        margin: 5px 20px;
+                    .descriptiontext {
+                        grid-column: 2/3;
+                        grid-row: 2/3;
                     }
 
-                    .infoText {
-                        width: 60%;
-                    }
+                    .btn-grouptable {
+                        grid-column: 3/4;
+                        grid-row: 1/3;
+                        display: grid;
+                        grid-template-columns: 100%;
+                       
 
-                    .TreBtn {
-                        margin: auto;
-                        color: white;
-
-                        .btnGreen {
-                            /*background-color: $LightGreen;*/
-                            background-color: greenyellow;
-                            color: white;
+                        .red {
+                            background-color: #dc2f43;
+                            align-self:end;
                         }
 
-                        .btnRed {
-                            background-color: red;
+                        .darkgrey {
+                            background-color: #b4b2b2;
+                        }
+
+                        .darkgreen {
+                            background-color: #005140;
+                        }
+
+                        button {
+                            width: 100%;
+                            border-style: none;
+                            margin-bottom: 5px;
+                            height: 40px;
+                            border-radius: 5px;
                             color: white;
                         }
                     }

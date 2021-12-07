@@ -3,170 +3,165 @@
 @{
     ViewData["Title"] = "Index";
 }
-<script>
-    $('.showmore ').click(function () {
-    $(this).closest('.showmore').next('.rowdetail').toggle();
-    
-})
 
-</script>
 
-<style>
-    .rowdetail{
-        display:none;
-    }
-</style>
-<h1>Oversigt over ture</h1>
+<div class="table-container">
+    <h1>Oversigt over ture</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
-<form asp-action="Index" method="get">
-    <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
-    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
-    <div class="form-horizontal">
-        <div class="row">
-            <div class="form-group col-md-2">
-                <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
-                @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+
+
+    <form asp-action="Index" method="get">
+        <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+        <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
+                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
+                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label>
+                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label">Status</label>
+                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                </div>
             </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
-                @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
-            </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label>
-                @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
-            </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">Status</label>
-                @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
-            </div>
+
         </div>
 
-    </div>
 
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <input type="submit" name="actionButton" value="Startdato" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.StartDate)*@
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Slutdato" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.StopDateOnly)*@
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.StartTime)*@
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Varighed" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.Duration)*@
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Trafik" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.Traffic)*@
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Afdeling" class="btn btn-link pl-0 pr-4" />
-                    @*@Html.DisplayNameFor(model => model.Department)*@
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.Startlocation)
-                    </th>*@
-            <th>
-                <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.Urgent)" class="btn btn-link pl-0 pr-4" />
-                @*@Html.DisplayNameFor(model => model.Urgent)*@
-            </th>
-            <th>
-                <input type="submit" name="actionButton" disabled="disabled" value="Requests" class="btn btn-link pl-0 pr-4" />
-                @*@Html.DisplayNameFor(model => model.Requests) Count*@
-            </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="showmore">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StopDateOnly)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Duration)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
-                        -
-                        @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Department.Name)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Startlocation.Location)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Urgent)
-                    </td>
-                    <td>
-                        
-                        <a asp-action="EditDrivers" asp-route-id="@item.TripID">
-                        
-                        @{var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);}
-                        
-                        @if(requestsWithDrivers.Count() == 1)
-                        {                            
-                            @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
-                        }
-                        else if(requestsWithDrivers.Count() == 2)
-                        {                            
-                            @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
-                            <span>&</span>
-                            @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
-                        }
-                        else
-                        {                            
-                            @Html.DisplayFor(modelItem => item.Requests.Count)
-                             <span>Anmodninger</span>
-                        }
-
-                     </a>
-                    </td>
-                    <td>
-                        <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se mulige chauførrer"></i> </a>
-                        <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
-                    </td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="submit" name="actionButton" value="Startdato" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.StartDate)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" value="Slutdato" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.StopDateOnly)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.StartTime)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" value="Varighed" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.Duration)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" value="Trafik" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.Traffic)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" value="Afdeling" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.Department)*@
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.Startlocation)
+                        </th>*@
+                    <th>
+                        <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.Urgent)" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.Urgent)*@
+                    </th>
+                    <th>
+                        <input type="submit" name="actionButton" disabled="disabled" value="Requests" class="btn btn-link pl-0 pr-4" />
+                        @*@Html.DisplayNameFor(model => model.Requests) Count*@
+                    </th>
+                    <th></th>
                 </tr>
-                <tr class="rowdetail">
-                    <td colspan="10">
-                        <div class="descriptioncontaniner moreshown">
-                            <h3> Beskrivelse af turen</h3>
-                            <div class="descriptiontext">
-                                @Html.DisplayFor(modelItem => item.Description)
-                                <button asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
-                                <button asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
-                                <button asp-action="Edit" asp-route-id="@item.TripID">Rediger tur</button>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="showmore">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StopDateOnly)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
+                            -
+                            @Html.DisplayFor(modelItem => item.Traffic.StopCountry.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department.Name)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Startlocation.Location)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Urgent)
+                        </td>
+                        <td>
+
+                            <a asp-action="EditDrivers" asp-route-id="@item.TripID">
+
+                                @{var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);}
+
+                                @if (requestsWithDrivers.Count() == 1)
+                                {
+                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
+                                }
+                                else if (requestsWithDrivers.Count() == 2)
+                                {
+                                    @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
+                                    <span>&</span>
+                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Requests.Count)
+                                    <span>Anmodninger</span>
+                                }
+
+                            </a>
+                        </td>
+                        <td>
+                            <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se mulige chauførrer"></i> </a>
+                            <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+                        </td>
+                    </tr>
+                    <tr class="rowdetail">
+                        <td colspan="10">
+                            <div class="descriptioncontaniner moreshown">
+                                <h3> Beskrivelse af turen</h3>
+                                <div class="descriptiontext">
+                                    @Html.DisplayFor(modelItem => item.Description)
+                  
+                                </div>
+
+                                <div class="btn-grouptable">
+                                    <button class="darkgrey" asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
+                                    <button  class="red" asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
+                                    <button class="darkgreen" asp-action="Edit" asp-route-id="@item.TripID">Rediger tur</button>
+                                </div>
                             </div>
 
-                        </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <partial name="_PagingNavBar"/>
-</form>
+        <partial name="_PagingNavBar" />
+    </form>
+</div>
+
