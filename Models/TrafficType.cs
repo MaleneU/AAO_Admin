@@ -12,7 +12,7 @@ namespace AAO_AdminPanel.Models
     {
         [Key]
         public int TypeID { get; set; }
-        [DisplayName("Traffik type")]
+        [DisplayName("Type")]
         [Column(TypeName = "varchar(255)")]
         public string Type { get; set; }
         public List<Traffic> Traffics { get; set; }

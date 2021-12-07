@@ -24,11 +24,12 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Trips
-        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? page, int? pageSizeID,
+        public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? TrafficTypeID, int? StatusID, int? page, int? pageSizeID,
             string actionButton, string sortDirection = "asc", string sortField = "Startdato")
         {
             string[] sortOptions = new[] { "Startdato", "Slutdato", "Trafik", "Varighed", "Afdeling" };
             PopulateDropDownLists();
+
             var trips = from t in _context.Trip
                         .Include(t => t.Department)
                         .Include(t => t.Startlocation)
@@ -46,10 +47,29 @@ namespace AAO_AdminPanel.Controllers
             {
                 trips = trips.Where(t => t.StartLocationID == StartLocationID);
             }
+
             // Filter: Department
             if (DepartmentID.HasValue)
             {
                 trips = trips.Where(t => t.DepartmentID == DepartmentID);
+            }
+
+            // Filter: Status
+            if (StatusID == 1)
+            {
+                // Trips = Trips where any requests contain StatusID = 1
+                trips = trips.Where(t => t.Requests.Any(t => t.StatusID == 1));
+            }
+            if (StatusID == 2)
+            {
+                // Trips = Trips where requests do not contain StatusID = 1
+                trips = trips.Where(t => t.Requests.All(t => t.StatusID != 1));
+            }
+
+            // Filter: Traffic Type
+            if (TrafficTypeID.HasValue)
+            {
+                trips = trips.Where(t => t.Traffic.TrafficTypeID == TrafficTypeID);
             }
 
             // If filtering or sorting 
@@ -123,8 +143,6 @@ namespace AAO_AdminPanel.Controllers
                 }
             }
 
-
-
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
             ViewData["RequestsWithDriver"] = _context.Request.Where(m => m.StatusID == 1);
@@ -146,6 +164,14 @@ namespace AAO_AdminPanel.Controllers
                                 orderby d.Name
                                 select d;
             ViewData["DepartmentID"] = new SelectList(departmentQuery, "DepartmentID", "Name", trip?.DepartmentID);
+            var trafficTypeQuery = from t in _context.Type
+                                  orderby t.TypeID
+                                  select t;
+            ViewData["TrafficTypeID"] = new SelectList(trafficTypeQuery, "TypeID", "Type", trip?.Traffic.TrafficTypeID);
+            var statusQuery = from s in _context.Status
+                                   orderby s.StatusID
+                                   select s;
+            ViewData["StatusID"] = new SelectList(statusQuery, "StatusID", "Name", trip?.Requests);
         }
 
         // GET: Trips/Details/5
