@@ -116,13 +116,28 @@
                         @Html.DisplayFor(modelItem => item.Urgent)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Requests.Count)
-                        @*@foreach (var r in item.Requests)
-                            {
-                                @Html.DisplayFor(modelItem => r.Status.Name)
-                            }*@
+                        
+                        <a asp-action="EditDrivers" asp-route-id="@item.TripID">
+                        
+                        @{var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);}
+                        
+                        @if(requestsWithDrivers.Count() == 1)
+                        {                            
+                            @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
+                        }
+                        else if(requestsWithDrivers.Count() == 2)
+                        {                            
+                            @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
+                            <span>&</span>
+                            @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
+                        }
+                        else
+                        {                            
+                            @Html.DisplayFor(modelItem => item.Requests.Count)
+                             <span>Anmodninger</span>
+                        }
 
-
+                     </a>
                     </td>
                     <td>
                         <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se mulige chauførrer"></i> </a>

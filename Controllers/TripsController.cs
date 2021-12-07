@@ -9,6 +9,7 @@ using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
 using Microsoft.AspNetCore.Authorization;
 using AAO_AdminPanel.Utilities;
+using Microsoft.AspNetCore.Http;
 
 namespace AAO_AdminPanel.Controllers
 {
@@ -37,7 +38,8 @@ namespace AAO_AdminPanel.Controllers
                         .Include(t => t.Traffic.StartCountry)
                         .Include(t => t.Traffic.StopCountry)
                         .Include(t => t.Requests).ThenInclude(t => t.Status)
-                         select t;
+                        .Include(t => t.Requests).ThenInclude(m => m.Driver).ThenInclude(m => m.User)
+                        select t;
 
             // Filter: StartLocation
             if (StartLocationID.HasValue)
@@ -120,6 +122,8 @@ namespace AAO_AdminPanel.Controllers
                     trips = trips.OrderByDescending(t => t.Department);
                 }
             }
+
+
 
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
@@ -347,7 +351,7 @@ namespace AAO_AdminPanel.Controllers
             return View(await requests.ToListAsync());
         }
         [HttpPost]
-        public ActionResult RemoveConfirmed(Microsoft.AspNetCore.Http.IFormCollection formCollection)
+        public ActionResult RemoveConfirmed(IFormCollection formCollection)
         {
             string[] ids = formCollection["RequestID"];
             foreach (var id in ids)
@@ -358,6 +362,57 @@ namespace AAO_AdminPanel.Controllers
                 _context.SaveChanges();
                 
             }
+            return RedirectToAction("Index");
+
+        }
+
+        public async Task<IActionResult> EditDrivers(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var requests = _context.Request
+                        .Include(r => r.Driver).ThenInclude(r => r.User)
+                        .Include(r => r.Driver).ThenInclude(r => r.DriverLicenses).ThenInclude(r => r.License)
+                        .Include(r => r.Trip)
+                        .Include(r => r.Status)
+                        .Where(m => m.TripID == id).OrderBy(m => m.StatusID)
+                        ;
+
+            if (requests == null)
+            {
+                return NotFound();
+            }
+
+            return View(await requests.ToListAsync());
+        }
+        [HttpPost]
+        public IActionResult EditDriversConfirmed(IFormCollection formCollection, List<Request> Requests)
+        {
+
+            foreach (var req in Requests)
+            {
+                if(req.StatusBool == false)
+                {
+                    req.StatusID = 2;
+                }
+                _context.Request.Update(req);
+                _context.SaveChanges();
+            }
+
+
+            string[] ids = formCollection["RequestID"];
+                   
+            //foreach (var id in ids)
+            //{
+            //    var request = this._context.Request.Find(int.Parse(id));
+            //    request.StatusID = 1;
+            //    _context.Request.Update(request);
+            //    _context.SaveChanges();
+                
+
+            //}
             return RedirectToAction("Index");
 
         }

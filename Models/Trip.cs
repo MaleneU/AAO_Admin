@@ -69,6 +69,6 @@ namespace AAO_AdminPanel.Models
         [DisplayName("Starttid")]
         public string StartTime => StartDateAndTime.ToString("HH':'mm");
 
-
+        
     }
 }
