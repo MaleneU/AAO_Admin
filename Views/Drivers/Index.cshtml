@@ -120,11 +120,11 @@
                                     <th>Starttid</th>
                                     </thead>
                                     <tbody>
-                                        @foreach (var a in item.Availabilities)
-                                        {
-                        <td>@Html.DisplayFor(modelItem => a.StartDate)</td>
-                                    <td>@Html.DisplayFor(modelItem => a.EndDate)</td>
-                                    <td>mm:hh</td>
+                                       
+                                        @foreach (var d in item.Availabilities) { 
+                                    <td>@Html.DisplayFor(modelItem => d.StartDate)</td>
+                                    @*<td>@Html.DisplayFor(modelItem => d.StopDateOnly)</td>
+                                    <td>@Html.DisplayFor(modelItem => d.StartTime)</td>*@
                                         }
             </tbody>
 
