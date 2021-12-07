@@ -101,7 +101,7 @@
 
                                 <div>
                                     Inaktiv/slet chauffør
-                                    <button>inaktiv</button>
+                                    <button>Inaktiv</button>
                                     <button>Slet</button>
                                 </div>
 
@@ -121,10 +121,12 @@
                                     </thead>
                                     <tbody>
                                        
-                                        @foreach (var d in item.Availabilities) { 
-                                    <td>@Html.DisplayFor(modelItem => d.StartDate)</td>
-                                    @*<td>@Html.DisplayFor(modelItem => d.StopDateOnly)</td>
-                                    <td>@Html.DisplayFor(modelItem => d.StartTime)</td>*@
+                                        @foreach (var a in item.Availabilities) { 
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => a.StartDateString)</td>
+                                            <td>@Html.DisplayFor(modelItem => a.EndDateString)</td>
+                                            <td>@Html.DisplayFor(modelItem => a.StartTimeString) </td>
+                                        </tr>
                                         }
             </tbody>
 
