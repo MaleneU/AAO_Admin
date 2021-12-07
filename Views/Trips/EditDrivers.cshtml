@@ -16,10 +16,10 @@
                             </label>
                         </div>
                     </th>
-                    <th>@Html.DisplayName("RequestID")</th>
-                    <th>@Html.DisplayName("DriverID")</th>
+                   @* <th>@Html.DisplayName("RequestID")</th>
+                    <th>@Html.DisplayName("DriverID")</th>                    
+                    <th>@Html.DisplayName("TripID")</th>*@
                     <th>@Html.DisplayName("Driver")</th>
-                    <th>@Html.DisplayName("TripID")</th>
                     <th>@Html.DisplayName("Email")</th>
                     <th>@Html.DisplayName("Phone")</th>
                     <th>@Html.DisplayName("Licenses")</th>
@@ -38,8 +38,11 @@
                             @Html.CheckBoxFor(modelItem => Model[item].StatusBool)
                             <label for="checkboxPrimary1"></label>
                         </div>
+                        @Html.HiddenFor(modelItem => Model[item].RequestID)
+                        @Html.HiddenFor(modelItem => Model[item].DriverID)
+                        @Html.HiddenFor(modelItem => Model[item].TripID)
                     </td>
-                    <td>
+                   @* <td>
                         @Html.DisplayFor(modelItem => Model[item].RequestID)
                         @Html.HiddenFor(modelItem => Model[item].RequestID)
                     </td>
@@ -50,7 +53,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => Model[item].TripID)
                         @Html.HiddenFor(modelItem => Model[item].TripID)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => Model[item].Driver.User.Fullname)
                         
