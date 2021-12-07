@@ -1,0 +1,214 @@
+﻿
+
+main {
+    margin: 80px;
+}
+
+
+
+
+/*sidenav*/
+.sidebar-toggle {
+    margin-left: -240px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+
+    .logo {
+        width: 50%;
+        margin: 50px 0 20px 50px;
+    }
+
+    .btn {
+        color: #000000;
+        text-decoration: none;
+        display: block;
+        padding: 18px 0 18px 25px;
+        font-size: 12px;
+        outline: 0;
+        width: 100% !important;
+        -webkit-transition: all 200ms ease-in;
+        -moz-transition: all 200ms ease-in;
+        -o-transition: all 200ms ease-in;
+        -ms-transition: all 200ms ease-in;
+        transition: all 200ms ease-in;
+
+        &:hover {
+            color: #1abc9c !important;
+        }
+    }
+
+
+    .sidebar, .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        text-decoration: none;
+        color: black;
+    }
+
+    width: 240px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: absolute;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    z-index: 100;
+
+    #leftside-navigation {
+        ul, ul ul {
+            margin: -2px 0 0;
+            padding: 0;
+        }
+
+        ul {
+            li {
+                list-style-type: none;
+
+                &.active {
+                    & > a {
+                        color: #1abc9c;
+                    }
+
+                    ul {
+                        display: block;
+                    }
+                }
+
+                a {
+                    color: #000000;
+                    text-decoration: none;
+                    display: block;
+                    padding: 18px 0 18px 25px;
+                    font-size: 12px;
+                    outline: 0;
+                    -webkit-transition: all 200ms ease-in;
+                    -moz-transition: all 200ms ease-in;
+                    -o-transition: all 200ms ease-in;
+                    -ms-transition: all 200ms ease-in;
+                    transition: all 200ms ease-in;
+
+                    &:hover {
+                        color: #1abc9c;
+                    }
+
+                    span {
+                        display: inline-block;
+                    }
+
+                    i {
+                        width: 20px;
+
+                        .fa-angle-left, .fa-angle-right {
+                            padding-top: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+ul ul {
+    display: none;
+
+    li {
+        background: #23313f;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        border-bottom: none;
+
+        a {
+            font-size: 12px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            color: #aeb2b7;
+        }
+    }
+}
+
+
+
+
+
+
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+/*sidenav end*/
+
+
+/*header*/
+
+header {
+    background-color: #075243;
+    display: flex;
+    height: 40px;
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px 15px;
+        border: none;
+        background-color: #1abc9c;
+
+        &:hover {
+            background-color: #1abc9c;
+        }
+    }
+
+    li {
+        list-style-type: none;
+        margin-top: 10px;
+        width: 100%;
+        text-align: end;
+
+        a {
+            text-decoration: none;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .fa-user {
+            color: white;
+            padding-right: 10px;
+            margin-left: 10px;
+        }
+    }
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+.mainContent {
+    left: 240px;
+}
+
+#mainContent {
+    margin-left: 260px;
+
+    .HeadlinePage {
+        margin-left: 10px;
+        font-weight: bold;
+    }
+}
