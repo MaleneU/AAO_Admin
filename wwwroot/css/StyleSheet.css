@@ -251,7 +251,10 @@ header {
       background-color: white !important; }
 
 .rowdetail {
-  display: none; }
+  display: none;
+  -moz-transition: all 0.04s linear;
+  -webkit-transition: all 0.04s linear;
+  transition: all 0.04s linear; }
 
 .rotate {
   -moz-transition: all 0.01s linear;
@@ -261,21 +264,21 @@ header {
 .rotate-down {
   -moz-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-  position: relative;
-  top: 6px; }
+  transform: rotate(180deg); }
+
+.arrow1 {
+  min-width: 40px; }
 
 .fa-sort-down {
-  font-size: 18px;
-  text-align: center;
-  justify-self: center; }
+  width: 30px;
+  padding: 2px 9px; }
 
 .form-group {
   margin-left: 10px !important;
   padding-left: 5px !important; }
 
 .table-container {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.02);
   width: 100%;
   padding: 2.5%;
   padding-bottom: 10px; }
@@ -288,12 +291,16 @@ header {
         text-align: left; }
       .table-container table tr td {
         text-align: left; }
-      .table-container table tr .showmore td .more-info {
-        padding: 10px 10px; }
+    .table-container table table tbody tr:last-child {
+      border-bottom: none; }
+    .table-container table .showmore:hover {
+      background-color: #fcfcfc; }
     .table-container table .rowdetail {
       display: none;
       background-color: rgba(211, 211, 211, 0.24);
-      border-color: white; }
+      border-color: white;
+      transition-duration: 2s;
+      transition-timing-function: linear; }
       .table-container table .rowdetail td .descriptioncontaniner {
         text-align: left;
         padding: 40px;

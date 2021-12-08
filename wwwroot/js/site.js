@@ -3,13 +3,17 @@
 
  //Write your JavaScript code.
 $(' table tr td .showmore ').click(function () {
-    $(this).closest('tr.showmore').next('tr.rowdetail').toggle();
+    $(this).closest('tr.showmore').next('tr.rowdetail').toggle('fast');
     
-})
+});
 
 $(".rotate").click(function () {
-    $(this).toggleClass("rotate-down");
-})
+    $(this).toggleClass('rotate-down');
+
+
+});
+
+
 
 
 $(document).ready(function () {
@@ -49,3 +53,5 @@ function closeNav() {
     document.getElementById("mainContent").style.marginLeft = "80px";
 
 }
+
+

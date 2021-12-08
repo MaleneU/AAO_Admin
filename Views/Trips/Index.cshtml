@@ -132,14 +132,12 @@
 
                             </a>
                         </td>
-                        <td>
-                            <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se mulige chauførrer"></i> </a>
-                            <a asp-action="Edit" asp-route-id="@item.TripID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.TripID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.TripID">Delete</a>
+                        <td class="arrow1">
+                            <a class="showmore"><img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se mulige chauførrer" src="~/img/arrow.svg"/> </a>
+                        
                         </td>
                     </tr>
-                    <tr class="rowdetail">
+                    <tr  id="hiddenrow "class="rowdetail">
                         <td colspan="10">
                             <div class="descriptioncontaniner moreshown">
                                 <h3> Beskrivelse af turen</h3>

@@ -2,6 +2,13 @@
 
 .rowdetail {
     display: none;
+    -moz-transition: all 0.04s linear;
+    -webkit-transition: all 0.04s linear;
+    transition: all 0.04s linear;
+}
+
+.transition{
+
 }
 
 .rotate {
@@ -14,16 +21,19 @@
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    position: relative;
-    top: 6px;
+  
  
+}
+.arrow1{
+    min-width:40px;
 }
 
 .fa-sort-down {
+   
+  width:30px;
+  padding: 2px 9px;
  
-    font-size: 18px;
-    text-align: center;
-    justify-self: center;
+   
 }
 
 .form-group{
@@ -33,7 +43,7 @@
 
 
 .table-container {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.02);
     width: 100%;
     padding: 2.5%;
     padding-bottom: 10px;
@@ -42,6 +52,7 @@
         border-collapse: collapse;
         width: 100%;
 
+
         tr {
             border-bottom: 1px solid #808080;
 
@@ -49,23 +60,27 @@
                 text-align: left;
             }
 
+
+
             td {
                 text-align: left;
             }
+        }
 
-            .showmore {
-                td {
-                    .more-info {
-                        padding: 10px 10px;
-                    }
-                }
-            }
+        table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .showmore:hover {
+            background-color: #fcfcfc;
         }
 
         .rowdetail {
             display: none;
             background-color: rgba(211, 211, 211, 0.24);
             border-color: white;
+            transition-duration: 2s;
+            transition-timing-function: linear;
 
             td {
                 .descriptioncontaniner {
@@ -89,11 +104,11 @@
                         grid-row: 1/3;
                         display: grid;
                         grid-template-columns: 100%;
-                       
+
 
                         .red {
                             background-color: #dc2f43;
-                            align-self:end;
+                            align-self: end;
                         }
 
                         .darkgrey {
