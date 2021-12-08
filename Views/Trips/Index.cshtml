@@ -67,10 +67,10 @@
                     @*<th>
                             @Html.DisplayNameFor(model => model.Startlocation)
                         </th>*@
-                    <th>
+                    @*<th>
                         <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.Urgent)" class="btn btn-link pl-0 pr-4" />
-                        @*@Html.DisplayNameFor(model => model.Urgent)*@
-                    </th>
+                        @Html.DisplayNameFor(model => model.Urgent)
+                    </th>*@
                     <th>
                         <input type="submit" name="actionButton" disabled="disabled" value="Requests" class="btn btn-link pl-0 pr-4" />
                         @*@Html.DisplayNameFor(model => model.Requests) Count*@
@@ -105,9 +105,9 @@
                         @*<td>
                                 @Html.DisplayFor(modelItem => item.Startlocation.Location)
                             </td>*@
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.Urgent)
-                        </td>
+                        </td>*@
                         <td>
 
                             <a asp-action="EditDrivers" asp-route-id="@item.TripID">
