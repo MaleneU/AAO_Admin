@@ -285,9 +285,9 @@ header {
     .table-container table tr {
       border-bottom: 1px solid #808080; }
       .table-container table tr th {
-        text-align: center; }
+        text-align: left; }
       .table-container table tr td {
-        text-align: center; }
+        text-align: left; }
       .table-container table tr .showmore td .more-info {
         padding: 10px 10px; }
     .table-container table .rowdetail {
