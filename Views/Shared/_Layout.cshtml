@@ -32,18 +32,12 @@
 
         <div id="leftside-navigation" class="nano">
             <a>
-                <img src="~/img/AAlogo.svg" alt="Italian Trulli" class="logo">
+                <img src="~/img/AAlogo.svg" alt="Alex Andersen Logo" class="logo">
             </a>
 
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> <p> Minimer menu</p><i class="fas fa-arrow-left"></i></a>
 
             <ul class="nano-content">
-
-
-
-
-
-
 
                 <li class="sub-menu">
 
@@ -58,8 +52,11 @@
                 <li class="sub-menu">
                     <a asp-controller="Trips" asp-action="Index" class="dropdown-btn"><i class="far fa-list-alt"></i>Ture<i class="arrow fa fa-angle-down pull-right"></i>                  </a>
                     <div class="dropdown-container">
-                        <a href="#" class="under-list">Anmodninger</a>
-                        <a href="./assignedTrips.html" class="under-list">Tildelte ture</a>
+                        <a class="under-list" asp-route-StatusID="2">Ikke tildelte ture</a>
+                        <a class="under-list" asp-route-StatusID="1">Tildelte ture</a>
+                        <a class="under-list" asp-route-StatusID="8">Afsluttede ture</a>
+                        <a class="under-list" asp-route-StartLocationID="1">Ture fra Odense</a>
+                        <a class="under-list" asp-route-TrafficTypeID="2">Internationale ture</a>
                     </div>
                 </li>
             </ul>
