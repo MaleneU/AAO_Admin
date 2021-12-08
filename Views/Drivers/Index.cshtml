@@ -17,11 +17,11 @@
     }
 </style>
 
-<h1>Drivers</h1>
+<h1>Afløser oversigt</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 
 <form asp-action="Index" method="get">
     <table class="table">
@@ -101,8 +101,10 @@
 
                                 <div>
                                     Inaktiv/slet chauffør
-                                    <button>Inaktiv</button>
-                                    <button>Slet</button>
+                                    <div>
+                                        <button class="red" asp-action="" asp-route-id="@item.DriverID">Inaktiv</button>
+                                        <button class="red" asp-action="Delete" asp-route-id="@item.DriverID">Slet</button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -132,13 +134,11 @@
 
 
         </table>
-        <button>Tildel tur</button>
-        <button>Opret periode</button>
-        <button>Gem ændringer</button>
-
-
-
-        </div>
+                                <div>
+                                    <button class="darkgreen" asp-action="" asp-route-id="">Tildel tur</button>
+                                    <button class="darkgreen" asp-action="" asp-route-id="">Opret periode</button>
+                                    <button class="darkgreen" asp-action="" asp-route-id="">Gem ændringer</button>
+                                </div>
         </div>
         </td>
         </tr>
