@@ -1,9 +1,12 @@
 ﻿using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
 using AAO_AdminPanel.Utilities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -179,5 +182,122 @@ namespace AAO_AdminPanel.Controllers
         {
             return _context.Driver.Any(e => e.DriverID == id);
         }
+
+        public async Task<IActionResult> DriverActivation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var driver = await _context.Driver
+                .Include(d => d.StartLocation)
+                .Include(d => d.TrafficType)
+                .Include(d => d.User)
+                .FirstOrDefaultAsync(m => m.DriverID == id);
+            if (driver == null)
+            {
+                return NotFound();
+            }
+            if (driver.Active == true)
+            {
+                driver.Active = false;
+            }
+            else if (driver.Active == false)
+            {
+                driver.Active = true;
+            }
+
+            _context.Driver.Update(driver);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
+
+        // GET Add Driver To Trip
+        public IActionResult AddTripToDriver(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["DriverID"] = id;
+            var availabilities = _context.Availability.Where(a => a.DriverID == id).ToList();
+            var trips = _context.Trip.Include(t => t.Requests).ThenInclude(t => t.Driver).ToList(); ;
+
+            var availableTrips = new List<Trip>();
+
+            foreach (var a in availabilities)
+            {
+                foreach (var t in trips)
+                {
+                    if (t.StartDateAndTime >= a.StartDate && t.StopDate <= a.EndDate && t.HasDriver == false)
+                    {
+                        availableTrips.Add(t);
+
+                    }
+                }
+            }
+            return View(availableTrips);
+        }
+
+
+        // POST Add Driver To Trip
+        [HttpPost]
+        public async Task<IActionResult> AddTripToDriver(IFormCollection form, int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
+            string[] trips = form["TripID"];
+            foreach (var t in trips)
+            {
+                int driverId = id.Value;
+                var request = new Request
+                {
+                    TripID = int.Parse(t),
+                    DriverID = driverId,
+                    StatusID = 1
+
+                };
+                _context.Add(request);
+                await _context.SaveChangesAsync();
+            }
+
+
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Requests/Create
+        public IActionResult CreateAvailability(int? id)
+        {
+           
+            ViewData["DriverID"] = id;
+            
+            return View();
+        }
+
+        // POST: Requests/Create       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAvailability([Bind("DriverID, StartDate, EndDate, Status")] Availability availability)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(availability);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return View(availability);
+        }
+
     }
 }

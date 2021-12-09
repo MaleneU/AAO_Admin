@@ -17,6 +17,66 @@
     }
 </style>
 
+<style>
+
+.driver-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 5em;
+}
+
+tr.rowdetail {
+    background: #EAEAEA;
+}
+
+.availability-table{
+    width:100%;
+    border-collapse: collapse;
+    margin-bottom:1em;
+}
+
+.availability-table thead tr{
+    background-color:#fff;
+
+}
+
+
+.availability-table tbody tr.available{
+    background-color:#B2DDC8;
+}
+
+.availability-table tbody tr.unavailable{
+    background-color:#F4C0C2;
+}
+.availability-table tbody tr td{
+    border:1px solid #fff;
+
+}
+
+.availability-table tr td:first-child{
+            border-left: none;
+}
+
+.availability-table tr:first-child th{
+            border-top: none;
+        }
+
+        .availability-table tr td:last-child, th:last-child{
+            border-right: none;
+        }
+        .availability-table tr:last-child td{
+            border-bottom: none;
+        }
+
+.availability-table .table-btn{width:0%;}
+</style>
+
+
+
 <h1>Afløser oversigt</h1>
 
 @*<p>
@@ -75,76 +135,73 @@
 
 
                     <td>
-                        <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se chauffør Info"></i> </a>
-                        <a asp-action="Edit" asp-route-id="@item.DriverID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.DriverID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.DriverID">Delete</a>
+                        <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se chauffør Info"></i> </a>                        
                     </td>
                 </tr>
 
                 <tr class="rowdetail">
-                    <td colspan="2">
-                        <div class="descriptioncontaniner moreshown">
-                            <h4>Chauffør Information</h4>
-                            <div class="descriptioncontaniner">
-
-                                <p><b>Navn:</b> @Html.DisplayFor(modelItem => item.User.Firstname)</p>
-                                <p><b>Efternavn:</b> @Html.DisplayFor(modelItem => item.User.Lastname)</p>
-                                <p><b>Email:</b> @Html.DisplayFor(modelItem => item.User.Email)</p>
-                                <p><b>Tlf. nr.:</b> @Html.DisplayFor(modelItem => item.User.Phone)</p>
-                                <p>
-                                    @foreach (var l in item.DriverLicenses)
-                                    {
-                                        <b>Kørekort:</b> @Html.DisplayFor(modelItem => l.License.LicenseName)
-                                    }
-                                </p>
-
-                                <div>
-                                    Inaktiv/slet chauffør
-                                    <div>
-                                        <button class="red" asp-action="" asp-route-id="@item.DriverID">Inaktiv</button>
-                                        <button class="red" asp-action="Delete" asp-route-id="@item.DriverID">Slet</button>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <td colspan="6">
+                    <div class="driver-info">
+                    <div class="info-column">                        
+                        <h4>Chauffør Information</h4>
+                        <p><b>Navn:</b> @Html.DisplayFor(modelItem => item.User.Firstname)</p>
+                        <p><b>Efternavn:</b> @Html.DisplayFor(modelItem => item.User.Lastname)</p>
+                        <p><b>Email:</b> @Html.DisplayFor(modelItem => item.User.Email)</p>
+                        <p><b>Tlf. nr.:</b> @Html.DisplayFor(modelItem => item.User.Phone)</p>
+                        <p><b>Kørekort:</b>
+                            @foreach (var l in item.DriverLicenses)
+                            {
+                                @Html.DisplayFor(modelItem => l.License.LicenseName)
+                            }
+                        </p>
+                        <div>
+                            Inaktiv/slet chauffør
+                            @if(item.Active == true)
+                                {
+                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
+                                }
+                                else if(item.Active == false)
+                                {
+                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
+                                }
+                                <button class="red" asp-action="Delete" asp-route-id="@item.DriverID">Slet</button>
                         </div>
-
-                    </td>
-                    <td colspan="2">
-                        <div class="descriptioncontaniner moreshown">
-                            <h4>Rådighed</h4>
-                            <div class="descriptioncontaniner">
-                                <table>
-                                    <thead>
+                    </div>
+                    <div class="info-column">                        
+                        <h4>Rådighed</h4>                            
+                        <table class="availability-table">
+                            <thead>
+                                <tr>
                                     <th>Startdato</th>
                                     <th>Slutdato</th>
                                     <th>Starttid</th>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        @foreach (var a in item.Availabilities) { 
-                                        <tr>
-                                            <td>@Html.DisplayFor(modelItem => a.StartDateString)</td>
-                                            <td>@Html.DisplayFor(modelItem => a.EndDateString)</td>
-                                            <td>@Html.DisplayFor(modelItem => a.StartTimeString) </td>
-                                        </tr>
-                                        }
-            </tbody>
+                                    <th colspan="2"></th>
 
-
-        </table>
-                                <div>
-                                    <button class="darkgreen" asp-action="" asp-route-id="">Tildel tur</button>
-                                    <button class="darkgreen" asp-action="" asp-route-id="">Opret periode</button>
-                                    <button class="darkgreen" asp-action="" asp-route-id="">Gem ændringer</button>
-                                </div>
-        </div>
-        </td>
-        </tr>
-            }
+                                </tr>
+                            </thead>
+                            <tbody>                                       
+                                @foreach (var a in item.Availabilities) { 
+                                <tr class="@(a.Status == true ? "available" : "unavailable")">
+                                    <td>@Html.DisplayFor(modelItem => a.StartDateString)</td>
+                                    <td>@Html.DisplayFor(modelItem => a.EndDateString)</td>
+                                    <td>@Html.DisplayFor(modelItem => a.StartTimeString) </td>
+                                    <td class="table-btn"><a asp-action="EditAvailability" asp-route-id="@item.DriverID"><i class="fas fa-pen"></i></a></td>
+                                    <td class="table-btn"><a asp-action="DeleteAvailability" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></a></td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="availability-controls">
+                            <button class="darkgreen btn" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
+                            <button class="darkgreen" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
+                        </div>
+                    </div>
+                    </div>
+                    </td>
+                </tr>
+                }
             </tbody>
-            </table>
+    </table>
             <partial name="_PagingNavBar" />
         </form>
 
