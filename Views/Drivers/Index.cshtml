@@ -73,6 +73,16 @@ tr.rowdetail {
         }
 
 .availability-table .table-btn{width:0%;}
+
+.availability-controls {
+    text-align: right;
+}
+
+.info-column p{
+    margin:0;
+}
+
+
 </style>
 
 
@@ -154,17 +164,19 @@ tr.rowdetail {
                                 @Html.DisplayFor(modelItem => l.License.LicenseName)
                             }
                         </p>
-                        <div>
-                            Inaktiv/slet chauffør
-                            @if(item.Active == true)
-                                {
-                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
-                                }
-                                else if(item.Active == false)
-                                {
-                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
-                                }
-                                <button class="red" asp-action="Delete" asp-route-id="@item.DriverID">Slet</button>
+                        <div>                            
+                            <div class="driver-controls">
+                                <button class="@(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>
+                               @* @if(item.Active == true)
+                                    {
+                                        <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
+                                    }
+                                    else if(item.Active == false)
+                                    {
+                                        <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
+                                    }*@
+                                    <button class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></button>
+                                </div>
                         </div>
                     </div>
                     <div class="info-column">                        
@@ -192,8 +204,8 @@ tr.rowdetail {
                             </tbody>
                         </table>
                         <div class="availability-controls">
-                            <button class="darkgreen btn" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
-                            <button class="darkgreen" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
+                            <button class="btn btn-success" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
+                            <button class="btn btn-success" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
                         </div>
                     </div>
                     </div>
