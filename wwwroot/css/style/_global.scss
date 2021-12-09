@@ -21,6 +21,10 @@
         margin: 50px 0 20px 50px;
     }
 
+    .logo-title {
+        padding-left: 27.5px;
+    }
+
     .btn {
         color: #000000;
         text-decoration: none;
@@ -44,12 +48,12 @@
     .sidebar, .closebtn {
         position: absolute;
         padding: 12px;
-        right: 9px;
         font-size: 20px;
         margin-left: 50px;
         text-decoration: none;
         color: black;
         display: inline-flex;
+        bottom: 0;
 
         p {
             font-size: 12px;
@@ -57,6 +61,10 @@
 
         .fas {
             padding-left: 10px;
+        }
+
+        &:hover {
+            color: #00904a;
         }
     }
 
