@@ -74,7 +74,7 @@ main {
       text-decoration: none;
       display: block;
       padding: 18px 0 18px 25px;
-      font-size: 12px;
+      font-size: 14px;
       outline: 0;
       -webkit-transition: all 200ms ease-in;
       -moz-transition: all 200ms ease-in;
@@ -86,7 +86,8 @@ main {
       .sidebar #leftside-navigation ul li a span {
         display: inline-block; }
       .sidebar #leftside-navigation ul li a i {
-        width: 20px; }
+        width: 20px;
+        margin: auto; }
         .sidebar #leftside-navigation ul li a i .fa-angle-left, .sidebar #leftside-navigation ul li a i .fa-angle-right {
           padding-top: 3px; }
 
