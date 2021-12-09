@@ -1,4 +1,9 @@
-﻿main {
+﻿body::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; 
+}
+
+main {
     margin: 80px;
 }
 
@@ -258,3 +263,5 @@ header {
         font-weight: bold;
     }
 }
+
+
