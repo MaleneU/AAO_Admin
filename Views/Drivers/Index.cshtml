@@ -22,6 +22,7 @@
 .driver-info {
     display: grid;
     grid-template-columns: auto auto;
+    grid-gap:10%;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -84,12 +85,30 @@ tr.rowdetail {
     margin:0;
 }
 
+.info-grid{
+    display:grid;
+    grid-template-columns:auto auto;
+    width:40%;
+}
+
 .driver-controls{
     margin-top:1em;
 }
 
-.driver-controls .activity.inactive i{
+.driver-controls .activity.active:hover i, .driver-controls .activity.inactive i{
     color:yellow;
+}
+
+.driver-controls .availability.inactive:hover i, .driver-controls .activity.active i{
+    color:#fff;
+}
+
+.availability-controls button:hover{
+    background-color:#005140;
+}
+
+.availability-controls button:last-child{
+    margin-left:.5em;
 }
 
 </style>
@@ -163,16 +182,23 @@ tr.rowdetail {
                     <div class="driver-info">
                     <div class="info-column">                        
                         <h4>Chauffør Information</h4>
-                        <p><b>Navn:</b> @Html.DisplayFor(modelItem => item.User.Firstname)</p>
-                        <p><b>Efternavn:</b> @Html.DisplayFor(modelItem => item.User.Lastname)</p>
-                        <p><b>Email:</b> @Html.DisplayFor(modelItem => item.User.Email)</p>
-                        <p><b>Tlf. nr.:</b> @Html.DisplayFor(modelItem => item.User.Phone)</p>
-                        <p><b>Kørekort:</b>
+                        <div class="info-grid">
+                        <p><b>@Html.LabelFor(modelItem => item.User.Firstname)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Firstname)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.User.Lastname)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Lastname)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.User.Email)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Email)</p>
+                        <p><b> @Html.LabelFor(modelItem => item.User.Phone)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Phone)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.DriverLicenses)</b></p>                        
+                        <p>
                             @foreach (var l in item.DriverLicenses)
                             {
                                 @Html.DisplayFor(modelItem => l.License.LicenseName)
                             }
                         </p>
+                        </div>
                         <div>                            
                             <div class="driver-controls">
                                 <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>

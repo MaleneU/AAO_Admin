@@ -247,7 +247,7 @@ header li .fa-user {
 .submitBtn {
   font-size: 1.2rem;
   letter-spacing: 0.05rem;
-  background-color: #158a49 !important;
+  background-color: #158a49;
   padding: 8px 20px 8px 20px;
   border-radius: 5px;
   color: white !important;
