@@ -37,6 +37,8 @@ tr.rowdetail {
     width:100%;
     border-collapse: collapse;
     margin-bottom:1em;
+    -webkit-box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1); 
+    box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1);
 }
 
 .availability-table thead tr{
@@ -82,6 +84,13 @@ tr.rowdetail {
     margin:0;
 }
 
+.driver-controls{
+    margin-top:1em;
+}
+
+.driver-controls .activity.inactive i{
+    color:yellow;
+}
 
 </style>
 
@@ -166,7 +175,7 @@ tr.rowdetail {
                         </p>
                         <div>                            
                             <div class="driver-controls">
-                                <button class="@(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>
+                                <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>
                                @* @if(item.Active == true)
                                     {
                                         <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
@@ -175,7 +184,7 @@ tr.rowdetail {
                                     {
                                         <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
                                     }*@
-                                    <button class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-danger" data-toggle="tooltip" title="Slet" asp-action="Delete" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></button>
                                 </div>
                         </div>
                     </div>
@@ -204,8 +213,8 @@ tr.rowdetail {
                             </tbody>
                         </table>
                         <div class="availability-controls">
-                            <button class="btn btn-success" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
-                            <button class="btn btn-success" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
+                            <button class="btn submitBtn" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
+                            <button class="btn submitBtn" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
                         </div>
                     </div>
                     </div>
