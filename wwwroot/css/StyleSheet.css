@@ -37,15 +37,16 @@
     transition: all 200ms ease-in; }
     .sidebar .btn:hover {
       color: #1abc9c !important; }
-  .sidebar .sidebar, .sidebar .closebtn {
-    position: absolute;
-    padding: 12px;
-    right: 9px;
-    font-size: 20px;
-    margin-left: 50px;
-    text-decoration: none;
-    color: black;
-    display: inline-flex; }
+    .sidebar .sidebar, .sidebar .closebtn {
+        position: absolute;
+        padding: 12px;
+        right: 9px;
+        font-size: 20px;
+        margin-left: 50px;
+        text-decoration: none;
+        color: black;
+        display: inline-flex;
+    }
     .sidebar .sidebar p, .sidebar .closebtn p {
       font-size: 12px; }
     .sidebar .sidebar .fas, .sidebar .closebtn .fas {
