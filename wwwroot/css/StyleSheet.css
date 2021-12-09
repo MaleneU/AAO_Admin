@@ -1,4 +1,8 @@
-﻿main {
+﻿body::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none; }
+
+main {
   margin: 80px; }
 
 /*sidenav*/
@@ -315,7 +319,8 @@ header {
           grid-row: 1/2; }
         .table-container table .rowdetail td .descriptioncontaniner .descriptiontext {
           grid-column: 2/3;
-          grid-row: 2/3; }
+          grid-row: 2/3;
+          max-width: 40vw; }
         .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable {
           grid-column: 3/4;
           grid-row: 1/3;
