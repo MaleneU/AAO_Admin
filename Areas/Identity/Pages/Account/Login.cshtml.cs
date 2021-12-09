@@ -56,7 +56,7 @@ namespace AAO_AdminPanel.Areas.Identity.Pages.Account
             [Display(Name = "Adgangskode")]
             public string Password { get; set; }
 
-            [Display(Name = "Husk mig?")]
+            [Display(Name = "Husk mig")]
             public bool RememberMe { get; set; }
         }
 
