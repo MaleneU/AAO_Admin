@@ -1,0 +1,34 @@
+﻿@model List<Trip>
+
+
+
+<h1>Add Trip To Driver</h1>
+@using (Html.BeginForm("AddTripToDriver", "Drivers", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Trip ID</th>
+                <th>Tur Starter</th>
+                <th>Tur Slutter</th>
+      
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><input name="TripID" value="@item.TripID" type="checkbox" class="chkCheckBoxId" /></td>
+                        <td>@item.TripID</td>
+                        <td>@item.StartDate</td>
+                        <td>@item.StopDate</td>
+                    
+
+                    </tr>
+                }
+        </tbody>
+    </table>
+    <button type="submit" value="Update" class="btn btn-success" asp-route-id="@ViewBag.DriverID">Tildel ture til chauffør</button>
+}
