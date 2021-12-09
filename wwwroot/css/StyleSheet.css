@@ -259,6 +259,26 @@ header {
     .w3-dropdown-click .w3-dropdown-content:hover {
       background-color: white !important; }
 
+.buttonadd {
+  width: 100%;
+  border-style: none;
+  margin-bottom: 5px;
+  height: 40px;
+  border-radius: 5px;
+  color: white; }
+
+.red {
+  background-color: #dc2f43; }
+
+.darkgrey {
+  background-color: #b4b2b2; }
+
+.darkgreen {
+  background-color: #005140; }
+
+.ligthgreen {
+  background-color: #00904a; }
+
 .rowdetail {
   display: none;
   -moz-transition: all 0.04s linear;
@@ -284,6 +304,7 @@ header {
 
 .form-group {
   margin-left: 10px !important;
+  margin-right: 10px !important;
   padding-left: 5px !important; }
 
 .table-container {
