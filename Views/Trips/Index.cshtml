@@ -18,19 +18,19 @@
             <div class="row">
                 <div class="form-group col-md-2">
                     <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
-                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
                 </div>
                 <div class="form-group col-md-2">
                     <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
-                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
                 </div>
                 <div class="form-group col-md-2">
                     <label class="control-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label>
-                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
                 </div>
                 <div class="form-group col-md-2">
                     <label class="control-label">Status</label>
-                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "form-control", onchange = "submit()" })
+                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
                 </div>
             </div>
 
@@ -41,27 +41,28 @@
             <thead>
                 <tr>
                     <th>
-                        <input type="submit" name="actionButton" value="Startdato" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" value="Startdato" class="sort-link pl-0 mr-3">Startdato <span>⇅</span></button>
+
                         @*@Html.DisplayNameFor(model => model.StartDate)*@
                     </th>
                     <th>
-                        <input type="submit" name="actionButton" value="Slutdato" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" value="Slutdato" class="sort-link pl-0 mr-3">Slutdato <span>⇅</span></button>
                         @*@Html.DisplayNameFor(model => model.StopDateOnly)*@
                     </th>
                     <th>
-                        <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="sort-link pl-0 mr-3">Starttid</button>
                         @*@Html.DisplayNameFor(model => model.StartTime)*@
                     </th>
                     <th>
-                        <input type="submit" name="actionButton" value="Varighed" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" value="Varighed" class="sort-link pl-0 mr-3">Varighed <span>⇅</span></button>
                         @*@Html.DisplayNameFor(model => model.Duration)*@
                     </th>
                     <th>
-                        <input type="submit" name="actionButton" value="Trafik" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" value="Trafik" class="sort-link pl-0 mr-3">Trafik <span>⇅</span></button>
                         @*@Html.DisplayNameFor(model => model.Traffic)*@
                     </th>
                     <th>
-                        <input type="submit" name="actionButton" value="Afdeling" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" value="Afdeling" class="sort-link pl-0 mr-3">Afdeling <span>⇅</span></button>
                         @*@Html.DisplayNameFor(model => model.Department)*@
                     </th>
                     @*<th>
@@ -72,7 +73,7 @@
                         @Html.DisplayNameFor(model => model.Urgent)
                     </th>*@
                     <th>
-                        <input type="submit" name="actionButton" disabled="disabled" value="Requests" class="btn btn-link pl-0 pr-4" />
+                        <button type="submit" name="actionButton" disabled="disabled" value="Requests" class="sort-link pl-0 pr-3">Chauffører</button>
                         @*@Html.DisplayNameFor(model => model.Requests) Count*@
                     </th>
                     <th></th>

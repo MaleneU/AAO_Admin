@@ -285,46 +285,55 @@ header {
   .table-container table {
     border-collapse: collapse;
     width: 100%; }
-    .table-container table tr {
-      border-bottom: 1px solid #808080; }
-      .table-container table tr th {
+  .table-container tr {
+    border-bottom: 1px solid #808080; }
+    .table-container tr th {
+      text-align: left; }
+      .table-container tr th .sort-link {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        border-color: transparent;
+        box-shadow: none;
+        background-color: transparent; }
+        .table-container tr th .sort-link span {
+          color: #00904a; }
+      .table-container tr th td {
         text-align: left; }
-      .table-container table tr td {
-        text-align: left; }
-    .table-container table table tbody tr:last-child {
+    .table-container tr table tbody tr:last-child {
       border-bottom: none; }
-    .table-container table .showmore:hover {
+    .table-container tr .showmore:hover {
       background-color: #fcfcfc; }
-    .table-container table .rowdetail {
+    .table-container tr .rowdetail {
       display: none;
       background-color: rgba(211, 211, 211, 0.24);
       border-color: white;
       transition-duration: 2s;
       transition-timing-function: linear; }
-      .table-container table .rowdetail td .descriptioncontaniner {
+      .table-container tr .rowdetail td .descriptioncontaniner {
         text-align: left;
         padding: 40px;
         display: grid;
         grid-template-columns: 5% 70% 15% 5%; }
-        .table-container table .rowdetail td .descriptioncontaniner h3 {
+        .table-container tr .rowdetail td .descriptioncontaniner h3 {
           grid-column: 2/3;
           grid-row: 1/2; }
-        .table-container table .rowdetail td .descriptioncontaniner .descriptiontext {
+        .table-container tr .rowdetail td .descriptioncontaniner .descriptiontext {
           grid-column: 2/3;
           grid-row: 2/3; }
-        .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable {
+        .table-container tr .rowdetail td .descriptioncontaniner .btn-grouptable {
           grid-column: 3/4;
           grid-row: 1/3;
           display: grid;
           grid-template-columns: 100%; }
-          .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable .red {
+          .table-container tr .rowdetail td .descriptioncontaniner .btn-grouptable .red {
             background-color: #dc2f43;
             align-self: end; }
-          .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable .darkgrey {
+          .table-container tr .rowdetail td .descriptioncontaniner .btn-grouptable .darkgrey {
             background-color: #b4b2b2; }
-          .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen {
+          .table-container tr .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen {
             background-color: #005140; }
-          .table-container table .rowdetail td .descriptioncontaniner .btn-grouptable button {
+          .table-container tr .rowdetail td .descriptioncontaniner .btn-grouptable button {
             width: 100%;
             border-style: none;
             margin-bottom: 5px;

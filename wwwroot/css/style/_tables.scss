@@ -51,16 +51,28 @@
     table {
         border-collapse: collapse;
         width: 100%;
+    }
 
 
-        tr {
-            border-bottom: 1px solid #808080;
 
-            th {
-                text-align: left;
+    tr {
+        border-bottom: 1px solid #808080;
+
+        th {
+            text-align: left;
+
+            .sort-link {
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                border-color: transparent;
+                box-shadow: none;
+                background-color: transparent;
+
+                span {
+                    color: #00904a;
+                }
             }
-
-
 
             td {
                 text-align: left;
