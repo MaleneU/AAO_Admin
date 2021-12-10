@@ -14,33 +14,45 @@
     <form asp-action="Index" method="get">
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
-        <div class="form-horizontal">
+        <div class="form-horizontal mb-4">
             <div class="row">
-                <div class="form-group col-md-1">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Startlocation)</label>
-                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
+                <div class="col-7">
+                <div class="row justify-content-start ml-auto">
+                <div class="col-auto">
+                    <label class="filter-label">@Html.DisplayNameFor(model => model.Startlocation)</label><br />
+                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                 </div>
-                <div class="form-group col-md-1">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Department)</label>
-                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
+                <div class="col-auto">
+                    <label class="filter-label">@Html.DisplayNameFor(model => model.Department)</label><br />
+                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                 </div>
-                <div class="form-group col-md-1">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label>
-                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
+                <div class="col-auto">
+                    <label class="filter-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label><br />
+                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                 </div>
-                <div class="form-group col-md-1">
-                    <label class="control-label">Status</label>
-                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
+                <div class="col-auto">
+                    <label class="filter-label">Status</label><br />
+                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                 </div>
-
-                <div class="form-group col-md-1 ">
-                    <label class="control-label">Vis rækker</label>
-                    @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "form-control-sm", onchange = "submit()" })
+                <div class="col-auto">
+                    <label class="filter-label">Ture pr. side</label><br />
+                    @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                 </div>
-                    
-               
-                
+                    </div></div>
+                <div class="col-5">
+                    <div class="row justify-content-end mr-auto">
+                        <div class="col-auto">
+                            <label class="filter-label"></label>
+                            <button type="submit" class="buttonadd darkgreen">Tilføj/fjern kolonner</button>
+                        </div>
+                        <div class="col-auto">
+                            <label class="filter-label"></label>
+                            <button type="submit" class="buttonadd darkgrey">Slet ture</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
 
         </div>
 
