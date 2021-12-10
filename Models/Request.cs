@@ -13,6 +13,7 @@ namespace AAO_AdminPanel.Models
         [Display(Name = "Anmodninger")]
         public int RequestID { get; set; }
         public int DriverID { get; set; }
+        [Display(Name = "Chauffør")]
         public Driver Driver { get; set; }
         public int TripID { get; set; }
         public Trip Trip { get; set; }
