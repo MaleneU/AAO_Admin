@@ -442,5 +442,14 @@ namespace AAO_AdminPanel.Controllers
             return RedirectToAction("Index");
 
         }
+
+
+        public ActionResult PopupView()
+        {
+            return PartialView();
+        }
+
+
+
     }
 }
