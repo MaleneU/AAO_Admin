@@ -26,6 +26,7 @@
     border: none;
 }
 
+/*Outdated pagination style*/
 .centeringPagiDiv {
     display: flex;
     width: 100%;
@@ -63,6 +64,28 @@
                 }
             }
         }
+    }
+}
+
+/*Pagination buttons*/
+.pag-btn {
+    border-style: none;
+    color: #fff;
+    background-color: #00904a;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    padding: 5px 14px;
+    border-radius: 5px;
+    height: 37px;
+    transition-duration: 0.2s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:disabled {
+        opacity: 0.4;
     }
 }
 
@@ -155,3 +178,4 @@
     .ligthgreen {
         background-color: #00904a;
     }
+

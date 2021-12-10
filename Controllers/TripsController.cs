@@ -244,8 +244,9 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
+            ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
-            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
             ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
             ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
             return View(trip);
@@ -283,6 +284,7 @@ namespace AAO_AdminPanel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
             ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
