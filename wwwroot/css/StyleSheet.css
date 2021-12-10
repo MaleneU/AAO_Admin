@@ -2,6 +2,10 @@
   display: none;
   -ms-overflow-style: none; }
 
+.no-padding {
+  padding: 0;
+  margin: 0; }
+
 main {
   margin: 5%;
   /*margin: 80px;*/ }
@@ -198,6 +202,8 @@ header {
   width: 60%;
   grid-gap: 2%;
   grid-row-gap: 8%; }
+  .createcontainer .form-control, .editcontainer .form-control {
+    appearance: auto; }
   .createcontainer .startdate, .editcontainer .startdate {
     grid-column: 1/2;
     grid-row: 1/2; }
@@ -387,6 +393,17 @@ header {
   .table-container table {
     border-collapse: collapse;
     width: 100%; }
+  .table-container .filter-label {
+    text-align: left;
+    font-size: 14px !important; }
+  .table-container .trip-filter {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    min-height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 14px;
+    border-radius: 0.2rem;
+    line-height: 30px; }
   .table-container tr {
     border-bottom: 1px solid #808080; }
     .table-container tr th {
@@ -403,7 +420,8 @@ header {
       .table-container tr th td {
         text-align: left; }
     .table-container tr .showmore:hover {
-      background-color: #fcfcfc; }
+      background-color: #fcfcfc;
+      cursor: pointer; }
   .table-container .rowdetail {
     display: none;
     background-color: rgba(211, 211, 211, 0.24);

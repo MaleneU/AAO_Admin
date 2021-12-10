@@ -1,73 +1,143 @@
 ﻿@model AAO_AdminPanel.Models.Trip
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Ret tur ";
 }
 
-<h1>Edit</h1>
+<div>
+    <p class="no-padding"> TripID:  @Html.DisplayFor(model => model.TripID)</p>
+    <h1>Ret tur</h1>
 
-<h4>Trip</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+</div>
+
+<div >
+    <div >
+        <form class="createcontainer" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TripID" />
-            <div class="form-group">
-                <label asp-for="StartDateAndTime" class="control-label"></label>
-                <input asp-for="StartDateAndTime" class="form-control" />
-                <span asp-validation-for="StartDateAndTime" class="text-danger"></span>
+            <div class=" startdate">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input type="date" asp-for="StartDate" class="form-control start-date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class=" stopdate">
                 <label asp-for="StopDate" class="control-label"></label>
-                <input asp-for="StopDate" class="form-control" />
+                <input onfocus="limitStopDate()" type="date" asp-for="StopDate" class="form-control stop-date" />
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
+
+            <div class=" starttime">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input oninput="convertStartDateTime()" type="time" asp-for="StartTime" class="form-control start-time" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UserID" class="control-label"></label>
-                <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
-                <span asp-validation-for="UserID" class="text-danger"></span>
+            <div class="">
+
+                <input asp-for="StartDateAndTime" hidden class="form-control start-date-and-time" />
+
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrafficID" class="control-label"></label>
-                <select asp-for="TrafficID" class="form-control" asp-items="ViewBag.TrafficID"></select>
-                <span asp-validation-for="TrafficID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartmentID" class="control-label"></label>
-                <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
-                <span asp-validation-for="DepartmentID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+
+            <div class="startlocation">
                 <label asp-for="StartLocationID" class="control-label"></label>
                 <select asp-for="StartLocationID" class="form-control" asp-items="ViewBag.StartLocationID"></select>
-                <span asp-validation-for="StartLocationID" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Urgent" /> @Html.DisplayNameFor(model => model.Urgent)
-                </label>
+            <div class="createtraffic">
+                <label asp-for="TrafficID" class="control-label"></label>
+                <select asp-for="TrafficID" class="form-control">
+                    @foreach (var item in ViewBag.StartAndStopCountries)
+                    {
+                        <option value="@item.TrafficID">@item.StartCountry.Code - @item.StopCountry.Code</option>
+                    }
+                </select>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input asp-for="Duration" hidden class="form-control duration-output" />
             </div>
+            <div class="tripduration">
+                <label asp-for="Duration" class="control-label"></label>
+                <div class="toggle-input-container barandbutton">
+                    <input type="number" min="0" class="form-control inline-form duration-input" />
+                    <select class="form-control inline-form unit-select">
+                        <option class="unit-selector" value="1">Timer</option>
+                        <option class="unit-selector" value="24">Dage</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+
+            <div class="tripdescription">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="contactperson">
+                <label asp-for="UserID" class="control-label"></label>
+                <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+            </div>
+
+            <div class="tripdepartment">
+                <label asp-for="DepartmentID" class="control-label"></label>
+                <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+            </div>
+
+
+            <div class="button-and-check-container">
+                <div class="">
+                    <input onclick="sendDurationValue(); convertStartDateTime();" type="submit" value="Gem ændringer" class="buttonadd ligthgreen" />
+                </div>
+
+                <div class="labelcontainer">
+                    <label class="label-grid">
+                        <input class="form-check-input" asp-for="Urgent" /> @Html.DisplayNameFor(model => model.Urgent)
+                    </label>
+                </div>
+
+            </div>
+
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
+
+    function limitStopDate() {
+        let startDate = document.querySelector('input.start-date');
+        let stopDate = document.querySelector('input.stop-date');
+
+        stopDate.setAttribute('min', startDate.value);
+    }
+
+    function convertStartDateTime() {
+        let startDate = document.querySelector('input.start-date').value;
+        let startTime = document.querySelector('input.start-time').value;
+        let startDateAndTime = document.querySelector('input.start-date-and-time');
+
+        startDateAndTime.value = startDate + "T" + startTime;
+    }
+
+    function sendDurationValue() {
+        let x = document.querySelector('select.unit-select').selectedIndex;
+        let selectedValue = parseInt(document.querySelectorAll('option.unit-selector')[x].value);
+        // Get duration input and unit selector and turn them to int.
+        // Get duration output
+        let durationInput = parseInt(document.querySelector('input.duration-input').value);
+        let durationOutput = document.querySelector('input.duration-output');
+        //let unitSelector = parseInt(document.querySelector('option.unit-selector').value);
+
+        // Calculate the duration output in hours
+        durationOutput.value = durationInput * selectedValue;
+        console.log("Your input was multiplied by " + selectedValue)
+    }
+
+
+
+
+</script>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

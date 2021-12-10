@@ -3,6 +3,11 @@
     -ms-overflow-style: none; 
 }
 
+.no-padding{
+    padding:0;
+    margin:0;
+}
+
 main {
     margin:5%;
     /*margin: 80px;*/
@@ -306,6 +311,10 @@ header {
     grid-gap: 2%;
     grid-row-gap: 8%;
 
+    .form-control {
+        appearance: auto;
+    }
+
     .startdate {
         grid-column: 1/2;
         grid-row: 1/2;
@@ -368,18 +377,16 @@ header {
         grid-gap: 5%;
 
         .labelcontainer {
-            display:flex;
-            
-      
-            label {
-              
-                margin: 8px 0;
-                height:45px;
+            display: flex;
 
-                input{
+
+            label {
+                margin: 8px 0;
+                height: 45px;
+
+                input {
                     margin-left: 70px;
                 }
-
             }
         }
     }
