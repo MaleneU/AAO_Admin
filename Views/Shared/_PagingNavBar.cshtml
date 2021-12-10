@@ -7,22 +7,22 @@
 </p>
 <ul class="pagination justify-content-center float-right" style="margin:30px 0">
     <li class="page-item px-1">
-        <button type="submit" name="page" value="1" @prevDisabled class="btn btn-success">
+        <button type="submit" name="page" value="1" @prevDisabled class="pag-btn">
             <span>|❮</span>
         </button>
     </li>
     <li class="page-item px-1">
-        <button type="submit" name="page" @prevDisabled value="@(Model.PageIndex - 1)" class="btn btn-success">
+        <button type="submit" name="page" @prevDisabled value="@(Model.PageIndex - 1)" class="pag-btn">
             <span>❮</span>
         </button>
     </li>
     <li class="page-item px-1">
-        <button type="submit" name="page" @nextDisabled value="@(Model.PageIndex + 1)" class="btn btn-success">
+        <button type="submit" name="page" @nextDisabled value="@(Model.PageIndex + 1)" class="pag-btn">
             <span>❯</span>
         </button>
     </li>
     <li class="page-item pl-1">
-        <button type="submit" name="page" @nextDisabled value="@(Model.TotalPages)" class="btn btn-success">
+        <button type="submit" name="page" @nextDisabled value="@(Model.TotalPages)" class="pag-btn">
             <span>❯|</span>
         </button>
 
