@@ -298,7 +298,7 @@ header {
 
 
 //trips create
-.createcontainer {
+.createcontainer, .editcontainer {
     display: inline-grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     padding: 20px;

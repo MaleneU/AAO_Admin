@@ -111,6 +111,12 @@ tr.rowdetail {
     margin-left:.5em;
 }
 
+
+.driver-table {
+    background-color:#005140;
+    color:#fff;
+}
+
 </style>
 
 
@@ -120,10 +126,10 @@ tr.rowdetail {
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
-
+<div class="table-container">
 <form asp-action="Index" method="get">
     <table class="table">
-        <thead>
+        <thead class="driver-table">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.User.Fullname)
@@ -248,5 +254,5 @@ tr.rowdetail {
     </table>
             <partial name="_PagingNavBar" />
         </form>
-
+        </div>
       
