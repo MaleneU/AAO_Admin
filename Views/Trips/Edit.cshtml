@@ -17,7 +17,7 @@
             <input type="hidden" asp-for="TripID" />
             <div class=" startdate">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input type="date" asp-for="StartDate" class="form-control start-date" />
+                <input  type="date" class="form-control start-date" value="@(Model.StartDateAndTime.ToString("yyyy-MM-dd"))" maxlength="10"/>
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
 
@@ -58,7 +58,7 @@
             <div class="tripduration">
                 <label asp-for="Duration" class="control-label"></label>
                 <div class="toggle-input-container barandbutton">
-                    <input type="number" min="0" class="form-control inline-form duration-input" />
+                    <input value="@Model.Duration" type="number" min="0" class="form-control inline-form duration-input" />
                     <select class="form-control inline-form unit-select">
                         <option class="unit-selector" value="1">Timer</option>
                         <option class="unit-selector" value="24">Dage</option>
