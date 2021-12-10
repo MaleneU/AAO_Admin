@@ -54,6 +54,23 @@
         width: 100%;
     }
 
+    filter-label {
+        text-align: left;
+      
+    }
+
+    .trip-filter {
+        cursor: pointer;
+        border: 1px solid #ccc;
+        min-height: calc(1.5em + 0.5rem + 2px);
+        padding: 0.25rem 0.5rem;
+        font-size: 14px;
+        border-radius: 0.2rem;
+        line-height: 30px;
+
+        
+        
+    }
 
 
     tr {
@@ -83,6 +100,7 @@
 
         .showmore:hover {
             background-color: #fcfcfc;
+            cursor: pointer;
         }
     }
 
