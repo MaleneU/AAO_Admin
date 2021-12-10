@@ -4,8 +4,7 @@
 
 main {
   margin: 5%;
-  /*margin: 80px;*/
-}
+  /*margin: 80px;*/ }
 
 * {
   font-family: Raleway, sans-serif; }
@@ -16,20 +15,17 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-weight: 800;
   font-size: 3.5rem;
-  margin-bottom: 3rem;
-}
+  margin-bottom: 3rem; }
 
 h4 {
   font-weight: 600;
   font-size: 1.9rem;
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem; }
 
 /*sidenav*/
 .sidebar-toggle {
   margin-left: 16%;
-  /*margin-left: -240px;*/
-}
+  /*margin-left: -240px;*/ }
 
 .sidebar {
   position: absolute;
@@ -190,12 +186,10 @@ header {
 
 #mainContent {
   margin-left: 21%;
-  /*margin-left: 320px;*/
-}
-#mainContent .HeadlinePage {
-  margin-left: 10px;
-  font-weight: bold;
-}
+  /*margin-left: 320px;*/ }
+  #mainContent .HeadlinePage {
+    margin-left: 10px;
+    font-weight: bold; }
 
 .createcontainer {
   display: inline-grid;
@@ -393,8 +387,9 @@ header {
   .table-container table {
     border-collapse: collapse;
     width: 100%; }
-  .table-container filter-label {
-    text-align: left; }
+  .table-container .filter-label {
+    text-align: left;
+    font-size: 14px !important; }
   .table-container .trip-filter {
     cursor: pointer;
     border: 1px solid #ccc;
