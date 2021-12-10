@@ -131,7 +131,7 @@
                             @Html.DisplayFor(modelItem => item.Urgent)
                         </td>*@
                         <td>
-                            @if(item.HasRequest){
+                            @if(item.Requests.Count > 0){
                                 var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);
                                 <a asp-action="EditDrivers" asp-route-id="@item.TripID">                         
 
