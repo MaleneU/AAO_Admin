@@ -22,6 +22,7 @@
 .driver-info {
     display: grid;
     grid-template-columns: auto auto;
+    grid-gap:10%;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -37,6 +38,8 @@ tr.rowdetail {
     width:100%;
     border-collapse: collapse;
     margin-bottom:1em;
+    -webkit-box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1); 
+    box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1);
 }
 
 .availability-table thead tr{
@@ -73,6 +76,41 @@ tr.rowdetail {
         }
 
 .availability-table .table-btn{width:0%;}
+
+.availability-controls {
+    text-align: right;
+}
+
+.info-column p{
+    margin:0;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:auto auto;
+    width:40%;
+}
+
+.driver-controls{
+    margin-top:1em;
+}
+
+.driver-controls .activity.active:hover i, .driver-controls .activity.inactive i{
+    color:yellow;
+}
+
+.driver-controls .availability.inactive:hover i, .driver-controls .activity.active i{
+    color:#fff;
+}
+
+.availability-controls button:hover{
+    background-color:#005140;
+}
+
+.availability-controls button:last-child{
+    margin-left:.5em;
+}
+
 </style>
 
 
@@ -144,27 +182,36 @@ tr.rowdetail {
                     <div class="driver-info">
                     <div class="info-column">                        
                         <h4>Chauffør Information</h4>
-                        <p><b>Navn:</b> @Html.DisplayFor(modelItem => item.User.Firstname)</p>
-                        <p><b>Efternavn:</b> @Html.DisplayFor(modelItem => item.User.Lastname)</p>
-                        <p><b>Email:</b> @Html.DisplayFor(modelItem => item.User.Email)</p>
-                        <p><b>Tlf. nr.:</b> @Html.DisplayFor(modelItem => item.User.Phone)</p>
-                        <p><b>Kørekort:</b>
+                        <div class="info-grid">
+                        <p><b>@Html.LabelFor(modelItem => item.User.Firstname)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Firstname)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.User.Lastname)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Lastname)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.User.Email)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Email)</p>
+                        <p><b> @Html.LabelFor(modelItem => item.User.Phone)</b></p>
+                        <p>@Html.DisplayFor(modelItem => item.User.Phone)</p>
+                        <p><b>@Html.LabelFor(modelItem => item.DriverLicenses)</b></p>                        
+                        <p>
                             @foreach (var l in item.DriverLicenses)
                             {
                                 @Html.DisplayFor(modelItem => l.License.LicenseName)
                             }
                         </p>
-                        <div>
-                            Inaktiv/slet chauffør
-                            @if(item.Active == true)
-                                {
-                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
-                                }
-                                else if(item.Active == false)
-                                {
-                                    <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
-                                }
-                                <button class="red" asp-action="Delete" asp-route-id="@item.DriverID">Slet</button>
+                        </div>
+                        <div>                            
+                            <div class="driver-controls">
+                                <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>
+                               @* @if(item.Active == true)
+                                    {
+                                        <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
+                                    }
+                                    else if(item.Active == false)
+                                    {
+                                        <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Inaktiv</button>
+                                    }*@
+                                    <button class="btn btn-danger" data-toggle="tooltip" title="Slet" asp-action="Delete" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></button>
+                                </div>
                         </div>
                     </div>
                     <div class="info-column">                        
@@ -192,8 +239,8 @@ tr.rowdetail {
                             </tbody>
                         </table>
                         <div class="availability-controls">
-                            <button class="darkgreen btn" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
-                            <button class="darkgreen" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
+                            <button class="btn submitBtn" asp-action="AddTripToDriver" asp-route-id="@item.DriverID">Tildel tur</button>
+                            <button class="btn submitBtn" asp-action="CreateAvailability" asp-route-id="@item.DriverID">Opret periode</button>                            
                         </div>
                     </div>
                     </div>
