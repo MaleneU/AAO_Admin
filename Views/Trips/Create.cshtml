@@ -8,55 +8,36 @@
 <h1>Create Trip</h1>
 
 <h4>Trip @User.Identity.Name</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+<div>
+    <div  >
+        <form class="createcontainer" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class=" startdate">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input type="date"   asp-for="StartDate" class="form-control start-date" />
+                <input type="date" asp-for="StartDate" class="form-control start-date" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input oninput="convertStartDateTime()" type="time" asp-for="StartTime" class="form-control start-time" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                
-                <input asp-for="StartDateAndTime" hidden class="form-control start-date-and-time" />
-                
-            </div>
-            <div class="form-group">
+            <div class=" stopdate">
                 <label asp-for="StopDate" class="control-label"></label>
                 <input onfocus="limitStopDate()" type="date" asp-for="StopDate" class="form-control stop-date" />
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="Duration" hidden class="form-control duration-output" />                
+            <div class=" starttime">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input oninput="convertStartDateTime()" type="time" asp-for="StartTime" class="form-control start-time" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <div class="toggle-input-container">
-                    <input type="number" min="0" class="form-control inline-form duration-input" />
-                    <select class="form-control inline-form unit-select">
-                        <option class="unit-selector" value="1">Timer</option>
-                        <option class="unit-selector" value="24">Dage</option>
-                    </select>
-                </div>
-                <span asp-validation-for="Duration" class="text-danger"></span>
+            <div class="">
+
+                <input asp-for="StartDateAndTime" hidden class="form-control start-date-and-time" />
+
             </div>
-            <div class="form-group">
-                <label asp-for="UserID" class="control-label"></label>
-                <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+            <div class="startlocation">
+                <label asp-for="StartLocationID" class="control-label"></label>
+                <select asp-for="StartLocationID" class="form-control" asp-items="ViewBag.StartLocationID"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="createtraffic">
                 <label asp-for="TrafficID" class="control-label"></label>
                 <select asp-for="TrafficID" class="form-control">
                     @foreach (var item in ViewBag.StartAndStopCountries)
@@ -65,29 +46,58 @@
                     }
                 </select>
             </div>
+
+                 
             <div class="form-group">
+                <input asp-for="Duration" hidden class="form-control duration-output" />
+            </div>
+            <div class="tripduration">
+                <label asp-for="Duration" class="control-label"></label>
+                <div class="toggle-input-container barandbutton">
+                    <input type="number" min="0" class="form-control inline-form duration-input" />
+                    <select class="form-control inline-form unit-select">
+                        <option class="unit-selector" value="1">Timer</option>
+                        <option class="unit-selector" value="24">Dage</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+
+            <div class="tripdescription">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="contactperson">
+                <label asp-for="UserID" class="control-label"></label>
+                <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+            </div>
+
+            <div class="tripdepartment">
                 <label asp-for="DepartmentID" class="control-label"></label>
                 <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="StartLocationID" class="control-label"></label>
-                <select asp-for="StartLocationID" class="form-control" asp-items="ViewBag.StartLocationID"></select>
+
+           
+            <div class="button-and-check-container">
+                <div class="">
+                    <input onclick="sendDurationValue(); convertStartDateTime();" type="submit" value="Opret tur" class="buttonadd ligthgreen" />
+                </div>
+
+                <div class="labelcontainer">
+                    <label class="label-grid">
+                        <input class="form-check-input" asp-for="Urgent" /> @Html.DisplayNameFor(model => model.Urgent)
+                    </label>
+                </div>
+
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Urgent" /> @Html.DisplayNameFor(model => model.Urgent)
-                </label>
-            </div>
-            <div class="form-group">
-                <input onclick="sendDurationValue(); convertStartDateTime();" type="submit" value="Create" class="btn btn-primary" />
-            </div>
+
+            
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 <div id="demo"></div>
 <script>
