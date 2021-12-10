@@ -47,7 +47,7 @@ h4{
     }
 
     .logo-title {
-        padding-left: 27.5px;
+        padding-left: 18%;
     }
 
     .btn {
@@ -65,7 +65,7 @@ h4{
         transition: all 200ms ease-in;
 
         &:hover {
-            color: #1abc9c !important;
+            color: #1abc9c;
         }
     }
 
@@ -78,7 +78,7 @@ h4{
         text-decoration: none;
         color: black;
         display: inline-flex;
-        bottom: 0;
+        right: 0;
 
         p {
             font-size: 12px;
@@ -147,6 +147,9 @@ h4{
                     }
 
 
+
+
+
                     span {
                         display: inline-block;
                     }
@@ -183,8 +186,6 @@ ul ul {
         }
     }
 }
-
-
 
 
 
