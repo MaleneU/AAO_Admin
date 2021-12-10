@@ -48,9 +48,11 @@ namespace AAO_AdminPanel.Models
         public Driver Driver { get; set; }
 
         [NotMapped]
-
         [DisplayName("Navn")]
         public string Fullname => string.Format("{0} {1}", Firstname, Lastname);
+
+        [NotMapped]
+        public string PhonePretty => String.Format("{0:## ## ## ##}", Phone);
 
         //public IdentityUser IdentityUser { get; set; }
     }
