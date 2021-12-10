@@ -131,28 +131,33 @@
                             @Html.DisplayFor(modelItem => item.Urgent)
                         </td>*@
                         <td>
+                            @if(item.HasRequest){
+                                var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);
+                                <a asp-action="EditDrivers" asp-route-id="@item.TripID">                         
 
-                            <a asp-action="EditDrivers" asp-route-id="@item.TripID">
+                                    @if (requestsWithDrivers.Count() == 1)
+                                    {
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
+                                    }
+                                    else if (requestsWithDrivers.Count() == 2)
+                                    {
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
+                                        <span>&</span>
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Requests.Count)
+                                        <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
+                                    }
 
-                                @{var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);}
-
-                                @if (requestsWithDrivers.Count() == 1)
-                                {
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
-                                }
-                                else if (requestsWithDrivers.Count() == 2)
-                                {
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
-                                    <span>&</span>
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => item.Requests.Count)
-                                    <span>Anmodninger</span>
-                                }
-
-                            </a>
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Requests.Count)
+                                <span>Anmodninger</span>
+                            }
                         </td>
                         @*<td>@if (item.HasDriver == true)
                             {
