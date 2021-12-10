@@ -44,13 +44,13 @@ $("#leftside-navigation .sub-menu > a").click(function (e) {
 
 function openNav() {
     document.getElementById("mySidebar").style.left = "0px";
-    document.getElementById("mainContent").style.marginLeft = "320px";
+    document.getElementById("mainContent").style.marginLeft = "21%";
 
 }
 
 function closeNav() {
-    document.getElementById("mySidebar").style.left = "-240px";
-    document.getElementById("mainContent").style.marginLeft = "80px";
+    document.getElementById("mySidebar").style.left = "-16%";
+    document.getElementById("mainContent").style.marginLeft = "5%";
 
 }
 

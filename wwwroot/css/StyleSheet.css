@@ -3,7 +3,9 @@
   -ms-overflow-style: none; }
 
 main {
-  margin: 80px; }
+  margin: 5%;
+  /*margin: 80px;*/
+}
 
 * {
   font-family: Raleway, sans-serif; }
@@ -13,22 +15,27 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: 800;
-  font-size: 5rem;
-  margin-bottom: 3rem; }
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+}
 
 h4 {
   font-weight: 600;
-  font-size: 2.5rem; }
+  font-size: 1.9rem;
+  margin-bottom: 2rem;
+}
 
 /*sidenav*/
 .sidebar-toggle {
-  margin-left: -240px; }
+  margin-left: 16%;
+  /*margin-left: -240px;*/
+}
 
 .sidebar {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 240px;
+  width: 16%;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: absolute;
@@ -182,10 +189,13 @@ header {
   left: 240px; }
 
 #mainContent {
-  margin-left: 320px; }
-  #mainContent .HeadlinePage {
-    margin-left: 10px;
-    font-weight: bold; }
+  margin-left: 21%;
+  /*margin-left: 320px;*/
+}
+#mainContent .HeadlinePage {
+  margin-left: 10px;
+  font-weight: bold;
+}
 
 .createcontainer {
   display: inline-grid;

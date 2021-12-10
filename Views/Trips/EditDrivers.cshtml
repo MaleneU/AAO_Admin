@@ -19,10 +19,10 @@
                    @* <th>@Html.DisplayName("RequestID")</th>
                     <th>@Html.DisplayName("DriverID")</th>                    
                     <th>@Html.DisplayName("TripID")</th>*@
-                    <th>@Html.DisplayName("Driver")</th>
-                    <th>@Html.DisplayName("Email")</th>
-                    <th>@Html.DisplayName("Phone")</th>
-                    <th>@Html.DisplayName("Licenses")</th>
+                    <th>@Html.DisplayName("Chauffør")</th>
+                    <th>@Html.DisplayName("E-mail")</th>
+                    <th>@Html.DisplayName("Telefon")</th>
+                    <th>@Html.DisplayName("Kørekort")</th>
                     <th>@Html.DisplayName("Status")</th>
                 </tr>
             </thead>
@@ -64,7 +64,7 @@
                         
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Phone)
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.PhonePretty)
                         
                     </td>
                     <td>

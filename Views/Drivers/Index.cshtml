@@ -137,8 +137,7 @@ tr.rowdetail {
                 <th>
                     @Html.DisplayNameFor(model => model.DriverLicenses)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Active)
+                <th>               
                 </th>
             </tr>
         </thead>
@@ -156,7 +155,7 @@ tr.rowdetail {
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.User.Phone)
+                        @Html.DisplayFor(modelItem => item.User.PhonePretty)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.User.Email)
@@ -167,9 +166,7 @@ tr.rowdetail {
                             @Html.DisplayFor(modelItem => l.License.LicenseName)
                         }
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
+                    
 
 
                     <td>
@@ -190,7 +187,7 @@ tr.rowdetail {
                         <p><b>@Html.LabelFor(modelItem => item.User.Email)</b></p>
                         <p>@Html.DisplayFor(modelItem => item.User.Email)</p>
                         <p><b> @Html.LabelFor(modelItem => item.User.Phone)</b></p>
-                        <p>@Html.DisplayFor(modelItem => item.User.Phone)</p>
+                        <p>@Html.DisplayFor(modelItem => item.User.PhonePretty)</p>
                         <p><b>@Html.LabelFor(modelItem => item.DriverLicenses)</b></p>                        
                         <p>
                             @foreach (var l in item.DriverLicenses)
