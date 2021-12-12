@@ -5,6 +5,7 @@
 }
 
 
+
 <div class="table-container">
     <h1>Oversigt over ture</h1>
 
@@ -45,10 +46,10 @@
                             <label class="filter-label"></label>
                             <button type="submit" class="buttonadd darkgreen">Tilføj/fjern kolonner</button>
                         </div>
-                        <div class="col-auto">
+                        @*<div class="col-auto">
                             <label class="filter-label"></label>
                             <button type="submit" class="buttonadd darkgrey">Slet ture</button>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -114,6 +115,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Duration)
+                            <span>timer</span>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)
@@ -130,28 +132,33 @@
                             @Html.DisplayFor(modelItem => item.Urgent)
                         </td>*@
                         <td>
+                            @if(item.Requests.Count > 0){
+                                var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);
+                                <a asp-action="EditDrivers" asp-route-id="@item.TripID">                         
 
-                            <a asp-action="EditDrivers" asp-route-id="@item.TripID">
+                                    @if (requestsWithDrivers.Count() == 1)
+                                    {
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
+                                    }
+                                    else if (requestsWithDrivers.Count() == 2)
+                                    {
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
+                                        <span>&</span>
+                                        @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Requests.Count)
+                                        <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
+                                    }
 
-                                @{var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);}
-
-                                @if (requestsWithDrivers.Count() == 1)
-                                {
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Single().Driver.User.Fullname)
-                                }
-                                else if (requestsWithDrivers.Count() == 2)
-                                {
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.First().Driver.User.Fullname)
-                                    <span>&</span>
-                                    @Html.DisplayFor(modelItem => requestsWithDrivers.Last().Driver.User.Fullname)
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => item.Requests.Count)
-                                    <span>Anmodninger</span>
-                                }
-
-                            </a>
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Requests.Count)
+                                <span>Anmodninger</span>
+                            }
                         </td>
                         @*<td>@if (item.HasDriver == true)
                             {

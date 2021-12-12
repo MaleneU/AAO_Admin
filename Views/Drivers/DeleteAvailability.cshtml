@@ -1,0 +1,31 @@
+﻿@model AAO_AdminPanel.Models.Availability
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Slet Periode</h1>
+
+<h3>Er du sikker på at du vil slette denne periode?</h3>
+<div>
+    <h4>Informationer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.AvailabilityID)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.AvailabilityID)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.StartDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.StartDate)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.EndDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EndDate)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Driver.User.Fullname)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Driver.User.Fullname)</dd>
+
+
+    </dl>
+    
+    <form asp-action="DeleteAvailability">
+        <input type="hidden" asp-for="AvailabilityID" />
+        <input type="submit" value="Slet Periode" class="btn btn-danger" /> |
+        <a asp-action="Index">Tilbage</a>
+    </form>
+</div>

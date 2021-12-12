@@ -275,7 +275,7 @@ namespace AAO_AdminPanel.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Requests/Create
+        // GET: Create Availability
         public IActionResult CreateAvailability(int? id)
         {
            
@@ -284,7 +284,7 @@ namespace AAO_AdminPanel.Controllers
             return View();
         }
 
-        // POST: Requests/Create       
+        // POST: Create Availability      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAvailability([Bind("DriverID, StartDate, EndDate, Status")] Availability availability)
@@ -297,6 +297,89 @@ namespace AAO_AdminPanel.Controllers
             }
             
             return View(availability);
+        }
+
+        // GET: Drivers/EditAvailability/5
+        public async Task<IActionResult> EditAvailability(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var availability = await _context.Availability.FindAsync(id);
+            if (availability == null)
+            {
+                return NotFound();
+            }
+            
+            return View(availability);
+        }
+
+        // POST: Drivers/EditAvailability/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAvailability(int id, [Bind("AvailabilityID, DriverID, StartDate, EndDate, Status")] Availability availability)
+        {
+            if (id != availability.AvailabilityID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(availability);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AvailabilityExists(availability.AvailabilityID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(availability);
+        }
+
+        // GET: Drivers/DeleteAvailability/5
+        public async Task<IActionResult> DeleteAvailability(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var availabilities = await _context.Availability.Include(m => m.Driver).ThenInclude(m => m.User).FirstOrDefaultAsync(m => m.AvailabilityID == id);
+            if (availabilities == null)
+            {
+                return NotFound();
+            }
+
+            return View(availabilities);
+        }
+
+        // POST: Drivers/DeleteAvailability/5
+        [HttpPost, ActionName("DeleteAvailability")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAvailabilityConfirmed(int id)
+        {
+            var availability = await _context.Availability.FindAsync(id);
+            _context.Availability.Remove(availability);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        private bool AvailabilityExists(int id)
+        {
+            return _context.Availability.Any(e => e.AvailabilityID == id);
         }
 
     }

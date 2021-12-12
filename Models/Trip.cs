@@ -69,22 +69,27 @@ namespace AAO_AdminPanel.Models
         [DisplayName("Starttid")]
         public string StartTime => StartDateAndTime.ToString("HH':'mm");
 
-        [NotMapped]
-        public bool HasRequest
-        {
-            get { return Requests.Count > 0;}
-        }
+        //[NotMapped]
+        //public bool HasRequest
+        //{
+        //    get { return Requests.Count > 0;}
+           
+        //}
 
         [NotMapped]
-        public bool HasDriver
+        public bool? HasDriver
         {
-            get { 
-                foreach (var request in Requests) { 
-                    if (request.StatusBool)
+            get {
+                if (Requests != null)
+                {
+                    foreach (var request in Requests)
                     {
-                        return true;
+                        if (request.StatusBool)
+                        {
+                            return true;
+                        }
+
                     }
-                    
                 }
                 return false;
             }
