@@ -46,10 +46,10 @@
                             <label class="filter-label"></label>
                             <button type="submit" class="buttonadd darkgreen">Tilføj/fjern kolonner</button>
                         </div>
-                        <div class="col-auto">
+                        @*<div class="col-auto">
                             <label class="filter-label"></label>
                             <button type="submit" class="buttonadd darkgrey">Slet ture</button>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -115,6 +115,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Duration)
+                            <span>timer</span>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Traffic.StartCountry.Code)

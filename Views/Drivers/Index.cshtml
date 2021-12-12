@@ -17,109 +17,6 @@
     }
 </style>
 
-<style>
-
-.driver-info {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap:10%;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 5em;
-}
-
-tr.rowdetail {
-    background: #EAEAEA;
-}
-
-.availability-table{
-    width:100%;
-    border-collapse: collapse;
-    margin-bottom:1em;
-    -webkit-box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1); 
-    box-shadow: -1px -1px 10px 0px rgba(0,0,0,0.1);
-}
-
-.availability-table thead tr{
-    background-color:#fff;
-
-}
-
-
-.availability-table tbody tr.available{
-    background-color:#B2DDC8;
-}
-
-.availability-table tbody tr.unavailable{
-    background-color:#F4C0C2;
-}
-.availability-table tbody tr td{
-    border:1px solid #fff;
-
-}
-
-.availability-table tr td:first-child{
-            border-left: none;
-}
-
-.availability-table tr:first-child th{
-            border-top: none;
-        }
-
-        .availability-table tr td:last-child, th:last-child{
-            border-right: none;
-        }
-        .availability-table tr:last-child td{
-            border-bottom: none;
-        }
-
-.availability-table .table-btn{width:0%;}
-
-.availability-controls {
-    text-align: right;
-}
-
-.info-column p{
-    margin:0;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:auto auto;
-    width:40%;
-}
-
-.driver-controls{
-    margin-top:1em;
-}
-
-.driver-controls .activity.active:hover i, .driver-controls .activity.inactive i{
-    color:yellow;
-}
-
-.driver-controls .availability.inactive:hover i, .driver-controls .activity.active i{
-    color:#fff;
-}
-
-.availability-controls button:hover{
-    background-color:#005140;
-}
-
-.availability-controls button:last-child{
-    margin-left:.5em;
-}
-
-
-.driver-table {
-    background-color:#005140;
-    color:#fff;
-}
-
-</style>
-
-
 
 <h1>Afløser oversigt</h1>
 
@@ -204,7 +101,7 @@ tr.rowdetail {
                         </div>
                         <div>                            
                             <div class="driver-controls">
-                                <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID"><i class="fas fa-moon"></i></button>
+                                <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID" onclick="alert('Vil du @(item.Active ? "deaktivere" : "aktivere") chaufføren?')"><i class="fas fa-moon"></i></button>
                                @* @if(item.Active == true)
                                     {
                                         <button class="red" asp-action="DriverActivation" asp-route-id="@item.DriverID">Aktiv</button>
@@ -235,8 +132,8 @@ tr.rowdetail {
                                     <td>@Html.DisplayFor(modelItem => a.StartDateString)</td>
                                     <td>@Html.DisplayFor(modelItem => a.EndDateString)</td>
                                     <td>@Html.DisplayFor(modelItem => a.StartTimeString) </td>
-                                    <td class="table-btn"><a asp-action="EditAvailability" asp-route-id="@item.DriverID"><i class="fas fa-pen"></i></a></td>
-                                    <td class="table-btn"><a asp-action="DeleteAvailability" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></a></td>
+                                    <td class="table-btn"><a asp-action="EditAvailability" asp-route-id="@a.AvailabilityID"><i class="fas fa-pen"></i></a></td>
+                                    <td class="table-btn"><a asp-action="DeleteAvailability" asp-route-id="@a.AvailabilityID"><i class="fas fa-trash"></i></a></td>
                                 </tr>
                                 }
                             </tbody>
