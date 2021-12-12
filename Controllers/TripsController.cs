@@ -357,6 +357,22 @@ namespace AAO_AdminPanel.Controllers
         //    return View(trip);
         //}
 
+
+        [HttpPost]
+        public ActionResult DeleteMultiple(IFormCollection formCollection)
+        {
+            string[] ids = formCollection["TripID"];
+            foreach (string id in ids)
+            {
+                var trip = this._context.Trip.Find(int.Parse(id));
+                this._context.Trip.Remove(trip);
+                this._context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
         public async Task<IActionResult> RemoveDriver(int? id)
         {
             if (id == null)

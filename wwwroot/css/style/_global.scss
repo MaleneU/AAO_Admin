@@ -347,6 +347,15 @@ header {
         .barandbutton {
             display: grid;
             grid-template-columns: 70% 30%;
+            .duration-input{
+                border-top-right-radius:0;
+                border-bottom-right-radius:0;
+                border-right:0;
+            }
+            .unit-select{
+                border-top-left-radius:0;
+                border-bottom-left-radius:0;
+            }
         }
     }
 
