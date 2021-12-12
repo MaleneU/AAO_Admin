@@ -60,11 +60,11 @@
                 <li class="sub-menu">
                     <a asp-controller="Trips" asp-action="Index" class="dropdown-btn"><i class="far fa-list-alt"></i>Ture<i class="arrow fa fa-angle-down pull-right"></i>                  </a>
                     <div class="dropdown-container">
-                        <a class="under-list" asp-route-StatusID="2">Ikke tildelte ture</a>
-                        <a class="under-list" asp-route-StatusID="1">Tildelte ture</a>
-                        <a class="under-list" asp-route-StatusID="8">Afsluttede ture</a>
-                        <a class="under-list" asp-route-StartLocationID="1">Ture fra Odense</a>
-                        <a class="under-list" asp-route-TrafficTypeID="2">Internationale ture</a>
+                        <a class="under-list" asp-action="index" asp-route-StatusID="2">Ikke tildelte ture</a>
+                        <a class="under-list" asp-action="index" asp-route-StatusID="1">Tildelte ture</a>
+                        <a class="under-list" asp-action="index" asp-route-StatusID="8">Afsluttede ture</a>
+                        <a class="under-list" asp-action="index" asp-route-StartLocationID="1">Ture fra Odense</a>
+                        <a class="under-list" asp-action="index" asp-route-TrafficTypeID="2">Internationale ture</a>
                     </div>
                 </li>
             </ul>
