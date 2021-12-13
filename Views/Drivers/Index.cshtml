@@ -18,39 +18,30 @@
 </style>
 
 
-<h1>Afløser oversigt</h1>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
 <div class="table-container">
-    <form asp-action="Index" method="get">
-        <table class="table">
-            <thead class="driver-table">
-                <tr>
-
-                    <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.User.Fullname)</a>
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.User.Fullname)
-                    </th>
-                    <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["PhoneSortParm"]">@Html.DisplayNameFor(model => model.User.Phone)</a>
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.User.Phone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.User.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DriverLicenses)
-                    </th>
-                    <th>
-                    </th>
-                </tr>
-            </thead>
+    <h1>Afløser oversigt</h1>
+<form asp-action="Index" method="get">
+    <table class="table">
+        <thead class="driver-table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DriverLicenses)
+                </th>
+                <th>               
+                </th>
+            </tr>
+        </thead>
 
             <tbody>
 
