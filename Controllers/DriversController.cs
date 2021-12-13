@@ -24,14 +24,10 @@ namespace AAO_AdminPanel.Controllers
 
         // GET: Drivers
         public async Task<IActionResult> Index(int? UserID, int? DriverID, int? LicenseID, int? page, int? pageSizeID, 
-            string sortOrder)
+            string actionButton, string sortDirection = "asc", string sortField = "Navn")
         {
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["PhoneSortParm"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
-            ViewData["EmailSortParm"] = sortOrder == "Email" ? "email_desc" : "Email";
-            ViewData["LicenseSortParm"] = sortOrder == "DriverLicense" ? "license_desc" : "DriverLicense";
-            var students = from s in _context.Driver
-                           select s;
+            //string[] sortOptions = new[] { "Navn", "Tlf. Nr.", "Email adresse", "Kørekort type" };
+            //PopulateDropDownLists();
 
 
             var drivers = from d in _context.Driver
@@ -42,22 +38,92 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.Availabilities)
                           select d;
 
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    drivers = drivers.OrderByDescending(s => s.User.Fullname);
-                    break;
-                case "Phone":
-                    drivers = drivers.OrderBy(s => s.User.Phone);
-                    break;
-                case "phone_desc":
-                    drivers = drivers.OrderByDescending(s => s.User.Phone);
-                    break;
-                default:
-                    drivers = drivers.OrderBy(s => s.User.Email);
-                    break;
-            }
-            return View(await drivers.AsNoTracking().ToListAsync());
+            //// Filter: User
+            //if (UserID.HasValue)
+            //{
+            //    drivers = drivers.Where(t => t.UserID == UserID);
+            //}
+
+            //// Filter: Driver
+            //if (DriverID.HasValue)
+            //{
+            //    drivers = drivers.Where(t => t.DriverID == DriverID);
+            //}
+
+            //// Filter: License
+            //if (LicenseID == 1)
+            //{
+            //    // Drivers = Drivers where any DriverLicenses contain LicenseID = 1
+            //    drivers = drivers.Where(t => t.DriverLicenses.Any(t => t.LicenseID == 1));
+            //}
+            //if (LicenseID == 2)
+            //{
+            //    // Drivers = Drivers where DriverLicenses do not contain LicenseID = 1
+            //    drivers = drivers.Where(t => t.DriverLicenses.All(t => t.LicenseID != 1));
+            //}
+
+            //// If filtering or sorting 
+            //if (!String.IsNullOrEmpty(actionButton))
+            //{
+            //    page = 1; // Reset page
+
+            //    if (sortOptions.Contains(actionButton)) // Change sorting request
+            //    {
+            //        if (actionButton == sortField) // Reverse order on field
+            //        {
+            //            sortDirection = sortDirection == "asc" ? "desc" : "asc";
+            //        }
+            //    }
+            //    sortField = actionButton; // Sort by button clicked
+            //}
+
+            //if (sortField == "Navn")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        drivers = drivers.OrderBy(t => t.User.Fullname);
+            //    }
+            //    else
+            //    {
+            //        drivers = drivers.OrderByDescending(t => t.User.Fullname);
+            //    }
+            //}
+            //else if (sortField == "Tlf. Nr.")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        drivers = drivers.OrderByDescending(t => t.User.Phone);
+            //    }
+            //    else
+            //    {
+            //        drivers = drivers.OrderBy(t => t.User.Phone);
+            //    }
+            //}
+            //else if (sortField == "Email")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        drivers = drivers.OrderBy(t => t.User.Email);
+            //    }
+            //    else
+            //    {
+            //        drivers = drivers.OrderByDescending(t => t.User.Email);
+            //    }
+            //}
+            //else if (sortField == "Kørekort type")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        drivers = drivers.OrderBy(t => t.DriverLicenses);
+            //    }
+            //    else
+            //    {
+            //        drivers = drivers.OrderByDescending(t => t.DriverLicenses);
+            //    }
+            //}
+
+            //ViewData["sortField"] = sortField;
+            //ViewData["sortDirection"] = sortDirection;
 
 
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
@@ -67,6 +133,26 @@ namespace AAO_AdminPanel.Controllers
 
             return View(pagedData);
         }
+
+        //private void PopulateDropDownLists(Driver driver = null)
+        //{
+        //    var nameQuery = from l in _context.Driver
+        //                        orderby l.User.Fullname
+        //                        select l;
+        //    ViewData["UserID"] = new SelectList(nameQuery, "UserID", "Fullname", driver?.User.Fullname);
+        //    var phoneQuery = from d in _context.Driver
+        //                          orderby d.User.Phone
+        //                          select d;
+        //    ViewData["UserID"] = new SelectList(phoneQuery, "UserID", "Phone", driver?.User.Phone);
+        //    var emailQuery = from t in _context.Driver
+        //                           orderby t.User.Email
+        //                           select t;
+        //    ViewData["UserID"] = new SelectList(emailQuery, "UserID", "Email", driver?.User.Email);
+        //    var licenseQuery = from s in _context.DriverLicense
+        //                      orderby s.DriverLicenseID
+        //                      select s;
+        //    ViewData["DriverLicenseID"] = new SelectList(licenseQuery, "DriverLicenseID", "DriverLicense", driver?.DriverLicenses);
+        //}
 
         // GET: Drivers/Details/5
         public async Task<IActionResult> Details(int? id)
