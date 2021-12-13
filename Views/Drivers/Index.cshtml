@@ -24,30 +24,22 @@
     <h1>Afløser oversigt</h1>
     <form asp-action="Index" method="get">
 
-        @*<input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+        <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
         <div class="form-horizontal mb-4">
             <div class="row">
                 <div class="col-7">
                     <div class="row justify-content-start ml-auto">
                         <div class="col-auto">
-                            <label class="filter-label">@Html.DisplayNameFor(model => model.User.Fullname)</label><br />
-                            @Html.DropDownList("UserID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                        </div>
-                        <div class="col-auto">
-                            <label class="filter-label">@Html.DisplayNameFor(model => model.User.Phone)</label><br />
-                            @Html.DropDownList("UserID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                        </div>
-                        <div class="col-auto">
-                            <label class="filter-label">@Html.DisplayNameFor(model => model.User.Email)</label><br />
-                            @Html.DropDownList("UserID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                            <label class="filter-label">@Html.DisplayNameFor(model => model.StartLocation)</label><br />
+                            @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                         </div>
                         <div class="col-auto">
                             <label class="filter-label">Kørekort type</label><br />
-                            @Html.DropDownList("UserID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                            @Html.DropDownList("LicenseID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                         </div>
                         <div class="col-auto">
-                            <label class="filter-label">Ture pr. side</label><br />
+                            <label class="filter-label">Afløser pr. side</label><br />
                             @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                         </div>
                     </div>
@@ -55,7 +47,7 @@
             </div>
 
 
-        </div>*@
+        </div>
 
         <table class="table">
             <thead class="driver-table">
