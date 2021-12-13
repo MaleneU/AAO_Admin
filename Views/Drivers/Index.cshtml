@@ -26,6 +26,7 @@
 
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+
         <div class="form-horizontal mb-4">
             <div class="row">
                 <div class="col-7">
@@ -53,16 +54,16 @@
             <thead class="driver-table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.User.Fullname)
+                        <button type="submit" name="actionButton" value="Navn" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Fullname)<span class="sort-arrow">⇅</span></button>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.User.Phone)
+                        <button type="submit" name="actionButton" value="Phone" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Phone)<span class="sort-arrow">⇅</span></button>
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.User.Email)
+                        <button type="submit" name="actionButton" value="Email" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Email)<span class="sort-arrow">⇅</span></button>  
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DriverLicenses)
+                        <button type="submit" name="actionButton" value="License" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.DriverLicenses)<span class="sort-arrow">⇅</span></button>
                     </th>
                     <th>
                     </th>

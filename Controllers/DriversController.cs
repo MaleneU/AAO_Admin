@@ -27,7 +27,7 @@ namespace AAO_AdminPanel.Controllers
             string actionButton, string sortDirection = "asc", string sortField = "Navn")
         {
 
-            string[] sortOptions = new[] { "Navn", "Tlf. nr.", "Email adresse", "Kørekort type" };
+            string[] sortOptions = new[] { "Navn", "Phone", "Email", "License" };
             PopulateDropDownLists();
 
             var drivers = from d in _context.Driver
@@ -74,28 +74,54 @@ namespace AAO_AdminPanel.Controllers
                 sortField = actionButton; // Sort by button clicked
             }
 
-            if (sortField == "StartLocation")
+            // Sorting
+            if (sortField == "Navn")
             {
                 if (sortDirection == "asc")
-               {
-                    drivers = drivers.OrderBy(t => t.StartLocationID);
+                {
+                    drivers = drivers.OrderBy(t => t.User.Firstname)
+                                     .ThenBy(t => t.User.Lastname);
                 }
                 else
                 {
-                   drivers = drivers.OrderByDescending(t => t.StartLocationID);
+                    drivers = drivers.OrderByDescending(t => t.User.Firstname)
+                                     .ThenByDescending(t => t.User.Lastname);
                 }
             }
-            else if (sortField == "Kørekort type")
+            else if (sortField == "Phone")
             {
-               if (sortDirection == "asc")
-               {
-                   drivers = drivers.OrderBy(t => t.DriverLicenses);
-               }
-               else
-               {
-                    drivers = drivers.OrderByDescending(t => t.DriverLicenses);
-               }
+                if (sortDirection == "asc")
+                {
+                    drivers = drivers.OrderBy(t => t.User.Phone);
+                }
+                else
+                {
+                    drivers = drivers.OrderByDescending(t => t.User.Phone);
+                }
             }
+            else if (sortField == "Email")
+            {
+                if (sortDirection == "asc")
+                {
+                    drivers = drivers.OrderBy(t => t.User.Email);
+                }
+                else
+                {
+                    drivers = drivers.OrderByDescending(t => t.User.Email);
+                }
+            }
+            //else if (sortField == "License")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        drivers = drivers.OrderBy(t => t.DriverLicenses);
+            //    }
+            //    else
+            //    {
+            //        drivers = drivers.OrderByDescending(t => t.DriverLicenses);
+            //    }
+            //}
+
 
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
