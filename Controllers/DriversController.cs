@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,17 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Drivers
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(int? UserID, int? DriverID, int? LicenseID, int? page, int? pageSizeID, 
+            string sortOrder)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["PhoneSortParm"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
+            ViewData["EmailSortParm"] = sortOrder == "Email" ? "email_desc" : "Email";
+            ViewData["LicenseSortParm"] = sortOrder == "DriverLicense" ? "license_desc" : "DriverLicense";
+            var students = from s in _context.Driver
+                           select s;
+
+
             var drivers = from d in _context.Driver
                 .Include(d => d.StartLocation)
                 .Include(d => d.TrafficType)
@@ -31,6 +41,24 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
                 .Include(d => d.Availabilities)
                           select d;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    drivers = drivers.OrderByDescending(s => s.User.Fullname);
+                    break;
+                case "Phone":
+                    drivers = drivers.OrderBy(s => s.User.Phone);
+                    break;
+                case "phone_desc":
+                    drivers = drivers.OrderByDescending(s => s.User.Phone);
+                    break;
+                default:
+                    drivers = drivers.OrderBy(s => s.User.Email);
+                    break;
+            }
+            return View(await drivers.AsNoTracking().ToListAsync());
+
 
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
