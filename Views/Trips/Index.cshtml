@@ -9,9 +9,6 @@
 <div class="table-container">
     <h1>Oversigt over ture</h1>
 
-
-
-
     <form asp-action="Index" method="get">
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
@@ -63,39 +60,24 @@
                 <tr>
                     <th>
                         <button type="submit" name="actionButton" value="Startdato" class="sort-link pl-0 mr-3">Startdato <span>⇅</span></button>
-
-                        @*@Html.DisplayNameFor(model => model.StartDate)*@
                     </th>
                     <th>
                         <button type="submit" name="actionButton" value="Slutdato" class="sort-link pl-0 mr-1">Slutdato <span>⇅</span></button>
-                        @*@Html.DisplayNameFor(model => model.StopDateOnly)*@
                     </th>
                     <th>
                         <button type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.StartTime)" class="sort-link pl-0 mr-1">Starttid</button>
-                        @*@Html.DisplayNameFor(model => model.StartTime)*@
                     </th>
                     <th>
                         <button type="submit" name="actionButton" value="Varighed" class="sort-link pl-0 mr-1">Varighed <span>⇅</span></button>
-                        @*@Html.DisplayNameFor(model => model.Duration)*@
                     </th>
                     <th>
                         <button type="submit" name="actionButton" value="Trafik" class="sort-link pl-0 mr-1">Trafik <span>⇅</span></button>
-                        @*@Html.DisplayNameFor(model => model.Traffic)*@
                     </th>
                     <th>
                         <button type="submit" name="actionButton" value="Afdeling" class="sort-link pl-0 mr-1">Afdeling <span>⇅</span></button>
-                        @*@Html.DisplayNameFor(model => model.Department)*@
                     </th>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.Startlocation)
-                        </th>*@
-                    @*<th>
-                        <input type="submit" name="actionButton" disabled="disabled" value="@Html.DisplayNameFor(model => model.Urgent)" class="btn btn-link pl-0 pr-4" />
-                        @Html.DisplayNameFor(model => model.Urgent)
-                    </th>*@
                     <th>
                         <button type="submit" name="actionButton" disabled="disabled" value="Requests" class="sort-link pl-0 mr-1">Chauffører</button>
-                        @*@Html.DisplayNameFor(model => model.Requests) Count*@
                     </th>
                     <th></th>
                 </tr>

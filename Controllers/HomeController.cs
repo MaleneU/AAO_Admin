@@ -9,7 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
-{   // [Authorize] // Log in needed
+{   
+    [Authorize] // Log in needed
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

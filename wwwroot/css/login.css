@@ -53,42 +53,27 @@
 
 .login-form input[type="text"] {
     font-size: 17px;
+    padding-left: 10px;
 }
 
 
 .login-form input[type="password"] {
     font-size: 17px;
+    padding-left: 10px;
 }
 
-/*.login ul {
-    margin-block-start: 0px;
-    padding-inline-start: 0px;
-}*/
-
-/*.login li {
-    list-style: none;
-}*/
-
-/*#input_Password-error {
-    font-size: 15px;
-    margin-top: 10px;
-}*/
-
-.btn-container {
-    /*border: 3px solid grey;*/
+.btn-container button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px 8px 20px;
+    font-size: 17px;
+    color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
-    .btn-container button {
-        border: none;
-        border-radius: 5px;
-        padding: 8px 20px 8px 20px;
-        font-size: 17px;
-        color: white;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    }
 
 .btn-container button:hover {
     opacity: 0.7;
+    cursor: pointer;
 }
 
 .btn-left {

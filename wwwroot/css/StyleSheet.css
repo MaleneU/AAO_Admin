@@ -97,7 +97,7 @@ h4 {
       text-decoration: none;
       display: block;
       padding: 18px 0 18px 25px;
-      font-size: 1.2em;
+      font-size: 1.1em;
       outline: 0;
       -webkit-transition: all 200ms ease-in;
       -moz-transition: all 200ms ease-in;
@@ -265,7 +265,7 @@ header {
         .createcontainer .button-and-check-container .labelcontainer label .form-check-input:checked, .editcontainer .button-and-check-container .labelcontainer label .form-check-input:checked {
           background-color: #005140;
           border-color: #005140; }
-        .createcontainer .button-and-check-container .labelcontainer label p, .editcontainer .button-and-check-container .labelcontainer label p {
+        .createcontainer .button-and-check-container .labelcontainer label span, .editcontainer .button-and-check-container .labelcontainer label span {
           margin-left: 33px; }
 
 /*button from loginpage*/
