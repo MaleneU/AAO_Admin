@@ -80,37 +80,32 @@
         th {
             text-align: left;
 
-            .statusGreen {
-                color: gren !important;
+            .statusGreen{
+                color: gren!important;
+            }
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                border-color: transparent;
+                box-shadow: none;
+                background-color: transparent;
+
+                span {
+                    color: #00904a;
+                }
             }
 
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-color: transparent;
-            box-shadow: none;
-            background-color: transparent;
-
-
-
-            span {
-                color: #00904a;
+            td {
+                text-align: left;
             }
         }
 
-        td {
-            text-align: right;
 
-           
+        .showmore:hover {
+            background-color: #fcfcfc;
+            cursor: pointer;
         }
     }
-
-
-    .showmore:hover {
-        background-color: #fcfcfc;
-        cursor: pointer;
-    }
-}
 
     .rowdetail {
         display: none;
@@ -276,7 +271,7 @@
             }
         }
     }
-
+}
 
 
 
