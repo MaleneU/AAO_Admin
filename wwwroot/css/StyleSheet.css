@@ -445,6 +445,8 @@ header {
         border-color: transparent;
         box-shadow: none;
         background-color: transparent; }
+      .table-container tr th .sort-arrow {
+        color: #fff !important; }
       .table-container tr th span {
         color: #00904a; }
       .table-container tr th td {
