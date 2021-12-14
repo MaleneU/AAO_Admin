@@ -89,6 +89,10 @@
                 background-color: transparent;
             }
 
+            .sort-arrow {
+                color: #fff !important;
+            }
+
             span {
                 color: #00904a;
             }
@@ -100,6 +104,11 @@
     }
 
 
+    .showmore {
+        a {
+            color: #00904a;
+        }
+    }
 
     .showmore:hover {
         background-color: #fcfcfc;
