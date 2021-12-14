@@ -90,7 +90,11 @@
             }
 
             .sort-arrow {
-                color: #fff !important;
+                color: #fff;
+            }
+
+            .sort-arrow:hover {
+                color: #00904a;
             }
 
             span {
