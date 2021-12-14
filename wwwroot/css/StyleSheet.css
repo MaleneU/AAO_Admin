@@ -449,6 +449,8 @@ header {
         color: #00904a; }
       .table-container tr th td {
         text-align: left; }
+  .table-container .showmore a {
+    color: #00904a; }
   .table-container .showmore:hover {
     background-color: #fcfcfc;
     cursor: pointer; }
