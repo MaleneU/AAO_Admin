@@ -14,6 +14,10 @@
     padding: 8px 20px 8px 20px;
     border-radius: 5px;
     color: white !important;
+
+    &:hover {
+        background-color: #005140;
+    }
 }
 
 .submitBtn {
@@ -24,6 +28,10 @@
     border-radius: 5px;
     color: white !important;
     border: none;
+
+    &:hover {
+        background-color: #005140;
+    }
 }
 
 /*Outdated pagination style*/
@@ -165,17 +173,33 @@
 
 .red {
     background-color: #dc2f43;
-    }
 
-    .darkgrey {
+    &:hover {
+        background-color: #b31b2c;
+    }
+}
+
+.darkgrey {
+    background-color: #b4b2b2;
+
+    &:hover {
         background-color: #b4b2b2;
     }
+}
 
-    .darkgreen {
+.darkgreen {
+    background-color: #005140;
+
+    &:hover {
         background-color: #005140;
     }
+}
 
-    .ligthgreen {
-        background-color: #00904a;
+.ligthgreen {
+    background-color: #00904a;
+
+    &:hover {
+        background-color: #005140;
     }
+}
 

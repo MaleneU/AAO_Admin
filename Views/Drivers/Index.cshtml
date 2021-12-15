@@ -91,14 +91,23 @@
                         <td>
                             @foreach (var l in item.DriverLicenses)
                             {
-                                @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                if (l != item.DriverLicenses.Last()) {
+                                                    
+                                                    @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                                    <span>-</span>
+                                                }
+                                                else if(l == item.DriverLicenses.Last())
+                                                {
+                                                    @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                                }
                             }
                         </td>
 
 
 
-                        <td>
-                            <a class="showmore"> <i class="fas fa-sort-down rotate" data-toggle="tooltip" title="Se chauffør Info"></i> </a>
+                        <td class="arrow1">
+                            <a class="showmore"><img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se afløser info" src="~/img/arrow.svg"/> </a>
+                        
                         </td>
                     </tr>
 
@@ -120,7 +129,15 @@
                                         <p>
                                             @foreach (var l in item.DriverLicenses)
                                             {
-                                                @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                                if (l != item.DriverLicenses.Last()) {
+                                                    
+                                                    @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                                    <span>-</span>
+                                                }
+                                                else if(l == item.DriverLicenses.Last())
+                                                {
+                                                    @Html.DisplayFor(modelItem => l.License.LicenseName)
+                                                }
                                             }
                                         </p>
                                     </div>
