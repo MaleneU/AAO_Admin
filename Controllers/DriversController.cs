@@ -1,6 +1,7 @@
 ﻿using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
 using AAO_AdminPanel.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
 {
+    [Authorize] // Log in required
     public class DriversController : Controller
     {
         private readonly MySQLDbContext _context;
@@ -23,7 +25,7 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Drivers
-        public async Task<IActionResult> Index(int? UserID, int? DriverID, int? LicenseID, int? DriverLicenseID, int? StartLocationID, int? page, int? pageSizeID, 
+        public async Task<IActionResult> Index(int? LicenseID, int? StartLocationID, int? page, int? pageSizeID, 
             string actionButton, string sortDirection = "asc", string sortField = "Navn")
         {
 
@@ -37,17 +39,6 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
                 .Include(d => d.Availabilities)
                           select d;
-
-            
-            if (UserID.HasValue)
-            {
-                drivers = drivers.Where(t => t.UserID == UserID);
-            }
-
-            if (DriverID.HasValue)
-            {
-                drivers = drivers.Where(t => t.DriverID == DriverID);
-            }
 
             if (StartLocationID.HasValue)
             {
@@ -110,18 +101,6 @@ namespace AAO_AdminPanel.Controllers
                     drivers = drivers.OrderByDescending(t => t.User.Email);
                 }
             }
-            //else if (sortField == "License")
-            //{
-            //    if (sortDirection == "asc")
-            //    {
-            //        drivers = drivers.OrderBy(t => t.DriverLicenses);
-            //    }
-            //    else
-            //    {
-            //        drivers = drivers.OrderByDescending(t => t.DriverLicenses);
-            //    }
-            //}
-
 
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;

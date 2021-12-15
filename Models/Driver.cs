@@ -19,7 +19,7 @@ namespace AAO_AdminPanel.Models
         public bool Active { get; set; }
         public int StartLocationID { get; set; }
 
-        [DisplayName("Fortrukket startsted")]
+        [DisplayName("Foretrukket startsted")]
         public StartLocation StartLocation { get; set; }
         public int TrafficTypeID { get; set; }
         public TrafficType TrafficType { get; set; }

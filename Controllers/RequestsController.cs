@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AAO_AdminPanel.Controllers
 {
+    [Authorize] // Log in required
     public class RequestsController : Controller
     {
         private readonly MySQLDbContext _context;

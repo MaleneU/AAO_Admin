@@ -30,7 +30,7 @@ namespace AAO_AdminPanel.Utilities
         // SelectList for page size choices
         public static SelectList PageSizeList(int? pageSize)
         {
-            return new SelectList(new[] { "5", "10", "20", "30" }, pageSize.ToString());
+            return new SelectList(new[] { "5", "10", "30", "50" }, pageSize.ToString());
         }
     }
 }
