@@ -119,7 +119,7 @@ h4 {
   text-decoration: none;
   display: block;
   padding: 18px 0 18px 25px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   outline: 0;
   -webkit-transition: all 200ms ease-in;
   -moz-transition: all 200ms ease-in;
@@ -249,9 +249,9 @@ header li .fa-user {
   display: inline-grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
   padding: 20px;
-  width: 60%;
-  grid-gap: 2%;
-  grid-row-gap: 8%;
+  width: 50%;
+  grid-gap: 10%;
+  grid-row-gap: 10%;
 }
 .createcontainer .form-control, .editcontainer .form-control {
   appearance: auto;
@@ -267,6 +267,7 @@ header li .fa-user {
 .createcontainer .starttime, .editcontainer .starttime {
   grid-column: 3/4;
   grid-row: 1/2;
+  width: 60%;
 }
 .createcontainer .startlocation, .editcontainer .startlocation {
   grid-column: 1/2;
@@ -282,7 +283,7 @@ header li .fa-user {
 }
 .createcontainer .tripduration .barandbutton, .editcontainer .tripduration .barandbutton {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 50% 50%;
 }
 .createcontainer .tripduration .barandbutton .duration-input, .editcontainer .tripduration .barandbutton .duration-input {
   border-top-right-radius: 0;
@@ -313,7 +314,7 @@ header li .fa-user {
   grid-row: 5/6;
   display: grid;
   grid-template-columns: 60% 40%;
-  grid-gap: 5%;
+  grid-gap: 15%;
 }
 .createcontainer .button-and-check-container .labelcontainer, .editcontainer .button-and-check-container .labelcontainer {
   display: flex;
@@ -323,7 +324,18 @@ header li .fa-user {
   height: 45px;
 }
 .createcontainer .button-and-check-container .labelcontainer label input, .editcontainer .button-and-check-container .labelcontainer label input {
-  margin-left: 70px;
+  /* margin-left: 70px;*/
+}
+.createcontainer .button-and-check-container .labelcontainer label .form-check-input[type=checkbox], .editcontainer .button-and-check-container .labelcontainer label .form-check-input[type=checkbox] {
+  padding: 10px;
+  margin-top: 0px;
+}
+.createcontainer .button-and-check-container .labelcontainer label .form-check-input:checked, .editcontainer .button-and-check-container .labelcontainer label .form-check-input:checked {
+  background-color: #005140;
+  border-color: #005140;
+}
+.createcontainer .button-and-check-container .labelcontainer label span, .editcontainer .button-and-check-container .labelcontainer label span {
+  margin-left: 33px;
 }
 
 /*button from loginpage*/
@@ -568,6 +580,12 @@ header li .fa-user {
   box-shadow: none;
   background-color: transparent;
 }
+.table-container tr th .sort-arrow {
+  color: #fff;
+}
+.table-container tr th .sort-arrow:hover {
+  color: #00904a;
+}
 .table-container tr th span {
   color: #00904a;
 }
@@ -680,10 +698,19 @@ header li .fa-user {
   background-color: #dc2f43;
   align-self: end;
 }
+.table-container .rowdetail td .descriptioncontaniner .btn-grouptable .red:hover {
+  background-color: #b31b2c;
+}
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgrey {
   background-color: #b4b2b2;
 }
+.table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgrey:hover {
+  background-color: #b4b2b2;
+}
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen {
+  background-color: #005140;
+}
+.table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen:hover {
   background-color: #005140;
 }
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable button {
