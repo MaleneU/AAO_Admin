@@ -32,7 +32,7 @@ namespace AAO_AdminPanel
             // Test             services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
 
-            //Default Lokal Connection
+            //SQL Login Connection
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             

@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class=" startdate">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input type="date" asp-for="StartDate" class="form-control start-date" />
+                <input min="@(DateTime.Today.Year)-@(DateTime.Today.Month)-@(DateTime.Today.Day)" type="date" asp-for="StartDate" class="form-control start-date" /> 
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class=" stopdate">
@@ -26,9 +26,8 @@
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="">
-
+                @*Model property input hidden*@
                 <input asp-for="StartDateAndTime" hidden class="form-control start-date-and-time" />
-
             </div>
             <div class="startlocation">
                 <label asp-for="StartLocationID" class="control-label"></label>
@@ -42,9 +41,7 @@
                         <option value="@item.TrafficID">@item.StartCountry.Code - @item.StopCountry.Code</option>
                     }
                 </select>
-            </div>
-
-                 
+            </div>                 
             <div class="form-group">
                 <input asp-for="Duration" hidden class="form-control duration-output" />
             </div>
@@ -59,7 +56,6 @@
                 </div>
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
-
             <div class="tripdescription">
                 <label asp-for="Description" class="control-label"></label>
                 <textarea asp-for="Description" class="form-control"></textarea>
@@ -69,69 +65,23 @@
                 <label asp-for="UserID" class="control-label"></label>
                 <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
             </div>
-
             <div class="tripdepartment">
                 <label asp-for="DepartmentID" class="control-label"></label>
                 <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
-            </div>
-
-           
+            </div>           
             <div class="button-and-check-container">
                 <div class="">
                     <input onclick="sendDurationValue(); convertStartDateTime();" type="submit" value="Opret tur" class="buttonadd ligthgreen" />
                 </div>
-
                 <div class="labelcontainer">
                     <label class="label-grid">
                         <input class="form-check-input" asp-for="Urgent" /> <span class="urgent">@Html.DisplayNameFor(model => model.Urgent)</span>
                     </label>
                 </div>
-
-            </div>
-
-            
+            </div>            
         </form>
     </div>
 </div>
-
-
-
-<div id="demo"></div>
-<script>
-
-    function limitStopDate() {
-        let startDate = document.querySelector('input.start-date');
-        let stopDate = document.querySelector('input.stop-date');
-
-        stopDate.setAttribute('min', startDate.value);
-    }
-
-    function convertStartDateTime() {
-        let startDate = document.querySelector('input.start-date').value;
-        let startTime = document.querySelector('input.start-time').value;
-        let startDateAndTime = document.querySelector('input.start-date-and-time');
-
-        startDateAndTime.value = startDate + "T" + startTime;
-    }
-    
-    function sendDurationValue() {
-        let x = document.querySelector('select.unit-select').selectedIndex;
-        let selectedValue = parseInt(document.querySelectorAll('option.unit-selector')[x].value);
-        // Get duration input and unit selector and turn them to int. 
-        // Get duration output
-        let durationInput = parseInt(document.querySelector('input.duration-input').value);
-        let durationOutput = document.querySelector('input.duration-output');
-        //let unitSelector = parseInt(document.querySelector('option.unit-selector').value);
-
-        // Calculate the duration output in hours
-        durationOutput.value = durationInput * selectedValue;
-        console.log("Your input was multiplied by " + selectedValue)
-    }
-    
-    
-
-    
-</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

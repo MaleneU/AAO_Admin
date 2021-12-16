@@ -26,6 +26,7 @@ namespace AAO_AdminPanel.Models
 
         [DisplayName("Kørekort")]
         public List<DriverLicense> DriverLicenses { get; set; }
+        [DisplayName("Perioder")]
         public List<Availability> Availabilities { get; set; }
     }
 }

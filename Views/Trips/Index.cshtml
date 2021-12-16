@@ -50,11 +50,7 @@
                     </div>
                 </div>
             </div>
-            
-
         </div>
-
-
         <table class="table">
             <thead>
                 <tr>
@@ -85,6 +81,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);
                     <tr class="showmore">
                         <td>
                             @Html.DisplayFor(modelItem => item.StartDate)
@@ -114,8 +111,7 @@
                             @Html.DisplayFor(modelItem => item.Urgent)
                         </td>*@
                         <td>
-                            @if(item.Requests.Count > 0){
-                                var requestsWithDrivers = item.Requests.Where(x => x.StatusID == 1);
+                            @if(item.Requests.Count > 0){                                
                                 <a class="requestGreen" asp-action="EditDrivers" asp-route-id="@item.TripID">                         
 
                                     @if (requestsWithDrivers.Count() == 1)
@@ -131,27 +127,16 @@
                                     else
                                     {
                                         @Html.DisplayFor(modelItem => item.Requests.Count)
-                                        <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
+                                        <span>Chauffører</span>
                                     }
-
                                 </a>
                             }
                             else
                             {
                                 @Html.DisplayFor(modelItem => item.Requests.Count)
-                                <span>Anmodninger</span>
+                                <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
                             }
-                        </td>
-                        @*<td>@if (item.HasDriver == true)
-                            {
-                                <span>True</span>
-                            }
-                            else
-                            {
-                                <span>False</span>
-                            }
-
-                        </td>*@
+                        </td>                        
                         <td class="arrow1">
                             <a class="showmore"><img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se detajler" src="~/img/arrow.svg"/> </a>
                         
@@ -167,9 +152,9 @@
                                 </div>
 
                                 <div class="btn-grouptable">
-                                    <button class="darkgrey" asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
-                                    <button  class="red" asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
                                     <button class="darkgreen" asp-action="Edit" asp-route-id="@item.TripID">Rediger tur</button>
+                                    <button class="@(requestsWithDrivers.Count() > 0 ? "red" : "darkgrey disabled hide" )" asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
+                                    <button  class="red" asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
                                 </div>
                             </div>
 

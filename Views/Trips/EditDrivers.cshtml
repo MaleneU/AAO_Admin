@@ -2,7 +2,6 @@
 
 
 <h1>Rediger chauffører på tur</h1>
-<div>@*There are @Model.Trip.Requests.Count() drivers*@</div>
 
 @using (Html.BeginForm("EditDriversConfirmed", "Trips", FormMethod.Post))
 {
@@ -10,11 +9,7 @@
             <thead>
                 <tr>
                     <th>
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="Check_All" />
-                            <label for="remember">
-                            </label>
-                        </div>
+                        
                     </th>
                    @* <th>@Html.DisplayName("RequestID")</th>
                     <th>@Html.DisplayName("DriverID")</th>                    
@@ -28,10 +23,8 @@
             </thead>
             <tbody>
                 
-    @for (int item = 0; item < Model.Count(); item++)
-    {
-
-        
+            @for (int item = 0; item < Model.Count(); item++)
+            {       
                 <tr>
                     <td>
                         <div class="icheck-primary">
@@ -41,31 +34,15 @@
                         @Html.HiddenFor(modelItem => Model[item].RequestID)
                         @Html.HiddenFor(modelItem => Model[item].DriverID)
                         @Html.HiddenFor(modelItem => Model[item].TripID)
-                    </td>
-                   @* <td>
-                        @Html.DisplayFor(modelItem => Model[item].RequestID)
-                        @Html.HiddenFor(modelItem => Model[item].RequestID)
-                    </td>
+                    </td>                 
                     <td>
-                        @Html.DisplayFor(modelItem => Model[item].DriverID)
-                        @Html.HiddenFor(modelItem => Model[item].DriverID)
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Fullname)                        
+                    </td>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Email)                        
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Model[item].TripID)
-                        @Html.HiddenFor(modelItem => Model[item].TripID)
-                    </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Fullname)
-                        
-                    </td>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => Model[item].Driver.User.Email)
-                        
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model[item].Driver.User.PhonePretty)
-                        
+                        @Html.DisplayFor(modelItem => Model[item].Driver.User.PhonePretty)                        
                     </td>
                     <td>
                         @foreach (var license in Model[item].Driver.DriverLicenses)
@@ -74,8 +51,7 @@
                     }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => Model[item].Status.Name)
-                        
+                        @Html.DisplayFor(modelItem => Model[item].Status.Name)                        
                     </td>
                 </tr>
             }    
@@ -85,54 +61,3 @@
 
     <input type="submit" value="Gem ændringer" class="submitBtn" />
 }
-
-
-
-
-@*@using (Html.BeginForm("EditDriversConfirmed", "Trips", FormMethod.Post))
-{
-    <table id="DataTable" class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>@Html.DisplayNameFor(model => model.RequestID)</th>
-                <th>@Html.DisplayNameFor(model => model.DriverID)</th>
-                <th>@Html.DisplayNameFor(model => model.Driver.User.Fullname)</th>
-                <th>@Html.DisplayNameFor(model => model.Driver.User.Phone)</th>
-                <th>@Html.DisplayNameFor(model => model.Driver.User.Email)</th>
-                <th>@Html.DisplayNameFor(model => model.Driver.DriverLicenses)</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>            
-            @foreach (var request in Model)
-            {
-                <tr>
-                    <td>@if (request.StatusID == 1)
-                        {
-                            <input name="RequestID" value="@request.RequestID" type="checkbox" class="chkCheckBoxId" checked />
-                        }
-                        else
-                        {
-                            <input name="RequestID" value="@request.RequestID" type="checkbox" class="chkCheckBoxId" />
-                        }
-                    </td>
-                <td>@request.RequestID</td>
-                <td><input type="number" disabled value="@request.DriverID"/></td>
-                <td>@request.Driver.User.Fullname</td>
-                <td>@request.Driver.User.Phone</td>
-                <td>@request.Driver.User.Email</td>
-                <td>
-                    @foreach (var license in request.Driver.DriverLicenses)
-                    {
-                        @Html.DisplayFor(modelItem => license.License.LicenseName)
-                    }
-                </td>
-
-                <td>@request.Status.Name</td>
-            </tr>
-            }
-        </tbody>
-    </table>
-    <button type="submit" value="Update" class="btn btn-primary" onclick="return confirm('Are you sure?')">Gem</button>
-}*@

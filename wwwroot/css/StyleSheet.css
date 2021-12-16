@@ -488,14 +488,14 @@ header li .fa-user {
   background-color: #b4b2b2;
 }
 .darkgrey:hover {
-  background-color: #b4b2b2;
+  background-color: #a5a5a5;
 }
 
 .darkgreen {
   background-color: #005140;
 }
 .darkgreen:hover {
-  background-color: #005140;
+  background-color: #013228;
 }
 
 .ligthgreen {
@@ -705,13 +705,13 @@ header li .fa-user {
   background-color: #b4b2b2;
 }
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgrey:hover {
-  background-color: #b4b2b2;
+  background-color: #a5a5a5;
 }
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen {
   background-color: #005140;
 }
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable .darkgreen:hover {
-  background-color: #005140;
+  background-color: #013228;
 }
 .table-container .rowdetail td .descriptioncontaniner .btn-grouptable button {
   width: 100%;

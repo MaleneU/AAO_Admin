@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Not used in the webapp. Just for creating mock data. 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

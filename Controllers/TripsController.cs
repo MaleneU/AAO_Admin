@@ -202,7 +202,6 @@ namespace AAO_AdminPanel.Controllers
         {
 
             ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
-
             ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
             ViewData["StartAndStop"] = new SelectList(_context.Traffic, "TrafficID", "StartAndStop");
@@ -211,8 +210,6 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // POST: Trips/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TripID, StartDateAndTime, StopDate,Duration,UserID,Description,TrafficID,DepartmentID,StartLocationID,Urgent")] Trip trip)
@@ -223,11 +220,12 @@ namespace AAO_AdminPanel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name", trip.DepartmentID);
-            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
-            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "StartCountryCountryID", trip.TrafficID);
-            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
+
+            ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
+            ViewData["StartAndStop"] = new SelectList(_context.Traffic, "TrafficID", "StartAndStop");
+            ViewData["UserID"] = new SelectList(_context.User.Where(r => r.RoleID == 2), "UserID", "Fullname");
             return View(trip);
         }
 
@@ -244,11 +242,12 @@ namespace AAO_AdminPanel.Controllers
             {
                 return NotFound();
             }
+
             ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
             ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
-            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
-            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
+            ViewData["StartAndStop"] = new SelectList(_context.Traffic, "TrafficID", "StartAndStop");
+            ViewData["UserID"] = new SelectList(_context.User.Where(r => r.RoleID == 2), "UserID", "Fullname");
             return View(trip);
         }
 
@@ -285,10 +284,10 @@ namespace AAO_AdminPanel.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["StartAndStopCountries"] = _context.Traffic.Include(t => t.StartCountry).Include(t => t.StopCountry);
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", trip.DepartmentID);
-            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "StartLocationID", trip.StartLocationID);
-            ViewData["TrafficID"] = new SelectList(_context.Traffic, "TrafficID", "TrafficID", trip.TrafficID);
-            ViewData["UserID"] = new SelectList(_context.User, "UserID", "UserID", trip.UserID);
+            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "Name");
+            ViewData["StartLocationID"] = new SelectList(_context.StartLocation, "StartLocationID", "Location");
+            ViewData["StartAndStop"] = new SelectList(_context.Traffic, "TrafficID", "StartAndStop");
+            ViewData["UserID"] = new SelectList(_context.User.Where(r => r.RoleID == 2), "UserID", "Fullname");
             return View(trip);
         }
 
@@ -330,34 +329,8 @@ namespace AAO_AdminPanel.Controllers
             return _context.Trip.Any(e => e.TripID == id);
         }
 
-        //public async Task<IActionResult> RemoveDriver(int? id)
-        //{
 
-        //    //var test = _context.
-
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var trip = await _context.Trip
-        //        .Include(t => t.Department)
-        //        .Include(t => t.Startlocation)
-        //        .Include(t => t.Traffic)
-        //        .Include(t => t.User)
-        //        .Include(t => t.Requests).ThenInclude(t => t.Status)
-        //        .Include(t => t.Requests).ThenInclude(t => t.Driver).ThenInclude(t => t.User)
-
-        //        .FirstOrDefaultAsync(m => m.TripID == id);
-        //    if (trip == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["Sat"] = _context.User.Where(r => r.RoleID == id);
-        //    return View(trip);
-        //}
-
-
+        // Not in use - Possible improvement 
         [HttpPost]
         public ActionResult DeleteMultiple(IFormCollection formCollection)
         {
@@ -445,7 +418,7 @@ namespace AAO_AdminPanel.Controllers
                 _context.SaveChanges();
             }
 
-
+            // Old method: 
             //string[] ids = formCollection["RequestID"];
                    
             //foreach (var id in ids)
@@ -461,7 +434,7 @@ namespace AAO_AdminPanel.Controllers
 
         }
 
-
+        // Popup experimental
         public ActionResult PopupView()
         {
             return PartialView();

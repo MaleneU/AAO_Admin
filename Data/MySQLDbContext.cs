@@ -33,11 +33,6 @@ namespace AAO_AdminPanel.Data
 
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    modelBuilder.Entity<>(e => e.Property(o => o.Age).HasColumnType("tinyint(1)").HasConversion<short>());
-        //    //modelBuilder.Entity<Person>(e => e.Property(o => o.IsPlayer).HasConversion(new BoolToZeroOneConverter<Int16>()).HasColumnType("bit"));
-        //}
+        
     }
 }
