@@ -41,7 +41,7 @@
                     <div class="row justify-content-end mr-auto">
                         <div class="col-auto">
                             <label class="filter-label"></label>
-                            <button type="submit" class="buttonadd darkgreen">Tilføj/fjern kolonner</button>
+                            <button type="submit" class="buttonadd darkgreen" onclick="alert('Der er noget der driller')">Tilføj/fjern kolonner</button>
                         </div>
                         @*<div class="col-auto">
                             <label class="filter-label"></label>
@@ -127,14 +127,14 @@
                                     else
                                     {
                                         @Html.DisplayFor(modelItem => item.Requests.Count)
-                                        <span>Chauffører</span>
+                                        <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
                                     }
                                 </a>
                             }
                             else
                             {
                                 @Html.DisplayFor(modelItem => item.Requests.Count)
-                                <span>@(item.Requests.Count == 1 ? "Anmodning" : "Anmodninger")</span>
+                                <span>Anmodninger</span>
                             }
                         </td>                        
                         <td class="arrow1">

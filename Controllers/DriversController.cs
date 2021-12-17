@@ -249,11 +249,10 @@ namespace AAO_AdminPanel.Controllers
         }
 
 
-        // POST Add Driver To Trip
+        // POST Add Trip To Driver
         [HttpPost]
         public async Task<IActionResult> AddTripToDriver(IFormCollection form, int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
@@ -273,8 +272,6 @@ namespace AAO_AdminPanel.Controllers
                 _context.Add(request);
                 await _context.SaveChangesAsync();
             }
-
-
 
             return RedirectToAction("Index");
         }

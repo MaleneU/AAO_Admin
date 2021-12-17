@@ -367,6 +367,7 @@ namespace AAO_AdminPanel.Controllers
 
             return View(await requests.ToListAsync());
         }
+
         [HttpPost]
         public ActionResult RemoveConfirmed(IFormCollection formCollection)
         {
@@ -380,7 +381,6 @@ namespace AAO_AdminPanel.Controllers
                 
             }
             return RedirectToAction("Index");
-
         }
 
         public async Task<IActionResult> EditDrivers(int? id)
@@ -404,8 +404,9 @@ namespace AAO_AdminPanel.Controllers
 
             return View(await requests.ToListAsync());
         }
+
         [HttpPost]
-        public IActionResult EditDriversConfirmed(IFormCollection formCollection, List<Request> Requests)
+        public IActionResult EditDriversConfirmed(List<Request> Requests)
         {
 
             foreach (var req in Requests)
@@ -414,22 +415,13 @@ namespace AAO_AdminPanel.Controllers
                 {
                     req.StatusID = 2;
                 }
+                else if(req.StatusBool == true)
+                {
+                    req.StatusID = 1;
+                }
                 _context.Request.Update(req);
                 _context.SaveChanges();
-            }
-
-            // Old method: 
-            //string[] ids = formCollection["RequestID"];
-                   
-            //foreach (var id in ids)
-            //{
-            //    var request = this._context.Request.Find(int.Parse(id));
-            //    request.StatusID = 1;
-            //    _context.Request.Update(request);
-            //    _context.SaveChanges();
-                
-
-            //}
+            }          
             return RedirectToAction("Index");
 
         }
