@@ -11,6 +11,8 @@
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
 
+        
+
         <div class="form-horizontal mb-4">
             <div class="row">
                 <div class="col-7">
@@ -27,6 +29,14 @@
                             <label class="filter-label">Afløser pr. side</label><br />
                             @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                         </div>
+                        <div class="col-auto">
+                            <br />
+                            <p>
+                                <input type="search" placeholder="Søg..." value="@ViewData["DriversSearchBar"]" name="SearchString" class="trip-filter"/>
+                                <input type="submit" value="Search" class="buttonadd2 ligthgreen" /> |
+                                <a asp-action="Index">Nulstil</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,7 +51,7 @@
                         <button type="submit" name="actionButton" value="Phone" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Phone)<span class="sort-arrow"> ⇅</span></button>
                     </th>
                     <th>
-                        <button type="submit" name="actionButton" value="Email" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Email)<span class="sort-arrow"> ⇅</span></button>  
+                        <button type="submit" name="actionButton" value="Email" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.User.Email)<span class="sort-arrow"> ⇅</span></button>
                     </th>
                     <th>
                         <button type="submit" name="actionButton" value="License" disabled="disabled" class="sort-link pl-0 mr-3">@Html.DisplayNameFor(model => model.DriverLicenses)</button>
@@ -66,12 +76,12 @@
                         <td>
                             @foreach (var l in item.DriverLicenses)
                             {
-                                if (l != item.DriverLicenses.Last()) 
-                                {                                   
+                                if (l != item.DriverLicenses.Last())
+                                {
                                     @Html.DisplayFor(modelItem => l.License.LicenseName)
                                     <span>-</span>
                                 }
-                                else if(l == item.DriverLicenses.Last())
+                                else if (l == item.DriverLicenses.Last())
                                 {
                                     @Html.DisplayFor(modelItem => l.License.LicenseName)
                                 }
@@ -79,7 +89,7 @@
                         </td>
                         <td class="arrow1">
                             <a class="showmore">
-                                <img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se afløser info" src="~/img/arrow.svg"/> 
+                                <img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se afløser info" src="~/img/arrow.svg" />
                             </a>
                         </td>
                     </tr>
@@ -101,12 +111,13 @@
                                         <p>
                                             @foreach (var l in item.DriverLicenses)
                                             {
-                                                if (l != item.DriverLicenses.Last()) {
-                                                    
+                                                if (l != item.DriverLicenses.Last())
+                                                {
+
                                                     @Html.DisplayFor(modelItem => l.License.LicenseName)
                                                     <span>-</span>
                                                 }
-                                                else if(l == item.DriverLicenses.Last())
+                                                else if (l == item.DriverLicenses.Last())
                                                 {
                                                     @Html.DisplayFor(modelItem => l.License.LicenseName)
                                                 }
@@ -115,7 +126,7 @@
                                     </div>
                                     <div>
                                         <div class="driver-controls">
-                                            <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID" onclick="alert('Vil du @(item.Active ? "deaktivere" : "aktivere") chaufføren?')"><i class="fas fa-moon"></i></button>                                            
+                                            <button class="activity @(item.Active ? "active" : "inactive") btn btn-secondary" data-toggle="tooltip" title="Aktiv/Inaktiv" data-delay=100 asp-action="DriverActivation" asp-route-id="@item.DriverID" onclick="alert('Vil du @(item.Active ? "deaktivere" : "aktivere") chaufføren?')"><i class="fas fa-moon"></i></button>
                                             <button class="btn btn-danger" data-toggle="tooltip" title="Slet" asp-action="Delete" asp-route-id="@item.DriverID"><i class="fas fa-trash"></i></button>
                                         </div>
                                     </div>

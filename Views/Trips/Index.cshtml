@@ -13,14 +13,7 @@
 
         @* Searchbar *@
         
-            <p>
-                <input type="search" placeholder="Søg..." value="@ViewData["TripsSearchBar"]" name="SearchString" />
-                <input type="submit" value="Search" />
-                <a asp-action="Index" class="btn btn-primary">Nulstil</a>
-            </p>
-        
-
-
+            
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
         <div class="form-horizontal mb-4">
@@ -46,6 +39,14 @@
                         <div class="col-auto">
                             <label class="filter-label">Ture pr. side</label><br />
                             @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                        <div class="col-auto">
+                            <br />
+                            <p>
+                                <input type="search" placeholder="Søg..." value="@ViewData["TripsSearchBar"]" name="SearchString" class="trip-filter" />
+                                <input type="submit" value="Search" class="buttonadd2 ligthgreen" /> |
+                                <a asp-action="Index">Nulstil</a>
+                            </p>
                         </div>
                     </div>
                 </div>

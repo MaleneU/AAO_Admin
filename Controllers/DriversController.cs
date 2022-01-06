@@ -1,20 +1,18 @@
 ﻿using AAO_AdminPanel.Data;
 using AAO_AdminPanel.Models;
 using AAO_AdminPanel.Utilities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
 {
-    [Authorize] // Log in required
+    /*[Authorize]*/ // Log in required
     public class DriversController : Controller
     {
         private readonly MySQLDbContext _context;
@@ -25,8 +23,8 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // GET: Drivers
-        public async Task<IActionResult> Index(int? LicenseID, int? StartLocationID, int? page, int? pageSizeID, 
-            string actionButton, string sortDirection = "asc", string sortField = "Navn")
+        public async Task<IActionResult> Index(int? LicenseID, int? StartLocationID, int? page, int? pageSizeID,
+            string actionButton, string searchString, string sortDirection = "asc", string sortField = "Navn")
         {
 
             string[] sortOptions = new[] { "Navn", "Phone", "Email", "License" };
@@ -106,10 +104,25 @@ namespace AAO_AdminPanel.Controllers
             ViewData["sortDirection"] = sortDirection;
 
 
+            ViewData["DriversSearchBar"] = searchString;
+
+            
+            //Search bar
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                drivers = drivers.Where(d => d.User.Firstname.Contains(searchString) || d.User.Lastname.Contains(searchString) || d.User.Email.Contains(searchString));
+            }
+            // End
+
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
 
+
             var pagedData = await PaginatedList<Driver>.CreateAsync(drivers.AsNoTracking(), page ?? 1, pageSize);
+
+            
+
+
 
             return View(pagedData);
         }
@@ -382,6 +395,7 @@ namespace AAO_AdminPanel.Controllers
         {
             return _context.Availability.Any(e => e.AvailabilityID == id);
         }
+
 
     }
 }
