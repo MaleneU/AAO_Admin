@@ -10,33 +10,45 @@
     <h1>Oversigt over ture</h1>
 
     <form asp-action="Index" method="get">
+
+        @* Searchbar *@
+        
+            <p>
+                <input type="search" placeholder="Søg..." value="@ViewData["TripsSearchBar"]" name="SearchString" />
+                <input type="submit" value="Search" />
+                <a asp-action="Index" class="btn btn-primary">Nulstil</a>
+            </p>
+        
+
+
         <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
         <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
         <div class="form-horizontal mb-4">
             <div class="row">
                 <div class="col-7">
-                <div class="row justify-content-start ml-auto">
-                <div class="col-auto">
-                    <label class="filter-label">@Html.DisplayNameFor(model => model.Startlocation)</label><br />
-                    @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                    <div class="row justify-content-start ml-auto">
+                        <div class="col-auto">
+                            <label class="filter-label">@Html.DisplayNameFor(model => model.Startlocation)</label><br />
+                            @Html.DropDownList("StartLocationID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                        <div class="col-auto">
+                            <label class="filter-label">@Html.DisplayNameFor(model => model.Department)</label><br />
+                            @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                        <div class="col-auto">
+                            <label class="filter-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label><br />
+                            @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                        <div class="col-auto">
+                            <label class="filter-label">Status</label><br />
+                            @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                        <div class="col-auto">
+                            <label class="filter-label">Ture pr. side</label><br />
+                            @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
+                        </div>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <label class="filter-label">@Html.DisplayNameFor(model => model.Department)</label><br />
-                    @Html.DropDownList("DepartmentID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                </div>
-                <div class="col-auto">
-                    <label class="filter-label">@Html.DisplayNameFor(model => model.Traffic.TrafficType.Type)</label><br />
-                    @Html.DropDownList("TrafficTypeID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                </div>
-                <div class="col-auto">
-                    <label class="filter-label">Status</label><br />
-                    @Html.DropDownList("StatusID", null, "Alle", htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                </div>
-                <div class="col-auto">
-                    <label class="filter-label">Ture pr. side</label><br />
-                    @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
-                </div>
-                    </div></div>
                 <div class="col-5">
                     <div class="row justify-content-end mr-auto">
                         <div class="col-auto">
@@ -105,14 +117,15 @@
                             @Html.DisplayFor(modelItem => item.Department.Name)
                         </td>
                         @*<td>
-                                @Html.DisplayFor(modelItem => item.Startlocation.Location)
-                            </td>*@
+                            @Html.DisplayFor(modelItem => item.Startlocation.Location)
+                        </td>*@
                         @*<td>
                             @Html.DisplayFor(modelItem => item.Urgent)
                         </td>*@
                         <td>
-                            @if(item.Requests.Count > 0){                                
-                                <a class="requestGreen" asp-action="EditDrivers" asp-route-id="@item.TripID">                         
+                            @if (item.Requests.Count > 0)
+                            {
+                                <a class="requestGreen" asp-action="EditDrivers" asp-route-id="@item.TripID">
 
                                     @if (requestsWithDrivers.Count() == 1)
                                     {
@@ -136,25 +149,25 @@
                                 @Html.DisplayFor(modelItem => item.Requests.Count)
                                 <span>Anmodninger</span>
                             }
-                        </td>                        
+                        </td>
                         <td class="arrow1">
-                            <a class="showmore"><img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se detajler" src="~/img/arrow.svg"/> </a>
-                        
+                            <a class="showmore"><img id="imgdown" class="fa-sort-down rotate" data-toggle="tooltip" title="Se detajler" src="~/img/arrow.svg" /> </a>
+
                         </td>
                     </tr>
-                    <tr id="hiddenrow "class="rowdetail">
+                    <tr id="hiddenrow " class="rowdetail">
                         <td colspan="10">
                             <div class="descriptioncontaniner moreshown">
                                 <h3> Beskrivelse af turen</h3>
                                 <div class="descriptiontext">
                                     @Html.DisplayFor(modelItem => item.Description)
-                  
+
                                 </div>
 
                                 <div class="btn-grouptable">
                                     <button class="darkgreen" asp-action="Edit" asp-route-id="@item.TripID">Rediger tur</button>
                                     <button class="@(requestsWithDrivers.Count() > 0 ? "red" : "darkgrey disabled hide" )" asp-action="RemoveDriver" asp-route-id="@item.TripID">Fjern chauffør</button>
-                                    <button  class="red" asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
+                                    <button class="red" asp-action="Delete" asp-route-id="@item.TripID">Slet tur</button>
                                 </div>
                             </div>
 

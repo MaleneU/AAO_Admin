@@ -427,11 +427,28 @@ namespace AAO_AdminPanel.Controllers
         }
 
         // Popup experimental
+        [HttpGet]
         public ActionResult PopupView()
         {
             return PartialView();
         }
 
+        //Search bar
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            ViewData["TripsSearchBar"] = searchString;
+
+            var search = from s in _context.Trip
+                         select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+               // search = search.Where(s => s.Startlocation.Contains(searchString));
+            } 
+
+            return View(await search.ToListAsync());
+        }
 
 
     }
