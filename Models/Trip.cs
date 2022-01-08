@@ -76,7 +76,7 @@ namespace AAO_AdminPanel.Models
            
         //}
 
-        [NotMapped]
+    
         public bool? HasDriver
         {
             get {

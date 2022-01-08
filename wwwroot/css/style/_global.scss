@@ -41,9 +41,7 @@ h4{
 }
 
 .sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    height: auto;
 
 
     .logo {
@@ -101,7 +99,6 @@ h4{
 
     width: 16%;
     background: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: absolute;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -111,9 +108,13 @@ h4{
     z-index: 100;
 
     #leftside-navigation {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.02);
+        height: 100%;
+
         ul, ul ul {
             margin: -2px 0 0;
             padding: 0;
+            height: 100vh;
         }
 
 
@@ -194,15 +195,7 @@ ul ul {
 
 
 
-@media screen and (max-height: 450px) {
-    .sidebar {
-        padding-top: 15px;
-    }
 
-    .sidebar a {
-        font-size: 18px;
-    }
-}
 
 /*sidenav end*/
 
@@ -414,4 +407,80 @@ header {
             }
         }
     }
+}
+
+// dashboard
+
+.greeting{
+    margin-bottom: 3px;
+}
+.status-on-day  {
+font-size: 20px;
+}
+
+.info-cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 2%;
+    margin: 2% 0;
+    text-decoration: none;
+
+    .info-container {
+        display: grid;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 20px 0 rgba(0, 0, 0, 0.02);
+
+        h2 {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .count-number {
+            background-color: #dc2f43;
+            color: white;
+            font-weight: 600;
+            width: 30px;
+            height: 30px;
+            justify-self: center;
+            align-self: center;
+            text-align: center;
+            justify-items: center;
+            border-radius: 4px;
+
+            p {
+                display: block;
+                margin: 0;
+                margin-top: 3px;
+            }
+        }
+    }
+
+    .info-container:hover {
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0, 144, 74, 0.22), 0 6px 20px 0 rgba(0, 144, 74, 0.12);
+        text-decoration: none;
+    }
+}
+
+.dashboard-text{
+    font-weight:600;
+}
+
+.back{
+    position:absolute;
+    top: 22%;
+    right: 7%;
+    font-size:20px;
+  
+
+    .fas{
+        font-size: 20px;
+
+    }
+}
+
+.back:hover {
+    text-decoration: none;
+    color: #00904a;
 }

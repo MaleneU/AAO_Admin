@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AAO_AdminPanel.Controllers
 {
-    [Authorize] // Log in required
+   /* [Authorize]*/ // Log in required
     public class DriversController : Controller
     {
         private readonly MySQLDbContext _context;

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace AAO_AdminPanel.Controllers
 {
-    [Authorize] // Log in required
+   /* [Authorize]*/ // Log in required
     public class TripsController : Controller
     {
         private readonly MySQLDbContext _context;
