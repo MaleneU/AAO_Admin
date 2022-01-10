@@ -37,12 +37,15 @@ namespace AAO_AdminPanel.Controllers
                 .Include(d => d.DriverLicenses).ThenInclude(d => d.License)
                 .Include(d => d.Availabilities)
                           select d;
-
+           
+            // Filter: StartLacation 
             if (StartLocationID.HasValue)
             {
                 drivers = drivers.Where(t => t.StartLocationID == StartLocationID);
             }
 
+
+            // Filter: DriverLocation
             if (LicenseID.HasValue)
             {
                 drivers = drivers.Where(t => t.DriverLicenses.Any(t => t.LicenseID == LicenseID));
@@ -112,8 +115,8 @@ namespace AAO_AdminPanel.Controllers
             {
                 drivers = drivers.Where(d => d.User.Firstname.Contains(searchString) || d.User.Lastname.Contains(searchString) || d.User.Email.Contains(searchString));
             }
-            // End
 
+            // Page size
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
 

@@ -25,7 +25,7 @@ namespace AAO_AdminPanel.Controllers
 
         // GET: Trips
         public async Task<IActionResult> Index(int? StartLocationID, int? DepartmentID, int? TrafficTypeID, int? StatusID, int? page, int? pageSizeID,
-            string actionButton, string searchString, string sortDirection = "asc", string sortField = "Startdato")
+            string actionButton, string sortDirection = "asc", string sortField = "Startdato")
         {
             string[] sortOptions = new[] { "Startdato", "Slutdato", "Trafik", "Varighed", "Afdeling" };
             PopulateDropDownLists();
@@ -146,14 +146,6 @@ namespace AAO_AdminPanel.Controllers
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
             ViewData["RequestsWithDriver"] = _context.Request.Where(m => m.StatusID == 1);
-
-
-            // Search bar
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                trips = trips.Where(t => t.Startlocation.Location.Contains(searchString) || t.Department.Name.Contains(searchString));
-            }
-            // End
 
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID);
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
