@@ -30,12 +30,12 @@
                             @Html.DropDownList("pageSizeID", null, htmlAttributes: new { @class = "trip-filter", onchange = "submit()" })
                         </div>
                         <div class="col-auto">
-                            <br />
-                            <p>
-                                <input type="search" placeholder="Søg..." value="@ViewData["DriversSearchBar"]" name="SearchString" class="trip-filter"/>
+                            
+                                <label class="filter-label">Søg</label><br />
+                                <input type="search" placeholder="Søg her..." value="@ViewData["DriversSearchBar"]" name="SearchString" class="trip-filter" />
                                 <input type="submit" value="Search" class="buttonadd2 ligthgreen" /> |
                                 <a asp-action="Index">Nulstil</a>
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
